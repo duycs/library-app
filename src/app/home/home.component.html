@@ -1,0 +1,114 @@
+<h2>Hello! Welcome to <code>Home Library</code> !</h2>
+
+<!-- Anonymous people -->
+<p><code>Anonymous people</code> can does:</p>
+<ul>
+  <!-- search by authors, title, subject name, public date -->
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/search"]'>Search books</a>
+  </li>
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/books"]'>View all books</a>
+  </li>
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/books/recommended"]'>View recommended books</a>
+  </li>
+
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/login"]'>Login</a>
+  </li>
+</ul>
+
+
+<!--Librarian-->
+<p><code>Librarians</code> can does:</p>
+<ul>
+  <!-- Add/Remove/Edit book: To add, remove or modify a book or book item. -->
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/register"]'>Register</a>
+  </li>
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/logout"]'>Logout</a>
+  </li>
+
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/libraryans/findBooks"]'>View all books</a>
+  </li>
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/libraryans/addBook"]'>Add new book</a>
+  </li>
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/libraryans/findBooks"]'>In the list books you choose an book then edit or delete this
+      item</a>
+  </li>
+
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/libraryans/findBookItems"]'>View all book items</a>
+  </li>
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/libraryans/addBookItem"]'>Add new book item</a>
+  </li>
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/libraryans/findBookItems"]'>In the list book items you choose an book then edit or
+      delete this item</a>
+  </li>
+
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/libraryans/findAllMembers"]'>View all members</a>
+  </li>
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/libraryans/findMember"]'>Find an member by email</a>
+  </li>
+
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/libraryans/blockMember"]'>Block an member by email</a>
+  </li>
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/libraryans/unblockMember"]'>Unblock an member by email</a>
+  </li>
+</ul>
+
+<p><code>Members</code> can does:</p>
+<ul>
+  <!-- Register new account/cancel membership: To add a new member or cancel the membership of an existing member. -->
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/register"]'>Register</a>
+  </li>
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/logout"]'>Logout</a>
+  </li>
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/members/cancelMembership"]'>Cancel membership</a>
+  </li>
+
+  <!-- Check-out book: To borrow a book from the library. -->
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/members/check-out"]'>Checkout book</a>
+  </li>
+
+  <!-- Reserve book: To reserve a book which is not currently available. -->
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/members/reserve"]'>Reserve book</a>
+  </li>
+
+  <!-- Renew a book: To reborrow an already checked-out book. -->
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/members/renew"]'>Renew a book</a>
+  </li>
+
+  <!-- Return a book: To return a book to the library which was issued to a member. -->
+  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/members/return"]'>Return a book</a>
+  </li>
+</ul>
+
+<!-- design at https://www.educative.io/collection/page/5668639101419520/5692201761767424/5636470266134528 -->
+<p>We design follow this reference:</p>
+<ul>
+  <li>
+    <a href="https://www.educative.io/collection/page/5668639101419520/5692201761767424/5636470266134528">
+      Design a Library Management System</a>
+  </li>
+</ul>
+
+<p>The <code>Library</code> for my family and open for you with <code>love</code></p>

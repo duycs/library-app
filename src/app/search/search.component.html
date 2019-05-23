@@ -1,0 +1,33 @@
+<form [formGroup]="searchForm" (ngSubmit)="onFormSubmit(searchForm.value)">
+  <mat-form-field class="input-search">
+    <input matInput placeholder="Search by title books" formControlName="title" [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!searchForm.get('title').valid && searchForm.get('title').touched">Please enter Title books</span>
+    </mat-error>
+  </mat-form-field>
+  <div class="button-row float-right">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!searchForm.valid">
+      Search
+    </button>
+  </div>
+</form>
+
+<div fxLayout="row" fxLayout.xs="column">
+  <mat-card *ngFor="let book of books" fxFlex="25%;" fxFlex.xs="80%" class="example-card container">
+    <!-- <mat-card-header>
+      <mat-card-title>{{ book.title }}</mat-card-title>
+      <mat-card-subtitle>{{book.isbn}}</mat-card-subtitle>
+    </mat-card-header> -->
+    <img mat-card-image src="https://about.canva.com/wp-content/uploads/sites/3/2015/01/art_bookcover.png" alt="Photo of book">
+    <mat-card-content>
+      <p>{{book.title}}</p>
+      <!-- <p>{{book.subject}}</p>
+      <p>{{book.publisher}}</p>
+      <p>{{book.pageNumber}}</p> -->
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

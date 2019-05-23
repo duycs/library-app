@@ -1,0 +1,44 @@
+<div class="example-container mat-elevation-z8">
+  <!-- <div class="example-loading-shade"
+         *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div> -->
+  <div class="button-row">
+    <a mat-flat-button color="primary" (click)="bookDetails()">
+      <mat-icon>info</mat-icon>
+    </a>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="bookForm" (ngSubmit)="onFormSubmit(bookForm.value)">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="isbn" formControlName="isbn" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!bookForm.get('isbn').valid && bookForm.get('isbn').touched">Please enter book ISBN</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Title" formControlName="title" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!bookForm.get('title').valid && bookForm.get('title').touched">Please enter book Title</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Subject" formControlName="subject">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Publisher" formControlName="publisher">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Language" formControlName="language">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="PageNumber" formControlName="pageNumber">
+      </mat-form-field>
+      <div class="button-row">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!bookForm.valid">
+            Save
+          </button>
+        </div>
+    </form>
+  </mat-card>
+</div>
