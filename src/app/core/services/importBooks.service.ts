@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError, tap, map } from 'rxjs/operators';
 import { Book } from '../../shared/models/book';
 import { ApiBookService } from './books.service';
+import { MatSnackBar } from '@angular/material';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,7 +18,7 @@ const apiExportFromPoststudyUrl = "http://localhost:5001/api/exportBook";
 })
 export class ApiImportBookService {
     data: Book[] = [];
-    constructor(private http: HttpClient, private apiBookService: ApiBookService) { }
+    constructor(private http: HttpClient, private apiBookService: ApiBookService, private snackBar: MatSnackBar) { }
 
     getExportFromPoststudyBooks(): Observable<Book[]> {
         return this.http.get<Book[]>(apiExportFromPoststudyUrl)
@@ -30,9 +31,21 @@ export class ApiImportBookService {
     importBooks() {
         this.getExportFromPoststudyBooks().subscribe(res => {
             this.data = res;
-            console.log(this.data);
+            //console.log(this.data);
+            let timestamp = new Date().getTime();
             this.data.forEach(element => {
-                this.apiBookService.addBook(element)
+                element.isbn = element.uid;
+                console.log(element);
+                this.apiBookService.addBook(element) .subscribe(res => {
+                    this.snackBar.open("Success ${element.uid}", "Ok", {
+                      duration: 2000,
+                    });
+                  }, (err) => {
+                    this.snackBar.open("Error", "", {
+                      duration: 2000,
+                    });
+                    console.log(err);
+                  });
             });
         }, err => {
             console.log(err);

@@ -11,7 +11,7 @@ import { Book } from '../../../shared/models/book';
 })
 export class BookDetailComponent implements OnInit {
 
-    book: Book = { uid : 0, id: 0, isbn : '', coverImage:'', description:'', title: '', subject: '', publisher: '', language: '', pageNumber : null };
+    book: Book = { uid : 0, id: 0, isbn : 0, coverImage:'', description:'', title: '', subject: '', publisher: '', language: '', pageNumber : null };
     isLoadingResults = true;
   
     constructor(private route: ActivatedRoute, private api: ApiBookService, private router: Router) { }
