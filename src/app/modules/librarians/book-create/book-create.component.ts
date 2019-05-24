@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiBookService } from '../../../core/services/books.service';
-import { Book } from '../../../shared/models/book';
-import { FormGroup, Validators, NgForm, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
-  selector: 'app-book-edit',
-  templateUrl: './book-edit.component.html',
-  styleUrls: ['./book-edit.component.css']
+  selector: 'app-book-create',
+  templateUrl: './book-create.component.html',
+  styleUrls: ['./book-create.component.css']
 })
-export class BookEditComponent implements OnInit {
+
+export class BookCreateComponent implements OnInit {
   bookForm: FormGroup;
-  id: number = null;
   isbn: string = '';
   title: string = '';
   subject: string = '';
@@ -21,12 +20,10 @@ export class BookEditComponent implements OnInit {
   pageNumber: string = '';
   isLoadingResults = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private api: ApiBookService, private formBuilder: FormBuilder, private snackBar: MatSnackBar) { }
+  constructor(private router: Router, private api: ApiBookService, private formBuilder: FormBuilder, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.getBook(this.route.snapshot.params['id']);
     this.bookForm = this.formBuilder.group({
-      'id': [null],
       'isbn': [null, Validators.required],
       'title': [null, Validators.required],
       'subject': [null],
@@ -36,25 +33,9 @@ export class BookEditComponent implements OnInit {
     });
   }
 
-  getBook(id) {
-    this.api.getBook(id).subscribe(data => {
-      console.log(data);
-      this.id = data.id;
-      this.bookForm.setValue({
-        id: data.id,
-        isbn: data.isbn,
-        title: data.title,
-        subject: data.subject,
-        publisher: data.publisher,
-        language : data.language,
-        pageNumber: data.pageNumber
-      });
-    });
-  }
-
   onFormSubmit(form: NgForm) {
     this.isLoadingResults = true;
-    this.api.updateBook(this.id, form)
+    this.api.addBook(form)
       .subscribe(res => {
         this.snackBar.open("Success", "Ok", {
           duration: 2000,
@@ -62,7 +43,7 @@ export class BookEditComponent implements OnInit {
         // let id = res['id'];
         // this.isLoadingResults = false;
         // this.router.navigate(['/books/detail', id]);
-        this.router.navigate(['books']);
+        this.router.navigate(['/librarians/findBooks']);
       }, (err) => {
         this.snackBar.open("Error", "", {
           duration: 2000,
@@ -70,10 +51,6 @@ export class BookEditComponent implements OnInit {
         console.log(err);
         this.isLoadingResults = false;
       });
-  }
-
-  bookDetails() {
-    this.router.navigate(['/books/detail', this.id]);
   }
 
 }

@@ -6,7 +6,8 @@ import { BookListComponent } from './book-list/book-list.component';
 import { BookCreateComponent } from './book-create/book-create.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookEditComponent } from './book-edit/book-edit.component';
-import { BooksComponent } from './books.component';
+import { LibrariansComponent } from './librarians.component';
+import { LibrariansActionComponent } from './librarians-action/librarians-action.component';
 
 import { MaterialModule } from '../../material.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,28 +16,32 @@ import { BrowserModule } from '@angular/platform-browser';
 
 const routes: Routes = [
   {
-    path: 'books',
-    component: BooksComponent,
+    path: 'librarians',
+    component: LibrariansComponent,
     children: [
       {
         path: '',
-        redirectTo: 'list',
+        redirectTo: '',
         pathMatch: 'full'
       },
       {
-        path: '',
+        path: 'actions',
+        component: LibrariansActionComponent
+      },
+      {
+        path: 'findBooks',
         component: BookListComponent
       },
       {
-        path: 'create',
-        component: BookCreateComponent
-      },
-      {
-        path: 'detail/:id',
+        path: 'findBook/:id',
         component: BookDetailComponent
       },
       {
-        path: 'edit/:id',
+        path: 'addBook',
+        component: BookCreateComponent
+      },
+      {
+        path: 'editBook/:id',
         component: BookEditComponent
       },
     ]
@@ -48,7 +53,9 @@ const routes: Routes = [
     BookListComponent,
     BookCreateComponent,
     BookDetailComponent,
-    BookEditComponent],
+    BookEditComponent,
+    LibrariansActionComponent
+  ],
   imports: [
     MaterialModule,
     BrowserModule,
@@ -58,6 +65,6 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   providers: [],
-  bootstrap: [BooksComponent]
+  bootstrap: [LibrariansComponent]
 })
-export class BooksModule { }
+export class LibrariansModule { }

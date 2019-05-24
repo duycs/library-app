@@ -11,7 +11,7 @@ import { Book } from '../../../shared/models/book';
 })
 export class BookDetailComponent implements OnInit {
 
-    book: Book = { id: 0, isbn : '', title: '', subject: '', publisher: '', language: '', pageNumber : null };
+    book: Book = { uid : 0, id: 0, isbn : '', coverImage:'', description:'', title: '', subject: '', publisher: '', language: '', pageNumber : null };
     isLoadingResults = true;
   
     constructor(private route: ActivatedRoute, private api: ApiBookService, private router: Router) { }
@@ -35,7 +35,7 @@ export class BookDetailComponent implements OnInit {
       this.api.deleteBook(id)
         .subscribe(res => {
             this.isLoadingResults = false;
-            this.router.navigate(['/books']);
+            this.router.navigate(['/librarians/findBooks']);
           }, (err) => {
             console.log(err);
             this.isLoadingResults = false;
