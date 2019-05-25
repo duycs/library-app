@@ -24,6 +24,15 @@ export class ApiBookService {
       );
   }
 
+  getBooksRecommended (): Observable<Book[]> {
+    const url = `${apiUrl}/recommended`;
+    return this.http.get<Book[]>(apiUrl)
+      .pipe(
+        tap(books => console.log('Fetch Books')),
+        catchError(this.handleError('getBooks', []))
+      );
+  }
+
   getBook(id: number): Observable<Book> {
     const url = `${apiUrl}/${id}`;
     return this.http.get<Book>(url).pipe(

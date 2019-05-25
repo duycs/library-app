@@ -8,6 +8,7 @@ import { RemoveObjectById } from 'src/app/shared/models/remove-object-id';
 import { Member } from 'src/app/shared/models/member';
 import { BlockMember } from 'src/app/shared/models/block-member';
 import { UnblockMember } from 'src/app/shared/models/unblock-member';
+import { LibrarianRegister } from 'src/app/shared/models/librarian-register';
 
 
 const httpOptions = {
@@ -18,9 +19,18 @@ const apiUrl = "http://localhost:5000/api/v1/librarians";
 @Injectable({
   providedIn: 'root'
 })
-export class ApiBookService {
+export class LibrarianService {
 
   constructor(private http: HttpClient) { }
+
+  //register
+  register (librarianRegister): Observable<LibrarianRegister> {
+    const url = `${apiUrl}/register`;
+    return this.http.post<LibrarianRegister>(url, librarianRegister, httpOptions).pipe(
+      tap((librarianRegister: LibrarianRegister) => console.log('Librarian registerted')),
+      catchError(this.handleError<LibrarianRegister>('LibrarianRegister'))
+    );
+  }
 
   // book management services
   

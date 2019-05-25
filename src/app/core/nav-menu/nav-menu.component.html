@@ -14,6 +14,21 @@
             <a class="nav-link text-dark" [routerLink]='["/search"]'>Search</a>
           </li>
 
+          <li *ngIf="currentUser == null" class="nav-item" [routerLinkActive]='["link-active"]'>
+            <a class="nav-link text-dark" [routerLink]='["/login"]'>Login</a>
+          </li>
+
+          <li *ngIf="currentUser" class="nav-item" [routerLinkActive]='["link-active"]'>
+            <a class="nav-link text-dark" *ngIf="isMember"
+              [routerLink]='["/member/, currentUser.accountName"]'>{{currentUser.userName}}</a>
+            <a class="nav-link text-dark" *ngIf="isLibrarian"
+              [routerLink]='["/librarian/, currentUser.accountName"]'>{{currentUser.userName}}</a>
+          </li>
+
+          <li *ngIf="currentUser" class="nav-item" [routerLinkActive]='["link-active"]'>
+            <a class="nav-link text-dark" (click)="logout()">Logout</a>
+          </li>
+
         </ul>
       </div>
     </div>

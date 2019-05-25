@@ -4,8 +4,6 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError, tap, map } from 'rxjs/operators';
 import { Member } from 'src/app/shared/models/member';
 import { MemberRegister } from 'src/app/shared/models/member-register';
-import { MemberLogin } from 'src/app/shared/models/member-login';
-import { MemberLogout } from 'src/app/shared/models/member-logout';
 import { CheckoutBookItem } from 'src/app/shared/models/checkout-book-item';
 import { RenewBookItem } from 'src/app/shared/models/renew-book-item';
 import { ReserveBookItem } from 'src/app/shared/models/reserve-book-item';
@@ -19,7 +17,7 @@ const apiUrl = "http://localhost:5000/api/v1/members";
 @Injectable({
   providedIn: 'root'
 })
-export class ApiBookService {
+export class MemberService {
 
   constructor(private http: HttpClient) { }
 
@@ -41,24 +39,7 @@ export class ApiBookService {
     );
   }
 
-  login(memberLogin): Observable<MemberLogin> {
-    const url = `${apiUrl}/login`;
-    return this.http.post<MemberLogin>(url, memberLogin, httpOptions).pipe(
-      tap((memberLogin: MemberLogin) => console.log('logined Member w/ id=${book.id}')),
-      catchError(this.handleError<MemberRegister>('memberLogin'))
-    );
-  }
-
-  logout(memberLogout): Observable<MemberLogout> {
-    const url = `${apiUrl}/logout`;
-    return this.http.post<MemberLogout>(url, memberLogout, httpOptions).pipe(
-      tap((memberLogout: MemberLogout) => console.log('logouted Member w/ id=${book.id}')),
-      catchError(this.handleError<MemberLogout>('memberLogout'))
-    );
-  }
-
   // book item services
-
   checkoutBook(checkoutBook): Observable<CheckoutBookItem> {
     const url = `${apiUrl}/checkoutBook`;
     return this.http.post<CheckoutBookItem>(url, checkoutBook, httpOptions).pipe(

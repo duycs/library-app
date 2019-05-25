@@ -13,6 +13,7 @@ import { MaterialModule } from '../../material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { LibrarianRegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
         path: '',
         redirectTo: '',
         pathMatch: 'full'
+      },
+      {
+        path: 'register',
+        component: LibrarianRegisterComponent
       },
       {
         path: 'actions',
@@ -54,6 +59,7 @@ const routes: Routes = [
     BookCreateComponent,
     BookDetailComponent,
     BookEditComponent,
+    LibrarianRegisterComponent,
     LibrariansActionComponent
   ],
   imports: [

@@ -16,12 +16,14 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup;
   title: string = '';
   isLoadingResults = false;
+  regularDistribution = 100 / 3;
 
   constructor(private router: Router, private api: ApiSearchService, private formBuilder: FormBuilder, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.searchForm = this.formBuilder.group({
-      'title': [null, Validators.required]
+      // 'title': [null, Validators.required]
+      'title' : ''
     });
   }
 

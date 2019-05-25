@@ -1,23 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-
-import { AnonymousComponent } from './anonymous.component';
-
 import { MaterialModule } from '../../material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { AnonymousComponent } from './anonymous.component';
+import { RecommendedComponent } from './recommended/recommended.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'anonymous',
     component: AnonymousComponent,
     children: [
       {
         path: '',
         redirectTo: '',
         pathMatch: 'full'
+      },
+      {
+        path: 'recommended',
+        component: RecommendedComponent
       }
     ]
   }
@@ -25,7 +28,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AnonymousComponent,
+    RecommendedComponent,
   ],
   imports: [
     MaterialModule,
