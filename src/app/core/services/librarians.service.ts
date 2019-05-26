@@ -35,7 +35,8 @@ export class LibrarianService {
   // book management services
   
   findBooks (): Observable<Book[]> {
-    return this.http.get<Book[]>(apiUrl)
+    const url = `${apiUrl}/findBooks`;
+    return this.http.get<Book[]>(url)
       .pipe(
         tap(books => console.log('Fetch Books')),
         catchError(this.handleError('getBooks', []))
@@ -43,7 +44,7 @@ export class LibrarianService {
   }
 
   findBook(id: number): Observable<Book> {
-    const url = `${apiUrl}/${id}`;
+    const url = `${apiUrl}/findBook/${id}`;
     return this.http.get<Book>(url).pipe(
       tap(_ => console.log('fetched book id=${id}')),
       catchError(this.handleError<Book>('getBook id=${id}'))
@@ -68,7 +69,6 @@ export class LibrarianService {
 
   removeBook(removeObjectById): Observable<RemoveObjectById> {
     const url = `${apiUrl}/removeBook`;
-
     return this.http.delete(url, removeObjectById).pipe(
       tap(_ => console.log('removed book')),
       catchError(this.handleError<any>('removeBook'))
@@ -77,7 +77,8 @@ export class LibrarianService {
 
   //book item management services
   findBookItems (): Observable<BookItem[]> {
-    return this.http.get<BookItem[]>(apiUrl)
+    const url = `${apiUrl}/findBookItems`;
+    return this.http.get<BookItem[]>(url)
       .pipe(
         tap(books => console.log('Fetch Book items')),
         catchError(this.handleError('getBookItems', []))

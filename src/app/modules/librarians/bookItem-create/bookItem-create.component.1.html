@@ -1,0 +1,65 @@
+<div class="example-container mat-elevation-z8">
+  <!-- <div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div> -->
+  <div class="button-row">
+    <a mat-button color="primary" [routerLink]="['/librarians/findBookItems']">
+      BACK TO LIST
+    </a>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="bookItemForm" (ngSubmit)="onFormSubmit(bookItemForm.value)">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Barcode" formControlName="barcode" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!bookItemForm.get('barcode').valid && bookItemForm.get('barcode').touched">Please enter
+            Barcode</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <label class="example-full-width">Reference</label>
+        <mat-radio-group [(ngModel)]="isReferenceOnly" [ngModelOptions]="{standalone: true}"
+          (change)="onReferenceChanged($event)" aria-label="Select an option">
+          <mat-radio-button *ngFor="let reference of referenceOptions" [value]="reference">
+            {{reference}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="borrowedDate" formControlName="borrowedDate">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="dueDate" formControlName="dueDate">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <label class="example-full-width">Format</label>
+        <mat-select [(ngModel)]="format"
+          (change)="onBookFormatChanged($event)">
+          <mat-option *ngFor="let format of formatOptions" [value]="format">{{format}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <label class="example-full-width">Status</label>
+        <mat-radio-group [(ngModel)]="bookStatusId" [ngModelOptions]="{standalone: true}" aria-label="Select an option">
+          <mat-radio-button *ngFor="let status of bookStatusOptions" [value]="status">
+            {{status}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="purchaseDate" formControlName="purchaseDate">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="publicationDate" formControlName="publicationDate">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="rackId" formControlName="rackId">
+      </mat-form-field>
+      <div class="button-row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!bookItemForm.valid">
+          Save
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

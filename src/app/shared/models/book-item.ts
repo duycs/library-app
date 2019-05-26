@@ -1,14 +1,14 @@
-export class BookItem{
+export class BookItem {
+    id:number;
     bookId: number;
     barcode: string;
-    isReferenceOnly: true;
+    isReferenceOnly: boolean;
     borrowedDate: Date;
     dueDate: Date;
     price: number;
     formatId: number;
     bookStatusId: number;
     purchaseDate: Date;
-    publicationDate: Date;
     rackId: number;
-    id: number;
+    libraryId: number;
 }

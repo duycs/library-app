@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiBookService } from '../../../core/services/books.service';
 import { FormGroup, Validators, FormBuilder, NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { LibrarianService } from 'src/app/core/services/librarians.service';
 
 @Component({
   selector: 'app-book-create',
@@ -20,7 +20,7 @@ export class BookCreateComponent implements OnInit {
   pageNumber: string = '';
   isLoadingResults = false;
 
-  constructor(private router: Router, private api: ApiBookService, private formBuilder: FormBuilder, private snackBar: MatSnackBar) { }
+  constructor(private router: Router, private api: LibrarianService, private formBuilder: FormBuilder, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.bookForm = this.formBuilder.group({
@@ -35,6 +35,7 @@ export class BookCreateComponent implements OnInit {
 
   onFormSubmit(form: NgForm) {
     this.isLoadingResults = true;
+    console.log(form);
     this.api.addBook(form)
       .subscribe(res => {
         this.snackBar.open("Success", "Ok", {

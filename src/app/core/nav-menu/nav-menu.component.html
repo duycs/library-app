@@ -20,9 +20,9 @@
 
           <li *ngIf="currentUser" class="nav-item" [routerLinkActive]='["link-active"]'>
             <a class="nav-link text-dark" *ngIf="isMember"
-              [routerLink]='["/member/, currentUser.accountName"]'>{{currentUser.userName}}</a>
+              [routerLink]="['/member/', currentUser.accountName]">{{currentUser.userName}}</a>
             <a class="nav-link text-dark" *ngIf="isLibrarian"
-              [routerLink]='["/librarian/, currentUser.accountName"]'>{{currentUser.userName}}</a>
+              [routerLink]="['/librarian/', currentUser.accountName]">{{currentUser.userName}}</a>
           </li>
 
           <li *ngIf="currentUser" class="nav-item" [routerLinkActive]='["link-active"]'>

@@ -8,13 +8,15 @@ import {
     MatCardModule,
     MatPaginatorModule,
     MatInputModule,
-    MatSelectModule,
     MatTableModule,
     MatSortModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatSnackBarModule,
     MatGridListModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatSelectModule,
 } from '@angular/material';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,7 +31,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatCardModule,
         MatPaginatorModule,
         MatInputModule,
-        MatSelectModule,
         MatTableModule,
         MatSortModule,
         MatProgressSpinnerModule,
@@ -37,7 +38,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         BrowserAnimationsModule,
         MatSnackBarModule,
         MatGridListModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        MatRadioModule,
+        MatCheckboxModule,
+        MatSelectModule,
     ],
     exports: [
         MatButtonModule,
@@ -47,7 +51,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatCardModule,
         MatPaginatorModule,
         MatInputModule,
-        MatSelectModule,
         MatTableModule,
         MatSortModule,
         MatProgressSpinnerModule,
@@ -55,7 +58,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         BrowserAnimationsModule,
         MatSnackBarModule,
         MatGridListModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        MatRadioModule,
+        MatCheckboxModule,
+        MatSelectModule,
     ]
 })
 export class MaterialModule { }

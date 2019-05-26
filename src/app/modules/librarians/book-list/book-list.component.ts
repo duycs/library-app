@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ApiBookService } from '../../../core/services/books.service';
 import { Book } from '../../../shared/models/book';
+import { LibrarianService } from 'src/app/core/services/librarians.service';
 
 @Component({
   selector: 'app-book-list',
@@ -13,10 +12,10 @@ export class BookListComponent implements OnInit {
     data: Book[] = [];
     isLoadingResults = true;
   
-    constructor(private api: ApiBookService) { }
+    constructor(private api: LibrarianService) { }
   
     ngOnInit() {
-      this.api.getBooks()
+      this.api.findBooks()
         .subscribe(res => {
           this.data = res;
           console.log(this.data);

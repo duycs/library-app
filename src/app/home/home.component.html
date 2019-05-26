@@ -3,7 +3,7 @@
   Welcome to <code>Home Library</code> !</h2>
 
 <!-- Anonymous people -->
-<p>Anonymous people can does:</p>
+<p><code>Anonymous</code> people can does:</p>
 <ul>
   <!-- search by authors, title, subject name, public date -->
   <li class="nav-item" [routerLinkActive]='["link-active"]'>
@@ -22,11 +22,11 @@
 <!--Librarian-->
 <div *ngIf="isLibrarian || isAnonymous">
 
-  <p><a class="" [routerLink]="['/librarians/', currentUser.accountName]">Librarians</a> can does:</p>
+  <p><code>Librarians</code> can does:</p>
   <ul>
     <!-- Add/Remove/Edit book: To add, remove or modify a book or book item. -->
     <li class="nav-item" *ngIf="currentUser == null" [routerLinkActive]='["link-active"]'>
-      <a class="" [routerLink]='["/librarians/register"]'>Register</a>
+      <a class="" [routerLink]="['/librarians/register']">Register</a>
     </li>
     <li *ngIf="currentUser" class="nav-item" [routerLinkActive]='["link-active"]'>
       <a class="" (click)="logout()">Logout</a>
@@ -38,7 +38,7 @@
       <a class="" [routerLink]='["/librarians/addBook"]'>Add new book</a>
     </li>
     <li class="nav-item" [routerLinkActive]='["link-active"]'>
-      <a class="" [routerLink]='["/librarians/findBooks"]'>In the list books you choose an book then edit or delete this
+      <a class="" [routerLink]="['/librarians/findBooks']">In the list books you choose an book then edit or delete this
         item</a>
     </li>
 
@@ -64,14 +64,14 @@
       <a class="" [routerLink]='["/librarians/blockMember"]'>Block an member by email</a>
     </li>
     <li class="nav-item" [routerLinkActive]='["link-active"]'>
-      <a class="" [routerLink]='["/librarians/unblockMember"]'>Unblock an member by email</a>
+      <a class="" [routerLink]="['/librarians/unblockMember']">Unblock an member by email</a>
     </li>
   </ul>
 </div>
 
 
 <div *ngIf="isMember || isAnonymous">
-  <p><a [routerLink]="['/members/', currentUser.accountName]">Members</a> can does:</p>
+  <p><code>Members</code> can does:</p>
   <ul>
     <!-- Register new account/cancel membership: To add a new member or cancel the membership of an existing member. -->
     <li class="nav-item" *ngIf="currentUser == null" [routerLinkActive]='["link-active"]'>

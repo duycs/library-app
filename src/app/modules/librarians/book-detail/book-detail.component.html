@@ -1,29 +1,76 @@
-<div class="example-container mat-elevation-z8">
-  <div class="example-loading-shade"
-       *ngIf="isLoadingResults">
+<div class="">
+  <div class="example-loading-shade" *ngIf="isLoadingResults">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
   </div>
   <div class="button-row">
-    <a mat-flat-button color="primary" [routerLink]="['/librarians/findBooks']"><mat-icon>list</mat-icon></a>
+    <a mat-button color="primary" [routerLink]="['/librarians/findBooks']">
+      BACK TO LIST
+    </a>
   </div>
   <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title><h2>{{book.title}}</h2></mat-card-title>
-      <mat-card-subtitle>{{book.language}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <dl>
-        <dt>ISBN:</dt>
-        <dd>{{book.isbn}}</dd>
-        <dt>Publisher:</dt>
-        <dd>{{book.publisher}}</dd>
-        <dt>Page number:</dt>
-        <dd>{{book.pageNumber}}</dd>
-      </dl>
-    </mat-card-content>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+          <div class="cover-book">
+            <img mat-card-image [src]="book.coverImage">
+          </div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-xs-12 col-sm-12">
+          <div class="container">
+            <div class="row">
+              <h2>{{book.title}}</h2>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <h5>{{book.author}}</h5>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">Year:</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{book.publishDate}}</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">Language:</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{book.language}}</div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">Pages:</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{book.pageNumber}}</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">ISBN:</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{book.isbn}}</div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">Publisher:</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{book.publisher}}</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">File:</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">epub</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <p>{{book.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <mat-card-actions>
-      <a mat-flat-button color="primary" [routerLink]="['/librarians/editBook', book.id]"><mat-icon>edit</mat-icon></a>
-      <a mat-flat-button color="warn" (click)="deleteBook(book.id)"><mat-icon>delete</mat-icon></a>
+      <a mat-button color="primary" [routerLink]="['/librarians/editBook', book.id]">
+        Edit
+        <!-- <mat-icon>edit</mat-icon> -->
+      </a>
+      <a mat-button color="gray" (click)="deleteBook(book.id)">
+        Delete
+      </a>
     </mat-card-actions>
+
   </mat-card>
 </div>

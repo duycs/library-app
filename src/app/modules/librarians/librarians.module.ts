@@ -14,6 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { LibrarianRegisterComponent } from './register/register.component';
+import { BookItemListComponent } from './bookItem-list/bookItem-list.component';
+import { BookItemCreateComponent } from './bookItem-create/bookItem-create.component';
+import { BookItemDetailComponent } from './bookItem-detail/bookItem-detail.component';
+import { BookItemEditComponent } from './bookItem-edit/bookItem-edit.component';
 
 const routes: Routes = [
   {
@@ -33,6 +37,7 @@ const routes: Routes = [
         path: 'actions',
         component: LibrariansActionComponent
       },
+      // route books
       {
         path: 'findBooks',
         component: BookListComponent
@@ -49,6 +54,25 @@ const routes: Routes = [
         path: 'editBook/:id',
         component: BookEditComponent
       },
+
+      // route bookItems
+      {
+        path: 'findBookItems',
+        component: BookItemListComponent
+      },
+      {
+        path: 'findBookItem/:id',
+        component: BookItemDetailComponent
+      },
+      {
+        path: 'addBookItem',
+        component: BookItemCreateComponent
+      },
+      {
+        path: 'editBookItem/:id',
+        component: BookItemEditComponent
+      },
+
     ]
   }
 ];
@@ -60,7 +84,11 @@ const routes: Routes = [
     BookDetailComponent,
     BookEditComponent,
     LibrarianRegisterComponent,
-    LibrariansActionComponent
+    LibrariansActionComponent,
+    BookItemListComponent,
+    BookItemCreateComponent,
+    BookItemDetailComponent,
+    BookItemEditComponent
   ],
   imports: [
     MaterialModule,

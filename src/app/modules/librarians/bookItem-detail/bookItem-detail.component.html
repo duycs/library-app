@@ -1,0 +1,77 @@
+<div class="">
+  <div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-button color="primary" [routerLink]="['/librarians/findBooks']">
+      BACK TO LIST
+    </a>
+  </div>
+  <mat-card class="example-card">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+          <div class="cover-book">
+            <h2>{{bookItem.barcode}}</h2>
+          </div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-xs-12 col-sm-12">
+          <div class="container">
+            <div class="row">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">bookStatusId:</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{bookItem.bookStatusId}}</div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">isReferenceOnly:</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{bookItem.isReferenceOnly}}</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">formatId:</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{bookItem.formatId}}</div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">dueDate:</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{bookItem.dueDate | date: 'mediumDate'}}
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">price:</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{bookItem.price}}</div>
+                </div>
+              </div>
+
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">purchaseDate:</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">
+                    {{bookItem.purchaseDate | date: 'mediumDate'}}</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">borrowedDate:</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">
+                    {{bookItem.borrowedDate | date: 'mediumDate'}}</div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">rackId:</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{bookItem.rackId}}</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">libraryId:</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{bookItem.libraryId}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-card-actions>
+      <a mat-button color="primary" [routerLink]="['/librarians/editBookItem', bookItem.id]">
+        Edit
+      </a>
+      <a mat-button color="gray" (click)="deleteBookItem(bookItem.id)">
+        Delete
+      </a>
+    </mat-card-actions>
+  </mat-card>
+</div>
