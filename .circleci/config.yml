@@ -83,11 +83,11 @@ jobs:
                 name: Deploy to S3
                 command: |
                     if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-                        aws --region ap-southeast-1 s3 sync dist s3://home-library-dev/ --delete
+                        aws --region ap-southeast-1 s3 sync dist s3://home-library-dev/dist --delete
                     elif [ "${CIRCLE_BRANCH}" == "staging" ]; then
-                        aws --region ap-southeast-1 s3 sync dist s3://home-library-qa/ --delete
+                        aws --region ap-southeast-1 s3 sync dist s3://home-library-qa/dist --delete
                     elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                        aws --region ap-southeast-1 s3 sync dist s3://home-library/ --delete
+                        aws --region ap-southeast-1 s3 sync dist s3://home-library/dist --delete
                     fi
 
 workflows:
