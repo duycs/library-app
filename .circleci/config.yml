@@ -83,7 +83,7 @@ jobs:
             - run:
                 name: Deploy to S3
                 command: |
-                    pip3 install awscli --upgrade --user
+                    pip install awscli==1.14.37
                     aws --region ap-southeast-1 s3 sync dist s3://home-library/dist --delete
                     # if [ "${CIRCLE_BRANCH}" == "develop" ]; then
                     #     aws --region ap-southeast-1 s3 sync dist s3://home-library-dev/dist --delete
