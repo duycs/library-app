@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AnonymousComponent } from './anonymous.component';
 import { RecommendedComponent } from './recommended/recommended.component';
+import { BookDetailComponent } from './book-detail/book-detail.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'recommended',
         component: RecommendedComponent
+      },
+      {
+        path: 'books/:id',
+        component: BookDetailComponent
       }
     ]
   }
@@ -29,6 +34,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     RecommendedComponent,
+    BookDetailComponent
   ],
   imports: [
     MaterialModule,

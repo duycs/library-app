@@ -1,0 +1,40 @@
+<div class="">
+  <div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-button color="primary" [routerLink]="['/anonymous/recommended']">
+      BACK TO LIST BOOK
+    </a>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="renewBookForm" (ngSubmit)="onFormSubmit(renewBookForm.value)">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="borrowedDate" formControlName="borrowedDate" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!renewBookForm.get('borrowedDate').valid && renewBookForm.get('borrowedDate').touched">Please
+            enter borrowedDate</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="dueDate" formControlName="dueDate">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="returnDate" formControlName="returnDate">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="rackId" formControlName="rackId">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="bookItemId" formControlName="bookItemId">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="bookItemBarcode" formControlName="bookItemBarcode">
+      </mat-form-field>
+      <div class="button-row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!returnBookForm.valid">
+          RENEW BOOK
+        </button>
+      </div>
+    </form>
+  </mat-card>

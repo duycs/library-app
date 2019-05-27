@@ -1,9 +1,11 @@
 import { Person } from "./person";
 
 export class Member {
-    accountId: number;
+    id: number;
     dateOfMembership: Date;
     totalBooksCheckedout: number;
     person: Person;
-    id: number;
+    accountId: number;
+    accountStatus: number;
+    libraryCardId: number;
 }

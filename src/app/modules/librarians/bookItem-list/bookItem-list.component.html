@@ -1,14 +1,17 @@
 <div class="">
-  <!-- <div class="example-loading-shade"
+  <div class="example-loading-shade"
        *ngIf="isLoadingResults">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-  </div> -->
+  </div>
   <div class="button-row">
+    <a mat-button color="primary" [routerLink]="['/librarians/findBooks']">
+      BACK TO BOOK LIST
+    </a>
     <a mat-button color="primary" [routerLink]="['/librarians/addBookItem']">ADD NEW BOOK ITEM</a>
   </div>
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="data" class="example-table"
-           matSort matSortActive="Barcode" matSortDisableClear matSortDirection="asc">
+    <table mat-table [dataSource]="data" class="example-table" matSort matSortActive="Barcode" matSortDisableClear
+      matSortDirection="asc">
 
       <ng-container matColumnDef="Barcode">
         <th mat-header-cell *matHeaderCellDef>Barcode</th>
@@ -36,7 +39,8 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/librarians/findBookItem/', row.id]"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/librarians/findBookItem/', row.id]">
+      </tr>
     </table>
   </div>
 </div>

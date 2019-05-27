@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder, NgForm, FormControl, FormArray } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { LibrarianService } from 'src/app/core/services/librarians.service';
+import { MemberService } from 'src/app/core/services/members.service';
 
 @Component({
   selector: 'app-bookItem-create',
@@ -34,13 +35,19 @@ export class BookItemCreateComponent implements OnInit {
 
   isLoadingResults = false;
 
-  constructor(private router: Router,
-    private api: LibrarianService,
+  constructor(
+    private route: ActivatedRoute,
+    private memberService: MemberService,
+    private router: Router,
+    private librarianService: LibrarianService,
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-
+    this.route.queryParams.subscribe(params => {
+      console.log(params);
+      this.bookId = params['bookId'];
+    })
     this.bookItemForm = this.formBuilder.group({
       'bookId': [null, Validators.required],
       'barcode': [null, Validators.required],
@@ -54,6 +61,10 @@ export class BookItemCreateComponent implements OnInit {
       'rackId': 1,
       'libraryId': 1,
     });
+
+    if (this.bookId > 0) {
+      this.bookItemForm.controls['bookId'].setValue(this.bookId);
+    }
   }
 
 
@@ -61,14 +72,11 @@ export class BookItemCreateComponent implements OnInit {
   onFormSubmit(form: NgForm) {
     this.isLoadingResults = true;
     console.log(form);
-    this.api.addBookItem(form)
+    this.librarianService.addBookItem(form)
       .subscribe(res => {
         this.snackBar.open("Success", "Ok", {
           duration: 2000,
         });
-        // let id = res['id'];
-        // this.isLoadingResults = false;
-        // this.router.navigate(['/books/detail', id]);
         this.router.navigate(['/librarians/findBookItems']);
       }, (err) => {
         this.snackBar.open("Error", "", {

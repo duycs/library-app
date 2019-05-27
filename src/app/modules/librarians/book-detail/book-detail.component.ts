@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ApiBookService } from '../../../core/services/books.service';
 import { Book } from '../../../shared/models/book';
+import { LibrarianService } from 'src/app/core/services/librarians.service';
 
 @Component({
   selector: 'app-book-detail',
@@ -14,7 +15,8 @@ export class BookDetailComponent implements OnInit {
     book: Book = { uid : 0, id: 0, isbn : 0, coverImage:'', description:'', title: '', subject: '', publisher: '', language: '', pageNumber : null };
     isLoadingResults = true;
   
-    constructor(private route: ActivatedRoute, private api: ApiBookService, private router: Router) { }
+    constructor(private route: ActivatedRoute, private api: ApiBookService, private librarianService: LibrarianService,
+       private router: Router) { }
   
     ngOnInit() {
       console.log(this.route.snapshot.params['id']);
@@ -42,5 +44,4 @@ export class BookDetailComponent implements OnInit {
           }
         );
     }
-  
   }

@@ -19,14 +19,14 @@
           </li>
 
           <li *ngIf="currentUser" class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" *ngIf="isMember"
+            <a class="nav-link text-dark" *ngIf="currentUser.isMember"
               [routerLink]="['/member/', currentUser.accountName]">{{currentUser.userName}}</a>
-            <a class="nav-link text-dark" *ngIf="isLibrarian"
+            <a class="nav-link text-dark" *ngIf="currentUser.isLibrarian"
               [routerLink]="['/librarian/', currentUser.accountName]">{{currentUser.userName}}</a>
           </li>
 
           <li *ngIf="currentUser" class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" (click)="logout()">Logout</a>
+            <a class="nav-link text-dark link" (click)="logout()">Logout</a>
           </li>
 
         </ul>

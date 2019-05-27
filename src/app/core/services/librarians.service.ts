@@ -137,6 +137,7 @@ export class LibrarianService {
 
   blockMember (blockMember): Observable<BlockMember> {
     const url = `${apiUrl}/blockMember`;
+    console.log(blockMember);
     return this.http.put(url, blockMember, httpOptions).pipe(
       tap(_ => console.log('blocked member')),
       catchError(this.handleError<any>('blockMember'))

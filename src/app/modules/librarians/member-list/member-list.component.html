@@ -1,0 +1,40 @@
+<div class="">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-button color="primary" [routerLink]="['/']">BACK TO HOME</a>
+  </div>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="data" class="example-table" matSort matSortActive="Name" matSortDisableClear
+      matSortDirection="asc">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let row">{{row.id}}</td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let row">{{row.person.name}}</td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let row">{{row.person.email}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="dateOfMembership">
+        <th mat-header-cell *matHeaderCellDef> Date Of Membership</th>
+        <td mat-cell *matCellDef="let row">{{row.dateOfMembership| date: 'mediumDate'}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalBooksCheckedout">
+        <th mat-header-cell *matHeaderCellDef>Total Books Checkedout</th>
+        <td mat-cell *matCellDef="let row">{{row.totalBooksCheckedout}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        [routerLink]="['/librarians/findMember/', row.person.email]"></tr>
+    </table>
+  </div>
+</div>

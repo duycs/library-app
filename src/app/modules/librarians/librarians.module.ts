@@ -18,6 +18,8 @@ import { BookItemListComponent } from './bookItem-list/bookItem-list.component';
 import { BookItemCreateComponent } from './bookItem-create/bookItem-create.component';
 import { BookItemDetailComponent } from './bookItem-detail/bookItem-detail.component';
 import { BookItemEditComponent } from './bookItem-edit/bookItem-edit.component';
+import { MemberListComponent } from './member-list/member-list.component';
+import { MemberDetailComponent } from './member-detail/member-detail.component';
 
 const routes: Routes = [
   {
@@ -72,7 +74,15 @@ const routes: Routes = [
         path: 'editBookItem/:id',
         component: BookItemEditComponent
       },
-
+      // rote members
+      {
+        path: 'findMembers',
+        component: MemberListComponent
+      },
+      {
+        path: 'findMember/:email',
+        component: MemberDetailComponent
+      }
     ]
   }
 ];
@@ -88,7 +98,9 @@ const routes: Routes = [
     BookItemListComponent,
     BookItemCreateComponent,
     BookItemDetailComponent,
-    BookItemEditComponent
+    BookItemEditComponent,
+    MemberListComponent,
+    MemberDetailComponent
   ],
   imports: [
     MaterialModule,

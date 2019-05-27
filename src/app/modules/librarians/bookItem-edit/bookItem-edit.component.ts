@@ -84,6 +84,7 @@ export class BookItemEditComponent implements OnInit {
         });
         console.log(err);
         this.isLoadingResults = false;
+        this.snackBar.open("Error", "Ok", { duration: 2000, });
       });
   }
 

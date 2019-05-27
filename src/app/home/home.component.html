@@ -16,11 +16,18 @@
   <li *ngIf="currentUser == null" class="nav-item" [routerLinkActive]='["link-active"]'>
     <a class="" [routerLink]='["/login"]'>Login</a>
   </li>
+
+  <li class="nav-item" *ngIf="currentUser == null" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/members/register"]'>Member Register</a>
+  </li>
+
+  <li class="nav-item" *ngIf="currentUser == null" [routerLinkActive]='["link-active"]'>
+    <a class="" [routerLink]='["/librarians/register"]'>Librarian Register</a>
+  </li>
 </ul>
 
-
 <!--Librarian-->
-<div *ngIf="isLibrarian || isAnonymous">
+<div *ngIf="currentUser && currentUser.isLibrarian">
 
   <p><code>Librarians</code> can does:</p>
   <ul>
@@ -29,7 +36,7 @@
       <a class="" [routerLink]="['/librarians/register']">Register</a>
     </li>
     <li *ngIf="currentUser" class="nav-item" [routerLinkActive]='["link-active"]'>
-      <a class="" (click)="logout()">Logout</a>
+      <a class="link" (click)="logout()">Logout</a>
     </li>
     <li class="nav-item" [routerLinkActive]='["link-active"]'>
       <a class="" [routerLink]='["/librarians/findBooks"]'>View all books</a>
@@ -38,8 +45,9 @@
       <a class="" [routerLink]='["/librarians/addBook"]'>Add new book</a>
     </li>
     <li class="nav-item" [routerLinkActive]='["link-active"]'>
-      <a class="" [routerLink]="['/librarians/findBooks']">In the list books you choose an book then edit or delete this
-        item</a>
+      <div class="link" [routerLink]="['/librarians/findBooks']">
+        In the <code>list books</code> you choose a <code>book</code> then <code>edit</code> or <code>delete</code> this
+        item</div>
     </li>
 
     <li class="nav-item" [routerLinkActive]='["link-active"]'>
@@ -49,28 +57,26 @@
       <a class="" [routerLink]='["/librarians/addBookItem"]'>Add new book item</a>
     </li>
     <li class="nav-item" [routerLinkActive]='["link-active"]'>
-      <a class="" [routerLink]='["/librarians/findBookItems"]'>In the list book items you choose an book then edit or
-        delete this item</a>
+      <div class="link" [routerLink]='["/librarians/findBookItems"]'>
+        In the <code>list book</code> items you choose a <code>book</code> then <code>edit</code> or
+        <code>delete</code> this item</div>
     </li>
 
     <li class="nav-item" [routerLinkActive]='["link-active"]'>
-      <a class="" [routerLink]='["/librarians/findAllMembers"]'>View all members</a>
+      <a class="" [routerLink]='["/librarians/findMembers"]'>View all members</a>
     </li>
     <li class="nav-item" [routerLinkActive]='["link-active"]'>
-      <a class="" [routerLink]='["/librarians/findMember"]'>Find an member by email</a>
+      <div class="link" [routerLink]='["/librarians/findMembers"]'>
+        In the <code>list members</code> items you choose a <code>member</code> then <code>block</code> or
+        <code>unblock</code> this item
+      </div>
     </li>
 
-    <li class="nav-item" [routerLinkActive]='["link-active"]'>
-      <a class="" [routerLink]='["/librarians/blockMember"]'>Block an member by email</a>
-    </li>
-    <li class="nav-item" [routerLinkActive]='["link-active"]'>
-      <a class="" [routerLink]="['/librarians/unblockMember']">Unblock an member by email</a>
-    </li>
   </ul>
 </div>
 
 
-<div *ngIf="isMember || isAnonymous">
+<div *ngIf="currentUser && currentUser.isMember">
   <p><code>Members</code> can does:</p>
   <ul>
     <!-- Register new account/cancel membership: To add a new member or cancel the membership of an existing member. -->
@@ -78,15 +84,15 @@
       <a class="" [routerLink]='["/members/register"]'>Register</a>
     </li>
     <li class="nav-item" *ngIf="currentUser" [routerLinkActive]='["link-active"]'>
-      <a class="" (click)="logout()">Logout</a>
+      <a class="link" (click)="logout()">Logout</a>
     </li>
-    <li class="nav-item" [routerLinkActive]='["link-active"]'>
+    <!-- <li class="nav-item" [routerLinkActive]='["link-active"]'>
       <a class="" [routerLink]='["/members/cancelMembership"]'>Cancel membership</a>
-    </li>
+    </li> -->
 
     <!-- Check-out book: To borrow a book from the library. -->
     <li class="nav-item" [routerLinkActive]='["link-active"]'>
-      <a class="" [routerLink]='["/members/check-out"]'>Checkout book</a>
+      <a class="" [routerLink]='["/members/checkout"]'>Checkout book</a>
     </li>
 
     <!-- Reserve book: To reserve a book which is not currently available. -->

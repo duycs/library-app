@@ -3,7 +3,7 @@
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
   </div>
   <div class="button-row">
-    <a mat-button color="primary" [routerLink]="['/librarians/findBooks']">
+    <a mat-button color="primary" [routerLink]="['/anonymous/recommended']">
       BACK TO LIST
     </a>
   </div>
@@ -56,6 +56,8 @@
           </div>
           <div class="container">
             <div class="row">
+            </div>
+            <div class="row">
               <p>{{book.description}}</p>
             </div>
           </div>
@@ -63,16 +65,9 @@
       </div>
     </div>
     <mat-card-actions>
-      <a mat-button color="primary" [routerLink]="['/librarians/addBookItem']" [queryParams]="{bookId: book.id}">
-        ADD NEW BOOK ITEM
+      <a mat-button color="primary" (click)="actionMethodForBook()">
+        {{actionNameForBook}}
       </a>
-      <a mat-button color="primary" [routerLink]="['/librarians/editBook', book.id]">
-        EDIT
-      </a>
-      <a mat-button color="gray" (click)="deleteBook(book.id)">
-        DELETE
-      </a>
-
     </mat-card-actions>
 
   </mat-card>

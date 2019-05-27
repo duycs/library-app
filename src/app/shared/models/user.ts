@@ -5,4 +5,6 @@ export class User {
     userName: string;
     password: string;
     token: string;
+    isMember: boolean;
+    isLibrarian: boolean;
 }

@@ -38,12 +38,10 @@ export class NavMenuComponent implements OnInit, OnDestroy {
       this.isAnonymous = true;
       //this.snackBar.open("You should register or login", "Thanks!", { duration: 2000, });
     } else {
-      let accountTypes = this.currentUser.accountTypes;
-      this.isMember = accountTypes.includes('member');
-      this.isLibrarian = accountTypes.includes('librarian');
+      // let accountTypes = this.currentUser.accountTypes;
+      // this.isMember = accountTypes.includes('member');
+      // this.isLibrarian = accountTypes.includes('librarian');
     }
-    console.log(this.isMember);
-    console.log(this.isLibrarian);
   }
 
   ngOnDestroy() {

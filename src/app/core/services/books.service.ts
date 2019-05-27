@@ -3,6 +3,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Book } from '../../shared/models/book';
+import { BookItem } from 'src/app/shared/models/book-item';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -62,6 +63,14 @@ export class ApiBookService {
     return this.http.delete<Book>(url, httpOptions).pipe(
       tap(_ => console.log('deleted book id=${id}')),
       catchError(this.handleError<Book>('deleteBook'))
+    );
+  }
+
+  getBookItemByBookId(bookId: number): Observable<BookItem> {
+    const url = `${apiUrl}/bookItem/${bookId}`;
+    return this.http.get<BookItem>(url).pipe(
+      tap(_ => console.log('fetched bookItem bookId=${bookId}')),
+      catchError(this.handleError<BookItem>('getBookItemByBookId bookId=${bookId}'))
     );
   }
 

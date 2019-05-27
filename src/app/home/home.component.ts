@@ -32,14 +32,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.currentUser);
     if (this.currentUser == null) {
       this.isAnonymous = true;
       this.snackBar.open("You should register or login", "Thanks!", { duration: 2000, });
-    } else {
-      let accountTypes = this.currentUser.accountTypes;
-      this.isMember = accountTypes.includes('member');
-      this.isLibrarian = accountTypes.includes('librarian');
     }
   }
 

@@ -11,19 +11,23 @@
     </button>
   </div>
 </form>
+
 <div fxLayout="row wrap" fxLayoutGap="12px" fxLayoutAlign="flex-start">
-  <mat-card fxFlex="0 1 calc(20% - 12px)" fxFlex.lt-md="0 1 calc(50% - 12px)" fxFlex.lt-sm="100%" fxLayout
-    *ngFor="let book of books">
-    <div *ngIf="book.coverImage">
-      <img mat-card-image [src]="book.coverImage">
-      <mat-card-content>
-        <p>
-          {{book.title}}
-        </p>
-      </mat-card-content>
-    </div>
-    <div *ngIf="book.coverImage==null && book.title!=null">
-      <mat-card-title>{{book.title}}</mat-card-title>
-    </div>
-  </mat-card>
+
+    <mat-card  class="link" fxFlex="0 1 calc(20% - 12px)" fxFlex.lt-md="0 1 calc(50% - 12px)" fxFlex.lt-sm="100%" fxLayout
+       *ngFor="let book of books"
+      (click)="onCardClickEvent(book)">
+      <div *ngIf="book.coverImage">
+        <img mat-card-image [src]="book.coverImage">
+        <mat-card-content>
+          <p>
+            {{book.title}}
+          </p>
+        </mat-card-content>
+      </div>
+      <div *ngIf="book.coverImage==null && book.title!=null">
+        <mat-card-title>{{book.title}}</mat-card-title>
+      </div>
+    </mat-card>
+  
 </div>

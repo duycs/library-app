@@ -1,0 +1,63 @@
+<div class="">
+  <div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-button color="primary" [routerLink]="['/librarians/findMembers']">
+      BACK TO LIST
+    </a>
+  </div>
+  <mat-card class="example-card">
+    <div class="container">
+      <div *ngIf="member.person" class="row">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+              <h2>{{member.person.libraryCardId || "0000000-00000-0000-000-00-0"}}</h2>
+            </div>
+
+            <div class="col-lg-9 col-md-9 col-xs-12 col-sm-12">
+              <div class="container">
+                <div class="row">
+                  <h5>{{member.person.name}}</h5>
+                </div>
+                <div class="row">
+                  <h5>{{member.emal}}</h5>
+                </div>
+                <div class="row">
+                  <div class="col-lg col-md col-xs col-sm col-sm">Account Id:</div>
+                  <div class="col-lg col-md col-xs col-sm col-sm">{{member.accountId}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-lg col-md col-xs col-sm col-sm">Account Status:</div>
+                  <div class="col-lg col-md col-xs col-sm col-sm">{{member.accountStatusId}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-lg col-md col-xs col-sm col-sm">Date Of Membership:</div>
+                  <div class="col-lg col-md col-xs col-sm col-sm">
+                    {{member.dateOfMembership| date: 'mediumDate'}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6 col-sm-6">Total Books Checkedout:</div>
+                  <div class="col-lg-6 col-md-6 col-xs-6 col-sm col-sm-6">{{member.totalBooksCheckedout}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <p></p>
+      </div>
+    </div>
+    <mat-card-actions>
+      <a mat-button color="gray" (click)="unBlockOrBlockToMember()">
+        {{actionToMember}}
+      </a>
+    </mat-card-actions>
+
+  </mat-card>
+</div>
