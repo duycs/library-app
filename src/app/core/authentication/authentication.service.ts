@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../../shared/models/user';
 
-const apiUrl = "http://localhost:5000/api/v1/";
+const apiUrl = "https://poststudy-library.azurewebsites.net/api/v1/";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {

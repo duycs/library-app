@@ -7,7 +7,7 @@ import { Book } from '../../shared/models/book';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = "http://localhost:5000/api/v1/search";
+const apiUrl = "https://poststudy-library.azurewebsites.net/api/v1/search";
 
 @Injectable({
   providedIn: 'root'

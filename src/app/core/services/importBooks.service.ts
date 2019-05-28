@@ -11,7 +11,7 @@ const httpOptions = {
 };
 
 
-const apiExportFromPoststudyUrl = "http://localhost:5001/api/exportBook";
+const apiExportFromPoststudyUrl = "https://poststudy.azurewebsites.net/api/exportBook";
 
 @Injectable({
     providedIn: 'root'

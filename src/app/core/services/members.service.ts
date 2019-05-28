@@ -12,7 +12,7 @@ import { ReturnBookItem } from 'src/app/shared/models/return-book-item';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = "http://localhost:5000/api/v1/members";
+const apiUrl = "https://poststudy-library.azurewebsites.net/api/v1/members";
 
 @Injectable({
   providedIn: 'root'

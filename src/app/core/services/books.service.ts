@@ -8,7 +8,8 @@ import { BookItem } from 'src/app/shared/models/book-item';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = "http://localhost:5000/api/v1/books";
+
+const apiUrl = "https://poststudy-library.azurewebsites.net/api/v1/books";
 
 @Injectable({
   providedIn: 'root'

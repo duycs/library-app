@@ -34,6 +34,7 @@ export class SearchComponent implements OnInit {
         this.snackBar.open("Success", "Ok", {
           duration: 2000,
         });
+        this.isLoadingResults = true;
         this.books = res;
         console.log(res);
       }, (err) => {

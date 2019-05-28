@@ -12,7 +12,6 @@
   <li class="nav-item" [routerLinkActive]='["link-active"]'>
     <a class="" [routerLink]='["/anonymous/recommended"]'>View recommended books</a>
   </li>
-
   <li *ngIf="currentUser == null" class="nav-item" [routerLinkActive]='["link-active"]'>
     <a class="" [routerLink]='["/login"]'>Login</a>
   </li>
@@ -25,6 +24,12 @@
     <a class="" [routerLink]='["/librarians/register"]'>Librarian Register</a>
   </li>
 </ul>
+
+<div *ngIf="currentUser==null">
+  <p>You can login by using the example accounts:</p>
+  <p><code>member</code> account with username/password: <code>einstein@outlook.com/123456</code></p>
+  <p><code>librarian</code> account with username/password: <code>father-einstein@outlook.com/123456</code></p>
+</div>
 
 <!--Librarian-->
 <div *ngIf="currentUser && currentUser.isLibrarian">
@@ -112,13 +117,25 @@
   </ul>
 </div>
 
-<!-- design at https://www.educative.io/collection/page/5668639101419520/5692201761767424/5636470266134528 -->
-<p>We design follow this reference:</p>
-<ul>
-  <li>
-    <a href="https://www.educative.io/collection/page/5668639101419520/5692201761767424/5636470266134528">
-      Design a Library Management System</a>
-  </li>
-</ul>
+<div *ngIf="currentUser==null">
+  <!-- design at https://www.educative.io/collection/page/5668639101419520/5692201761767424/5636470266134528 -->
+  <p>Design bussiness follow this reference:</p>
+  <ul>
+    <li>
+      <a href="https://www.educative.io/collection/page/5668639101419520/5692201761767424/5636470266134528">
+        Design a Library Management System</a>
+    </li>
+  </ul>
+  <p> If you known about Technology, here is something we use:</p>
+  <ul>
+    <li>
+      <a target="_blank" href="https://poststudy-library.azurewebsites.net/index.html">
+        Backend: Domain driven design and CQRS methodology, RPC and REST API style, MySql database, CI-CD on Azure devops.</a>
+    </li>
+    <li>
+      Frontend is this site: Angular 7, deploy CI to S3 serve file hosting.
+    </li>
+  </ul>
+</div>
 
 <p>The <code>Library</code> for my family and open for you with <code>love</code></p>
