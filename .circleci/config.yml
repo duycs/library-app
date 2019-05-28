@@ -83,7 +83,6 @@ jobs:
             - run:
                 name: Deploy to S3
                 command: |
-                    pip --version
                     aws --region ap-southeast-1 s3 sync dist s3://home-library/ --delete
                     # if [ "${CIRCLE_BRANCH}" == "develop" ]; then
                     #     aws --region ap-southeast-1 s3 sync dist s3://home-library-dev/dist --delete
