@@ -3,28 +3,32 @@
   <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
 </div> -->
   <form [formGroup]="searchForm" (ngSubmit)="onFormSubmit(searchForm.value)">
-    <mat-form-field class="input-search">
-      <input matInput placeholder="Search by title books" formControlName="title" [errorStateMatcher]="matcher">
+    <mat-form-field class="example-form-field">
+      <button mat-button *ngIf="value" matPrefix mat-icon-button type="submit" [disabled]="!searchForm.valid">
+        <mat-icon>search</mat-icon>
+      </button>
+      <input matInput type="text" placeholder="Search by title" [(ngModel)]="value" formControlName="title"
+        [errorStateMatcher]="matcher">
       <mat-error>
         <span *ngIf="!searchForm.get('title').valid && searchForm.get('title').touched">Please enter Title books</span>
       </mat-error>
-    </mat-form-field>
-    <div class="button-row float-right">
-      <button mat-raised-button color="primary" type="submit" [disabled]="!searchForm.valid">
-        Search
+      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <mat-icon>close</mat-icon>
       </button>
-    </div>
+    </mat-form-field>
+
+
   </form>
   <div fxLayout="row wrap" fxLayoutGap="12px" fxLayoutAlign="flex-start">
-    <mat-card fxFlex="0 1 calc(20% - 12px)" fxFlex.lt-md="0 1 calc(50% - 12px)" fxFlex.lt-sm="100%" fxLayout
+    <mat-card class="link" fxFlex="0 1 calc(13%)" fxFlex.lt-mat="0 1 calc(20%)" fxFlex.lt-sm="100%" fxLayout
       *ngFor="let book of books">
-      <div *ngIf="book.coverImage">
+      <div *ngIf="book.coverImage" (click)="onCardClickEvent(book)">
         <img mat-card-image [src]="book.coverImage">
-        <mat-card-content>
+        <!-- <mat-card-content>
           <p>
             {{book.title}}
           </p>
-        </mat-card-content>
+        </mat-card-content> -->
       </div>
       <div *ngIf="book.coverImage==null && book.title!=null">
         <mat-card-title>{{book.title}}</mat-card-title>

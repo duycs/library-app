@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../core/authentication/authentication.service';
 import { MatSnackBar } from '@angular/material';
+import { AlertService } from '../core/services/alert.service';
 
 @Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private snackBar: MatSnackBar,
+        private alertService: AlertService,
         private authenticationService: AuthenticationService,
     ) {
         // redirect to home if already logged in
@@ -52,11 +53,11 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.snackBar.open("Success", "", {duration: 2000,});
+                    this.alertService.showToastSuccess();
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
-                    this.snackBar.open("Error", "", {duration: 2000,});
+                    this.alertService.showToastError();
                     this.loading = false;
                 });
     }
