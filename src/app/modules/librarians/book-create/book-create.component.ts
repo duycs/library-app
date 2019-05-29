@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder, NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { LibrarianService } from 'src/app/core/services/librarians.service';
+import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({
   selector: 'app-book-create',
@@ -20,7 +21,8 @@ export class BookCreateComponent implements OnInit {
   pageNumber: string = '';
   isLoadingResults = false;
 
-  constructor(private router: Router, private api: LibrarianService, private formBuilder: FormBuilder, private snackBar: MatSnackBar) { }
+  constructor(private router: Router, private api: LibrarianService, 
+    private formBuilder: FormBuilder, private alertService: AlertService) { }
 
   ngOnInit() {
     this.bookForm = this.formBuilder.group({
@@ -38,18 +40,10 @@ export class BookCreateComponent implements OnInit {
     console.log(form);
     this.api.addBook(form)
       .subscribe(res => {
-        this.snackBar.open("Success", "Ok", {
-          duration: 2000,
-        });
-        // let id = res['id'];
-        // this.isLoadingResults = false;
-        // this.router.navigate(['/books/detail', id]);
+        this.alertService.showToastSuccess();
         this.router.navigate(['/librarians/findBooks']);
       }, (err) => {
-        this.snackBar.open("Error", "", {
-          duration: 2000,
-        });
-        console.log(err);
+        this.alertService.showToastError();
         this.isLoadingResults = false;
       });
   }

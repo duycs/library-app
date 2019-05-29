@@ -15,16 +15,17 @@
   }
 
   .input-search{
-    width:80%;
+    width:92%;
+    height: 50px;
   }
 
   .example-full-width:nth-last-child() {
     margin-bottom: 10px;
   }
-  
-  .button-row {
+  mat-form-field {display: inline!important}
+  /* .button-row {
     margin: 10px 0;
-  }
+  } */
   
   .mat-flat-button {
     margin: 5px;

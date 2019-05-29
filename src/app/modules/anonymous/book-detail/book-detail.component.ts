@@ -62,13 +62,12 @@ export class BookDetailComponent implements OnInit {
   actionMethodForBook() {
     if (this.currentUser) {
       if (this.currentUser.isMember) {
-
         this.router.navigate(['/members/checkout'], { queryParams: { bookId: this.book.id } });
       } else if (this.currentUser.isLibrarian) {
         this.router.navigate(['/librarian/editBook'], { queryParams: { bookId: this.book.id } });
-      } else {
-        this.router.navigate(['/login']);
       }
+    } else {
+      this.router.navigate(['/login']);
     }
   }
 

@@ -4,6 +4,7 @@ import { FormGroup, Validators, FormBuilder, NgForm, FormControl, FormArray } fr
 import { MatSnackBar } from '@angular/material';
 import { LibrarianService } from 'src/app/core/services/librarians.service';
 import { MemberService } from 'src/app/core/services/members.service';
+import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({
   selector: 'app-bookItem-create',
@@ -41,7 +42,7 @@ export class BookItemCreateComponent implements OnInit {
     private router: Router,
     private librarianService: LibrarianService,
     private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar) { }
+    private alertService: AlertService) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -74,14 +75,10 @@ export class BookItemCreateComponent implements OnInit {
     console.log(form);
     this.librarianService.addBookItem(form)
       .subscribe(res => {
-        this.snackBar.open("Success", "Ok", {
-          duration: 2000,
-        });
+        this.alertService.showToastSuccess();
         this.router.navigate(['/librarians/findBookItems']);
       }, (err) => {
-        this.snackBar.open("Error", "", {
-          duration: 2000,
-        });
+        this.alertService.showToastError();
         console.log(err);
         this.isLoadingResults = false;
       });

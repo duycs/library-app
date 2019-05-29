@@ -8,6 +8,7 @@ import { ApiBookService } from "src/app/core/services/books.service";
 import { User } from "src/app/shared/models/user";
 import { Subscription } from "rxjs";
 import { AuthenticationService } from "src/app/core/authentication/authentication.service";
+import { AlertService } from "src/app/core/services/alert.service";
 
 
 @Component({
@@ -20,21 +21,21 @@ export class RecommendedComponent implements OnInit {
   currentUser: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
-  
+
   public books: Book[];
   searchForm: FormGroup;
   title: string = '';
   isLoadingResults = false;
 
   constructor(
-    private router: Router, private apiBook: ApiBookService, 
-    private apiSearch: ApiSearchService, private formBuilder: FormBuilder, 
+    private router: Router, private apiBook: ApiBookService,
+    private apiSearch: ApiSearchService, private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
-    private snackBar: MatSnackBar) {
-      this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
-        this.currentUser = user;
-      });
-     }
+    private alertService: AlertService) {
+    this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
+      this.currentUser = user;
+    });
+  }
 
   ngOnInit() {
     this.searchForm = this.formBuilder.group({
@@ -43,15 +44,11 @@ export class RecommendedComponent implements OnInit {
 
     this.apiBook.getBooksRecommended()
       .subscribe(res => {
-        this.snackBar.open("Success", "Ok", {
-          duration: 2000,
-        });
+        this.alertService.showToastSuccess();
         this.books = res;
         console.log(res);
       }, (err) => {
-        this.snackBar.open("Error", "", {
-          duration: 2000,
-        });
+        this.alertService.showToastError();
         console.log(err);
         this.isLoadingResults = false;
       });
@@ -61,29 +58,26 @@ export class RecommendedComponent implements OnInit {
     this.isLoadingResults = true;
     this.apiSearch.searchBooksByTitle(value.title)
       .subscribe(res => {
-        this.snackBar.open("Success", "Ok", {
-          duration: 2000,
-        });
+        this.alertService.showToastSuccess();
         this.books = res;
         console.log(res);
       }, (err) => {
-        this.snackBar.open("Error", "", {
-          duration: 2000,
-        });
+        this.alertService.showToastError();
         console.log(err);
         this.isLoadingResults = false;
       });
   }
 
-  onCardClickEvent(book){
-    if(this.currentUser.isMember){
-      this.router.navigate(['/anonymous/books/', book.id]);
-    }else if(this.currentUser.isLibrarian){
-      this.router.navigate(['/librarians/findBook/', book.id]);
-    }   else {
+  onCardClickEvent(book) {
+    if (this.currentUser == null) {
       //is anonymous
       this.router.navigate(['/anonymous/books/', book.id]);
+    } else if (this.currentUser.isMember) {
+      this.router.navigate(['/anonymous/books/', book.id]);
+    } else if (this.currentUser.isLibrarian) {
+      this.router.navigate(['/librarians/findBook/', book.id]);
     }
+
   }
 
 }

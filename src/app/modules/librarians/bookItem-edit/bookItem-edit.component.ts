@@ -5,6 +5,7 @@ import { Book } from '../../../shared/models/book';
 import { FormGroup, Validators, NgForm, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { LibrarianService } from 'src/app/core/services/librarians.service';
+import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({
   selector: 'app-bookItem-edit',
@@ -29,7 +30,8 @@ export class BookItemEditComponent implements OnInit {
 
   isLoadingResults = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private api: LibrarianService, private formBuilder: FormBuilder, private snackBar: MatSnackBar) { }
+  constructor(private router: Router, private route: ActivatedRoute, private api: LibrarianService, 
+    private formBuilder: FormBuilder, private alertService: AlertService) { }
 
   ngOnInit() {
     this.getBookItem(this.route.snapshot.params['id']);
@@ -74,17 +76,12 @@ export class BookItemEditComponent implements OnInit {
     this.isLoadingResults = true;
     this.api.updateBookItem(form)
       .subscribe(res => {
-        this.snackBar.open("Success", "Ok", {
-          duration: 2000,
-        });
+        this.alertService.showToastSuccess();
         this.router.navigate(['/librarians/findBookItems']);
       }, (err) => {
-        this.snackBar.open("Error", "", {
-          duration: 2000,
-        });
+        this.alertService.showToastError();
         console.log(err);
         this.isLoadingResults = false;
-        this.snackBar.open("Error", "Ok", { duration: 2000, });
       });
   }
 

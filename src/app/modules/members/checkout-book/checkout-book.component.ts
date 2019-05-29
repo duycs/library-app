@@ -7,6 +7,7 @@ import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { ApiBookService } from 'src/app/core/services/books.service';
+import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({
   selector: 'app-checkout-book',
@@ -39,7 +40,7 @@ export class CheckoutBookComponent implements OnInit {
     private router: Router,
     private api: MemberService,
     private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar,
+    private alertService: AlertService,
     private authenticationService: AuthenticationService,
     private bookService: ApiBookService) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
@@ -73,13 +74,10 @@ export class CheckoutBookComponent implements OnInit {
     console.log(form);
     this.api.checkoutBook(form)
       .subscribe(res => {
-        this.snackBar.open("Success", "Ok", {
-          duration: 2000,
-        });
+        this.alertService.showToastSuccess();
         this.router.navigate(['/anonymous/recommended']);
       }, (err) => {
-        this.snackBar.open("Error", "", { duration: 2000, });
-        console.log(err);
+        this.alertService.showToastError();
         this.isLoadingResults = false;
       });
   }
@@ -91,7 +89,7 @@ export class CheckoutBookComponent implements OnInit {
         this.checkoutBookForm.controls['bookItemId'].setValue(data.id);
         this.checkoutBookForm.controls['bookItemBarcode'].setValue(data.barcode);
       } else {
-        this.snackBar.open("Current don't have any book item", bookId, { duration: 2000, });
+        this.alertService.showToastMessage("Current don't have any book item");
       }
     });
   }

@@ -6,6 +6,7 @@ import { first } from 'rxjs/operators';
 import { MemberService } from '../../../core/services/members.service';
 import { AuthenticationService } from '../../../core/authentication/authentication.service';
 import { MatSnackBar } from '@angular/material';
+import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({ templateUrl: 'register.component.html' })
 export class MemberRegisterComponent implements OnInit {
@@ -16,7 +17,7 @@ export class MemberRegisterComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
-        private snackBar: MatSnackBar,
+        private alertService: AlertService,
         private memberService: MemberService,
         private authenticationService: AuthenticationService
     ) {
@@ -51,13 +52,11 @@ export class MemberRegisterComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.snackBar.open("Success", "", {duration: 2000,});
+                    this.alertService.showToastSuccess();
                     this.router.navigate(['/login']);
                 },
                 error => {
-                    this.snackBar.open("Error", "", {
-                        duration: 2000,
-                    });
+                    this.alertService.showToastError();
                     this.loading = false;
                 });
     }

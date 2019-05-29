@@ -6,6 +6,7 @@ import { MemberService } from '../core/services/members.service';
 import { first } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { AlertService } from '../core/services/alert.service';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   isLibrarian = false;
 
   constructor(
-    private snackBar: MatSnackBar,
+    private alertService: AlertService,
     private router: Router,
     private authenticationService: AuthenticationService,
     private memberService: MemberService
@@ -34,7 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.currentUser == null) {
       this.isAnonymous = true;
-      this.snackBar.open("You should register or login", "Thanks!", { duration: 2000, });
+      this.alertService.showToastMessage("You should register or login");
     }
   }
 
@@ -47,7 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     let accountId = this.currentUser.accountId;
     this.authenticationService.logout(accountId).pipe(first()).subscribe(() => {
       console.log(accountId);
-      this.snackBar.open("Success", "", { duration: 2000, });
+      this.alertService.showToastSuccess();
       this.router.navigate(['/']);
     });
   }

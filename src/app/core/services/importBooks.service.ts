@@ -5,6 +5,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { Book } from '../../shared/models/book';
 import { ApiBookService } from './books.service';
 import { MatSnackBar } from '@angular/material';
+import { AlertService } from './alert.service';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,7 +19,7 @@ const apiExportFromPoststudyUrl = "https://poststudy.azurewebsites.net/api/expor
 })
 export class ApiImportBookService {
     data: Book[] = [];
-    constructor(private http: HttpClient, private apiBookService: ApiBookService, private snackBar: MatSnackBar) { }
+    constructor(private http: HttpClient, private apiBookService: ApiBookService, private alertService: AlertService) { }
 
     getExportFromPoststudyBooks(): Observable<Book[]> {
         return this.http.get<Book[]>(apiExportFromPoststudyUrl)
@@ -37,13 +38,9 @@ export class ApiImportBookService {
                 element.isbn = element.uid;
                 console.log(element);
                 this.apiBookService.addBook(element) .subscribe(res => {
-                    this.snackBar.open("Success ${element.uid}", "Ok", {
-                      duration: 2000,
-                    });
+                    this.alertService.showToastSuccess();
                   }, (err) => {
-                    this.snackBar.open("Error", "", {
-                      duration: 2000,
-                    });
+                    this.alertService.showToastError();
                     console.log(err);
                   });
             });

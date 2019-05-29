@@ -4,6 +4,7 @@ import { ApiBookService } from '../../../core/services/books.service';
 import { Book } from '../../../shared/models/book';
 import { FormGroup, Validators, NgForm, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({
   selector: 'app-book-edit',
@@ -21,7 +22,10 @@ export class BookEditComponent implements OnInit {
   pageNumber: string = '';
   isLoadingResults = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private api: ApiBookService, private formBuilder: FormBuilder, private snackBar: MatSnackBar) { }
+  constructor(private router: Router, private route: ActivatedRoute, 
+    private api: ApiBookService, 
+    private formBuilder: FormBuilder,
+     private alertService: AlertService) { }
 
   ngOnInit() {
     this.getBook(this.route.snapshot.params['id']);
@@ -56,17 +60,10 @@ export class BookEditComponent implements OnInit {
     this.isLoadingResults = true;
     this.api.updateBook(this.id, form)
       .subscribe(res => {
-        this.snackBar.open("Success", "Ok", {
-          duration: 2000,
-        });
-        // let id = res['id'];
-        // this.isLoadingResults = false;
-        // this.router.navigate(['/books/detail', id]);
+        this.alertService.showToastSuccess();
         this.router.navigate(['/librarians/findBooks']);
       }, (err) => {
-        this.snackBar.open("Error", "", {
-          duration: 2000,
-        });
+        this.alertService.showToastError();
         console.log(err);
         this.isLoadingResults = false;
       });

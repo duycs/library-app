@@ -4,6 +4,7 @@ import { LibrarianService } from 'src/app/core/services/librarians.service';
 import { Member } from 'src/app/shared/models/member';
 import { BlockMember } from 'src/app/shared/models/block-member';
 import { MatSnackBar } from '@angular/material';
+import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({
   selector: 'app-member-detail',
@@ -17,7 +18,8 @@ export class MemberDetailComponent implements OnInit {
   actionToMember: string;
 
 
-  constructor(private route: ActivatedRoute, private api: LibrarianService, private router: Router, private snackBar: MatSnackBar) { }
+  constructor(private route: ActivatedRoute, private api: LibrarianService, 
+    private router: Router, private alertService: AlertService) { }
 
   ngOnInit() {
     this.actionToMember = "Block";
@@ -48,12 +50,12 @@ export class MemberDetailComponent implements OnInit {
     this.api.blockMember(blockMember)
       .subscribe(data => {
         this.isLoadingResults = false;
-        this.snackBar.open("Success", "Ok", { duration: 2000, });
+        this.alertService.showToastSuccess();
         this.actionToMember = "Unblock";
       }, (err) => {
         console.log(err);
         this.isLoadingResults = false;
-        this.snackBar.open("Error", "Ok", { duration: 2000, });
+        this.alertService.showToastError();
       });
   }
 
@@ -62,12 +64,12 @@ export class MemberDetailComponent implements OnInit {
     this.api.unblockMember(blockMember)
       .subscribe(data => {
         this.isLoadingResults = false;
-        this.snackBar.open("Success", "Ok", { duration: 2000, });
+        this.alertService.showToastSuccess();
         this.actionToMember = "Block";
       }, (err) => {
         console.log(err);
         this.isLoadingResults = false;
-        this.snackBar.open("Error", "Ok", { duration: 2000, });
+        this.alertService.showToastError();
       });
   }
 
