@@ -14,7 +14,8 @@ import { AlertService } from "src/app/core/services/alert.service";
 @Component({
   selector: 'app-recommended',
   templateUrl: './recommended.component.html',
-  styleUrls: ['./recommended.component.css']
+  //styleUrls: ['./recommended.component.css']
+  styleUrls: ['./ng-masonry-grid.css']
 })
 
 export class RecommendedComponent implements OnInit {

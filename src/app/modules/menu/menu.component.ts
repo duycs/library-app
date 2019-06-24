@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
 import { AlertService } from '../../core/services/alert.service';
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
+  selector: 'app-menu',
+  templateUrl: './menu.component.html',
 })
-export class AboutComponent implements OnInit, OnDestroy {
+export class MenuComponent implements OnInit, OnDestroy {
   currentUser: User;
   currentUserSubscription: Subscription;
   users: User[] = [];

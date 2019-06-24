@@ -32,3 +32,6 @@ mat-form-field {display: inline!important}
 }
 
 mat-card{margin-bottom: 12px;}
+
+.grid-item { width: 200px; }
+.grid-item--width2 { width: 400px; }

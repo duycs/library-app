@@ -9,6 +9,7 @@ import { AnonymousComponent } from './anonymous.component';
 import { RecommendedComponent } from './recommended/recommended.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { SharedModule } from 'src/app/shared.module';
+import { NgMasonryGridModule } from 'ng-masonry-grid';
 
 const routes: Routes = [
   {

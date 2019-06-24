@@ -1,18 +1,30 @@
-
+<!-- 
 <div fxLayout="row wrap" fxLayoutGap="12px" fxLayoutAlign="flex-start">
   <mat-card class="link" fxFlex="0 1 calc(13%-0px)" fxFlex.lt-md="0 1 calc(20% - 0px)" fxFlex.lt-sm="100%" fxLayout
     *ngFor="let book of books" (click)="onCardClickEvent(book)">
     <div class="" *ngIf="book.coverImage">
       <img mat-card-image [src]="book.coverImage">
-      <!-- <mat-card-content>
-        <p>
-            {{book.title}}
-          </p>
-      </mat-card-content> -->
     </div>
     <div *ngIf="book.coverImage==null && book.title!=null">
       <mat-card-title>{{book.title}}</mat-card-title>
     </div>
   </mat-card>
+</div> -->
 
-</div>
+<ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 10 }" [useAnimation]="true"
+  [useImagesLoaded]="true"
+  [scrollAnimationOptions]="{ animationEffect: 'effect-1', minDuration : 0.4, maxDuration : 0.7 }">
+  <!-- Masonry Grid Item -->
+  <ng-masonry-grid-item *ngFor="let book of books; let i = index;" (click)="onCardClickEvent(book)"
+    id="{{'masonry-item-'+i}}">
+    <!-- Grid Content  -->
+    <div class="link" *ngIf="book.coverImage">
+      <img [src]="book.coverImage">
+    </div>
+    <div class="link" *ngIf="book.coverImage==null && book.title!=null">
+      <p class="cover-title">{{book.title}}</p>
+    </div>
+  </ng-masonry-grid-item>
+</ng-masonry-grid>
+
+<!-- refer: https://www.npmjs.com/package/ng-masonry-grid -->

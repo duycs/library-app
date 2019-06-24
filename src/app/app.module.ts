@@ -25,12 +25,15 @@ import { SharedModule } from './shared.module';
 import { MembersComponent } from './modules/members/members.component';
 import { SearchComponent } from './modules/search/search.component';
 import { AboutComponent } from './modules/about/about.component';
+import { MenuComponent } from './modules/menu/menu.component';
+import { NgMasonryGridModule } from 'ng-masonry-grid';
 
 
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'about', component: AboutComponent },
+  { path: 'menu', component: MenuComponent },
   { path: 'search', component: SearchComponent },
   { path: 'login', component: LoginComponent },
   { path: 'modules/librarians', component: LibrariansComponent },
@@ -47,6 +50,7 @@ const appRoutes: Routes = [
     AboutComponent,
     LoginComponent,
     SearchComponent,
+    MenuComponent,
     RecommendedComponent,
     CounterComponent,
     LibrariansComponent,
@@ -55,6 +59,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     SharedModule,
+    NgMasonryGridModule,
     MaterialModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
