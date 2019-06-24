@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiSearchService } from '../core/services/search.service';
 import { FormGroup, Validators, FormBuilder, NgForm } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
-import { Book } from '../shared/models/book';
-import { AlertService } from '../core/services/alert.service';
-import { User } from '../shared/models/user';
+import { ApiSearchService } from 'src/app/core/services/search.service';
+import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';
-import { AuthenticationService } from '../core/authentication/authentication.service';
+import { AlertService } from 'src/app/core/services/alert.service';
+import { Book } from 'src/app/shared/models/book';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
 @Component({
   selector: 'app-search',
@@ -24,7 +23,10 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup;
   title: string = '';
   isLoadingResults = false;
+  isLoadedResult = false;
   regularDistribution = 100 / 3;
+
+  @Output() notify: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private router: Router,
     private api: ApiSearchService,
@@ -44,13 +46,14 @@ export class SearchComponent implements OnInit {
   }
 
   onFormSubmit(value: any) {
-    this.isLoadingResults = true;
     this.api.searchBooksByTitle(value.title)
       .subscribe(res => {
         this.alertService.showToastSuccess();
-        this.isLoadingResults = true;
         this.books = res;
         console.log(res);
+        this.isLoadingResults = true;
+        this.isLoadedResult = true;
+        this.notify.emit(this.isLoadedResult);
       }, (err) => {
         this.alertService.showToastError();
         console.log(err);

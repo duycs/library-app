@@ -8,11 +8,12 @@ import { CheckoutBookItem } from 'src/app/shared/models/checkout-book-item';
 import { RenewBookItem } from 'src/app/shared/models/renew-book-item';
 import { ReserveBookItem } from 'src/app/shared/models/reserve-book-item';
 import { ReturnBookItem } from 'src/app/shared/models/return-book-item';
+import { AppSettings } from 'src/app/configs/app-settings.config';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = "https://poststudy-library.azurewebsites.net/api/v1/members";
+const apiUrl = `${AppSettings.defaultBackendUrl}/members`;
 
 @Injectable({
   providedIn: 'root'

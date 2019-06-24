@@ -6,13 +6,14 @@ import { Book } from '../../shared/models/book';
 import { ApiBookService } from './books.service';
 import { MatSnackBar } from '@angular/material';
 import { AlertService } from './alert.service';
+import { AppSettings } from 'src/app/configs/app-settings.config';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 
-const apiExportFromPoststudyUrl = "https://poststudy.azurewebsites.net/api/exportBook";
+const apiExportFromPoststudyUrl = `${AppSettings.defaultBackendUrl}/exportBook`;
 
 @Injectable({
     providedIn: 'root'

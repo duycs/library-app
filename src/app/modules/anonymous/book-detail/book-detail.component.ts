@@ -18,7 +18,12 @@ export class BookDetailComponent implements OnInit {
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  book: Book = { uid: 0, id: 0, isbn: 0, coverImage: '', description: '', title: '', subject: '', publisher: '', language: '', pageNumber: null };
+  book: Book = {
+    uid: 0, id: 0, isbn: 0, coverImage: '', ebook: '', ebookType: '',
+    description: '', title: '', subject: '', author: '', publisher: '', publicationDate: null,
+    language: '', pageNumber: 0
+  };
+
   isLoadingResults = true;
   actionNameForBook: string = '';
 

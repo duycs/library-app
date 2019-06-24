@@ -12,7 +12,7 @@ import { AlertService } from "src/app/core/services/alert.service";
 
 
 @Component({
-  selector: 'app-modules-anonymous-recommended',
+  selector: 'app-recommended',
   templateUrl: './recommended.component.html',
   styleUrls: ['./recommended.component.css']
 })
@@ -23,7 +23,6 @@ export class RecommendedComponent implements OnInit {
   users: User[] = [];
 
   public books: Book[];
-  searchForm: FormGroup;
   title: string = '';
   isLoadingResults = false;
 
@@ -38,25 +37,7 @@ export class RecommendedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.searchForm = this.formBuilder.group({
-      'title': [null, Validators.required]
-    });
-
     this.apiBook.getBooksRecommended()
-      .subscribe(res => {
-        this.alertService.showToastSuccess();
-        this.books = res;
-        console.log(res);
-      }, (err) => {
-        this.alertService.showToastError();
-        console.log(err);
-        this.isLoadingResults = false;
-      });
-  }
-
-  onFormSubmit(value: any) {
-    this.isLoadingResults = true;
-    this.apiSearch.searchBooksByTitle(value.title)
       .subscribe(res => {
         this.alertService.showToastSuccess();
         this.books = res;

@@ -6,6 +6,12 @@
     <a mat-button color="primary" [routerLink]="['/librarians/findBooks']">
       BACK TO LIST
     </a>
+    <a mat-button color="primary" [routerLink]="['/librarians/addBook']">
+     ADD NEW BOOK
+    </a>
+    <a mat-button color="primary" [routerLink]="['/librarians/addBookItem']" [queryParams]="{bookId: book.id}">
+      ADD NEW BOOK ITEM
+    </a>
   </div>
   <mat-card class="example-card">
     <div class="container">
@@ -31,7 +37,7 @@
               <div class="container">
                 <div class="row">
                   <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">Year:</div>
-                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{book.publishDate}}</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{book.publicationDate}}</div>
                   <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">Language:</div>
                   <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{book.language}}</div>
                 </div>
@@ -49,7 +55,7 @@
                   <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">Publisher:</div>
                   <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{book.publisher}}</div>
                   <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">File:</div>
-                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">epub</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">{{book.ebookType}}</div>
                 </div>
               </div>
             </div>
@@ -63,8 +69,11 @@
       </div>
     </div>
     <mat-card-actions>
-      <a mat-button color="primary" [routerLink]="['/librarians/addBookItem']" [queryParams]="{bookId: book.id}">
-        ADD NEW BOOK ITEM
+      <a mat-button *ngIf="book.ebookType=='.pdf'" color="primary" target="_blank" href="{{book.ebook}}">
+        PREVIEW BOOK
+      </a>
+      <a mat-button *ngIf="book.ebook" color="primary" target="_blank" href="{{book.ebook}}">
+        DOWNLOAD BOOK ({{book.ebookType}})
       </a>
       <a mat-button color="primary" [routerLink]="['/librarians/editBook', book.id]">
         EDIT
@@ -74,6 +83,6 @@
       </a>
 
     </mat-card-actions>
-
   </mat-card>
+
 </div>

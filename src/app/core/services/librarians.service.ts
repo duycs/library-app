@@ -9,12 +9,13 @@ import { Member } from 'src/app/shared/models/member';
 import { BlockMember } from 'src/app/shared/models/block-member';
 import { UnblockMember } from 'src/app/shared/models/unblock-member';
 import { LibrarianRegister } from 'src/app/shared/models/librarian-register';
+import { AppSettings } from 'src/app/configs/app-settings.config';
 
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = "https://poststudy-library.azurewebsites.net/api/v1/librarians";
+const apiUrl = `${AppSettings.defaultBackendUrl}/librarians`;
 
 @Injectable({
   providedIn: 'root'

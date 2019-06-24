@@ -32,3 +32,8 @@
   }
 
   mat-card{margin-bottom: 12px;}
+
+  .mat-card-image {
+    max-width: 100px;
+    margin-top: 0px!important;
+  }

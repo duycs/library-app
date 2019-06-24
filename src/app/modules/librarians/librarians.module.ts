@@ -20,6 +20,7 @@ import { BookItemDetailComponent } from './bookItem-detail/bookItem-detail.compo
 import { BookItemEditComponent } from './bookItem-edit/bookItem-edit.component';
 import { MemberListComponent } from './member-list/member-list.component';
 import { MemberDetailComponent } from './member-detail/member-detail.component';
+import { SharedModule } from 'src/app/shared.module';
 
 const routes: Routes = [
   {
@@ -100,9 +101,10 @@ const routes: Routes = [
     BookItemDetailComponent,
     BookItemEditComponent,
     MemberListComponent,
-    MemberDetailComponent
+    MemberDetailComponent,
   ],
   imports: [
+    SharedModule,
     MaterialModule,
     BrowserModule,
     FormsModule,

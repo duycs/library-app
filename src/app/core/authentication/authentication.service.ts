@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../../shared/models/user';
+import { AppSettings } from 'src/app/configs/app-settings.config';
 
-const apiUrl = "https://poststudy-library.azurewebsites.net/api/v1/";
+const apiUrl = `${AppSettings.defaultBackendUrl}`;
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -23,7 +24,7 @@ export class AuthenticationService {
     //user type is member or librarian
     login(accountName: string, password: string) {
         //TODO: default is member
-        const url = `${apiUrl}authentication/login`;
+        const url = `${apiUrl}/authentication/login`;
         return this.http.post<any>(url, {accountName, password })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
@@ -39,7 +40,7 @@ export class AuthenticationService {
 
     logout(accountId: number) {
         //TODO: default is member
-        const url = `${apiUrl}authentication/logout`;
+        const url = `${apiUrl}/authentication/logout`;
         return this.http.post<any>(url, { accountId })
             .pipe(map(result => {
                 // remove user from local storage to log user out

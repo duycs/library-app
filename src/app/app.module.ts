@@ -9,26 +9,28 @@ import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './core/nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './modules/home/home.component';
+import { LoginComponent } from './modules/login/login.component';
 import { CounterComponent } from './shared/components/counter/counter.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
-import { SearchComponent } from './search/search.component';
-import { LibrariansComponent } from './modules/librarians/librarians.component';
 
 import { LibrariansModule } from './modules/librarians/librarians.module';
 import { AnonymousModule } from './modules/anonymous/anonymous.module';
 import { AnonymousComponent } from './modules/anonymous/anonymous.component';
 import { MembersModule } from './modules/members/members.module';
-import { MembersComponent } from './modules/members/members.component';
 import { RecommendedComponent } from './modules/anonymous/recommended/recommended.component';
+import { LibrariansComponent } from './modules/librarians/librarians.component';
+import { SharedModule } from './shared.module';
+import { MembersComponent } from './modules/members/members.component';
+import { SearchComponent } from './modules/search/search.component';
+import { AboutComponent } from './modules/about/about.component';
 
 
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'about', component: AboutComponent },
   { path: 'search', component: SearchComponent },
   { path: 'login', component: LoginComponent },
   { path: 'modules/librarians', component: LibrariansComponent },
@@ -42,14 +44,17 @@ const appRoutes: Routes = [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
+    AboutComponent,
     LoginComponent,
     SearchComponent,
+    RecommendedComponent,
     CounterComponent,
     LibrariansComponent,
     AnonymousComponent,
     MembersComponent,
   ],
   imports: [
+    SharedModule,
     MaterialModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,

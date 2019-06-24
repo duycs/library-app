@@ -32,3 +32,5 @@ body {
 .link:active {
   color: blue;
 }
+
+mat-card{cursor: pointer}

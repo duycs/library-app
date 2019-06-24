@@ -1,18 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { User } from '../shared/models/user';
+import { User } from '../../shared/models/user';
 import { Subscription } from 'rxjs';
-import { AuthenticationService } from '../core/authentication/authentication.service';
-import { MemberService } from '../core/services/members.service';
+import { AuthenticationService } from '../../core/authentication/authentication.service';
+import { MemberService } from '../../core/services/members.service';
 import { first } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
-import { AlertService } from '../core/services/alert.service';
+import { AlertService } from '../../core/services/alert.service';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
+  templateUrl: './about.component.html',
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class AboutComponent implements OnInit, OnDestroy {
   currentUser: User;
   currentUserSubscription: Subscription;
   users: User[] = [];

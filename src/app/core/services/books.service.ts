@@ -4,12 +4,13 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError, tap, map } from 'rxjs/operators';
 import { Book } from '../../shared/models/book';
 import { BookItem } from 'src/app/shared/models/book-item';
+import { AppSettings } from 'src/app/configs/app-settings.config';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
-const apiUrl = "https://poststudy-library.azurewebsites.net/api/v1/books";
+const apiUrl = `${AppSettings.defaultBackendUrl}/books`;
 
 @Injectable({
   providedIn: 'root'

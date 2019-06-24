@@ -14,18 +14,26 @@
   width: 100%;
 }
 
+.input-search{
+  width:92%;
+  height: 50px;
+}
+
 .example-full-width:nth-last-child() {
   margin-bottom: 10px;
 }
-
-.button-row {
+mat-form-field {display: inline!important}
+/* .button-row {
   margin: 10px 0;
-}
+} */
 
 .mat-flat-button {
   margin: 5px;
 }
 
-.cover-image{
+mat-card{margin-bottom: 12px;}
+
+.mat-card-image {
   max-width: 100px;
+  margin-top: 0px!important;
 }

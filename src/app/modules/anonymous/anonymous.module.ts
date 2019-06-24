@@ -8,10 +8,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AnonymousComponent } from './anonymous.component';
 import { RecommendedComponent } from './recommended/recommended.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
+import { SharedModule } from 'src/app/shared.module';
 
 const routes: Routes = [
   {
     path: 'anonymous',
+    //path: '',
     component: AnonymousComponent,
     children: [
       {
@@ -33,10 +35,10 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    RecommendedComponent,
     BookDetailComponent
   ],
   imports: [
+    SharedModule,
     MaterialModule,
     BrowserModule,
     FormsModule,

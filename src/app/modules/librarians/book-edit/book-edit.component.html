@@ -1,8 +1,7 @@
 <div class="example-container mat-elevation-z8">
-  <div class="example-loading-shade"
-         *ngIf="isLoadingResults">
-      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-    </div>
+  <div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
   <div class="button-row">
     <a mat-button color="primary" (click)="bookDetails()">
       BACK TO INFO
@@ -26,7 +25,13 @@
         <input matInput placeholder="Subject" formControlName="subject">
       </mat-form-field>
       <mat-form-field class="example-full-width">
+        <input matInput placeholder="Author" formControlName="author">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
         <input matInput placeholder="Publisher" formControlName="publisher">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="PublicationDate" formControlName="publicationDate">
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Language" formControlName="language">
@@ -34,6 +39,25 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="PageNumber" formControlName="pageNumber">
       </mat-form-field>
+
+      <div class="example-full-width">
+        <p>Cover image </p>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="CoverImage" formControlName="coverImage">
+        </mat-form-field>
+        <app-image-upload (notify)="setCoverImageData($event)">
+        </app-image-upload>
+      </div>
+
+      <div class="example-full-width">
+        <p>Ebook file </p>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Ebook" formControlName="ebook">
+        </mat-form-field>
+        <app-ebook-upload (notify)="setEbookData($event)">
+        </app-ebook-upload>
+      </div>
+
       <div class="button-row">
         <button mat-raised-button color="primary" type="submit" [disabled]="!bookForm.valid">
           Save
