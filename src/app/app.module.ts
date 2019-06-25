@@ -19,7 +19,7 @@ import { LibrariansModule } from './modules/librarians/librarians.module';
 import { AnonymousModule } from './modules/anonymous/anonymous.module';
 import { AnonymousComponent } from './modules/anonymous/anonymous.component';
 import { MembersModule } from './modules/members/members.module';
-import { RecommendedComponent } from './modules/anonymous/recommended/recommended.component';
+import { RecommendedComponent } from './modules/recommended/recommended.component';
 import { LibrariansComponent } from './modules/librarians/librarians.component';
 import { SharedModule } from './shared.module';
 import { MembersComponent } from './modules/members/members.component';
@@ -51,7 +51,7 @@ const appRoutes: Routes = [
     LoginComponent,
     SearchComponent,
     MenuComponent,
-    RecommendedComponent,
+    // RecommendedComponent,
     CounterComponent,
     LibrariansComponent,
     AnonymousComponent,

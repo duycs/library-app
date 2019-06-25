@@ -27,6 +27,8 @@ export class BookCreateComponent implements OnInit {
   pageNumber: string = '';
   isLoadingResults = false;
 
+  isCanSave = true;
+
   onNotify(message: string): void {
     alert(message);
   }

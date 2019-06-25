@@ -17,6 +17,7 @@ import {
     MatRadioModule,
     MatCheckboxModule,
     MatSelectModule,
+    MatDividerModule,
 } from '@angular/material';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,6 +43,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatRadioModule,
         MatCheckboxModule,
         MatSelectModule,
+        MatDividerModule
     ],
     exports: [
         MatButtonModule,
@@ -62,6 +64,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatRadioModule,
         MatCheckboxModule,
         MatSelectModule,
+        MatDividerModule
     ]
 })
 export class MaterialModule { }
