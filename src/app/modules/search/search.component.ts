@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
 
   public books: Book[];
   searchForm: FormGroup;
-  title: string = '';
+  key: string = '';
   isLoadingResults = false;
   isLoadedResult = false;
   regularDistribution = 100 / 3;
@@ -40,13 +40,13 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.searchForm = this.formBuilder.group({
-      // 'title': [null, Validators.required]
-      'title': ''
+      // 'key': [null, Validators.required]
+      'key': ''
     });
   }
 
   onFormSubmit(value: any) {
-    this.api.searchBooksByTitle(value.title)
+    this.api.searchBooksByAll(value.key)
       .subscribe(res => {
         this.alertService.showToastSuccess();
         this.books = res;

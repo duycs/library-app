@@ -17,11 +17,19 @@ export class ApiSearchService {
 
   constructor(private http: HttpClient) { }
 
-  searchBooksByTitle(title: string): Observable<Book[]> {
-    const url = `${apiUrl}?title=${title}`;
+  searchBooksByAll(key: string): Observable<Book[]> {
+    const url = `${apiUrl}/all?key=${key}`;
     return this.http.get<Book[]>(url).pipe(
-      tap(_ => console.log('fetched books by title=${title}')),
-      catchError(this.handleError<Book[]>('searchBookByTitles title=${title}'))
+      tap(_ => console.log('fetched books by key=${key}')),
+      catchError(this.handleError<Book[]>('searchBookByAll key=${key}'))
+    );
+  }
+
+  searchBooksByTitle(key: string): Observable<Book[]> {
+    const url = `${apiUrl}/byTitle?key=${key}`;
+    return this.http.get<Book[]>(url).pipe(
+      tap(_ => console.log('fetched books by key=${key}')),
+      catchError(this.handleError<Book[]>('searchBookByTitles key=${key}'))
     );
   }
 
