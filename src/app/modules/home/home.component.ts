@@ -43,5 +43,4 @@ export class HomeComponent implements OnInit {
       this.isShowRecommended = false;
     else this.isShowRecommended = true;
   }
-
 }

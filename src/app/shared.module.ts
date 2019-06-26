@@ -9,6 +9,9 @@ import { PdfViwerComponent } from './shared/components/viewer/pdf-viewer.compone
 import { FormsModule } from '@angular/forms';
 import { RecommendedComponent } from './modules/recommended/recommended.component';
 import { NgMasonryGridModule } from 'ng-masonry-grid';
+import { TagInputModule } from 'ngx-chips';
+import { TagComponent } from './shared/components/tag/tag.component';
+// import { TagAutoCompleteComponent } from './shared/components/chips/tag-autocomplete.component';
 
 
 @NgModule({
@@ -17,21 +20,26 @@ import { NgMasonryGridModule } from 'ng-masonry-grid';
         FormsModule,
         MaterialModule,
         PdfViewerModule,
-        NgMasonryGridModule
+        NgMasonryGridModule,
+        TagInputModule
     ],
     declarations: [
         ImageUploadComponent,
         PreviewImageComponent,
         EbookUploadComponent,
         PdfViwerComponent,
-        RecommendedComponent
+        RecommendedComponent,
+        TagComponent,
+        // TagAutoCompleteComponent
     ],
     exports: [
         ImageUploadComponent,
         PreviewImageComponent,
         EbookUploadComponent,
         PdfViwerComponent,
-        RecommendedComponent
+        RecommendedComponent,
+        TagComponent,
+        // TagAutoCompleteComponent
     ]
 })
 export class SharedModule { }

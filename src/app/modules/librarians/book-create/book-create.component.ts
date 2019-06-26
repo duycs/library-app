@@ -16,7 +16,7 @@ export class BookCreateComponent implements OnInit {
   bookForm: FormGroup;
   isbn: string = '';
   title: string = '';
-  author:string = '';
+  authors: any;
   coverImage: string = '';
   ebook: string = '';
   ebookType: string = '';
@@ -25,6 +25,7 @@ export class BookCreateComponent implements OnInit {
   publicationDate: Date;
   language: string = '';
   pageNumber: string = '';
+  tags: any;
   isLoadingResults = false;
 
   isCanSave = true;
@@ -43,7 +44,7 @@ export class BookCreateComponent implements OnInit {
     this.bookForm = this.formBuilder.group({
       'isbn': [null],
       'title': [null, Validators.required],
-      'author':[null],
+      'authors': [null],
       'coverImage': [null],
       'ebook': [null],
       'ebookType': [null],
@@ -51,7 +52,8 @@ export class BookCreateComponent implements OnInit {
       'publisher': [null],
       'publicationDate': [null],
       'language': [null],
-      'pageNumber': [null]
+      'pageNumber': [null],
+      'tags': [null]
     });
   }
 
@@ -67,6 +69,18 @@ export class BookCreateComponent implements OnInit {
     this.bookForm.get('ebook').setValue(file.url);
     console.log(file.fileExtension);
     this.bookForm.get('ebookType').setValue(file.fileExtension);
+  }
+
+  setTagsData(tags: any): void {
+    console.log('tags Data: ', tags);
+    this.tags = tags;
+    this.bookForm.get('tags').setValue(this.tags);
+  }
+
+  setAuthorsData(authors: any): void {
+    console.log('authors Data: ', authors);
+    this.authors = authors;
+    this.bookForm.get('authors').setValue(this.authors);
   }
 
   onFormSubmit(form: NgForm) {

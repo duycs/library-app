@@ -9,6 +9,7 @@
   </div>
   <mat-card class="example-card">
     <form [formGroup]="bookForm" (ngSubmit)="onFormSubmit(bookForm.value)">
+
       <mat-form-field class="example-full-width">
         <input matInput placeholder="ISBN" formControlName="isbn">
         <!-- <mat-error>
@@ -24,9 +25,13 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Subject" formControlName="subject">
       </mat-form-field>
-      <mat-form-field class="example-full-width">
+      <!-- <mat-form-field class="example-full-width">
         <input matInput placeholder="Author" formControlName="author">
-      </mat-form-field>
+      </mat-form-field> -->
+      <div class="example-full-width">
+          <p>Authors </p>
+          <app-tag (notify)="setAuthorsData($event)"></app-tag>
+      </div>
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Publisher" formControlName="publisher">
       </mat-form-field>
@@ -52,6 +57,14 @@
         </app-ebook-upload>
       </div>
 
+      <div class="example-full-width">
+          <p>Tags </p>
+          <app-tag (notify)="setTagsData($event)"></app-tag>
+      </div>
+
+      <div class="example-full-width">
+        <app-tag-autocomplete></app-tag-autocomplete>
+      </div>
 
       <div class="button-row">
         <button mat-raised-button color="primary" type="submit" [disabled]="!bookForm.valid">

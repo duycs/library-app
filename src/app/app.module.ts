@@ -27,6 +27,7 @@ import { SearchComponent } from './modules/search/search.component';
 import { AboutComponent } from './modules/about/about.component';
 import { MenuComponent } from './modules/menu/menu.component';
 import { NgMasonryGridModule } from 'ng-masonry-grid';
+import { TagInputModule } from 'ngx-chips';
 
 
 
@@ -58,6 +59,7 @@ const appRoutes: Routes = [
     MembersComponent,
   ],
   imports: [
+    TagInputModule,
     SharedModule,
     NgMasonryGridModule,
     MaterialModule,
