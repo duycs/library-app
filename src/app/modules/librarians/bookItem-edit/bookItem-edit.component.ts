@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiBookService } from '../../../core/services/books.service';
 import { Book } from '../../../shared/models/book';
 import { FormGroup, Validators, NgForm, FormBuilder } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { LibrarianService } from 'src/app/core/services/librarians.service';
 import { AlertService } from 'src/app/core/services/alert.service';
 

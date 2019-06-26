@@ -11,7 +11,7 @@ import { RecommendedComponent } from './modules/recommended/recommended.componen
 import { NgMasonryGridModule } from 'ng-masonry-grid';
 import { TagInputModule } from 'ngx-chips';
 import { TagComponent } from './shared/components/tag/tag.component';
-// import { TagAutoCompleteComponent } from './shared/components/chips/tag-autocomplete.component';
+import { TagAutoCompleteComponent } from './shared/components/chips/tag-autocomplete.component';
 
 
 @NgModule({
@@ -30,7 +30,7 @@ import { TagComponent } from './shared/components/tag/tag.component';
         PdfViwerComponent,
         RecommendedComponent,
         TagComponent,
-        // TagAutoCompleteComponent
+        TagAutoCompleteComponent
     ],
     exports: [
         ImageUploadComponent,
@@ -39,7 +39,7 @@ import { TagComponent } from './shared/components/tag/tag.component';
         PdfViwerComponent,
         RecommendedComponent,
         TagComponent,
-        // TagAutoCompleteComponent
+        TagAutoCompleteComponent
     ]
 })
 export class SharedModule { }

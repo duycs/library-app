@@ -1,7 +1,7 @@
 import { OnInit, Component } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { Book } from "src/app/shared/models/book";
 import { ApiSearchService } from "src/app/core/services/search.service";
 import { ApiBookService } from "src/app/core/services/books.service";

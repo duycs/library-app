@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder, NgForm } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MemberService } from 'src/app/core/services/members.service';
 import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';

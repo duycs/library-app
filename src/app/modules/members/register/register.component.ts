@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 
 import { MemberService } from '../../../core/services/members.service';
 import { AuthenticationService } from '../../../core/authentication/authentication.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({ templateUrl: 'register.component.html' })

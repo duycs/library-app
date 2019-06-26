@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../../core/authentication/authentication.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlertService } from '../../core/services/alert.service';
 
 @Component({templateUrl: 'login.component.html'})

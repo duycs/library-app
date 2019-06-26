@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../../../core/authentication/authentication.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { LibrarianService } from 'src/app/core/services/librarians.service';
 import { AlertService } from 'src/app/core/services/alert.service';
 

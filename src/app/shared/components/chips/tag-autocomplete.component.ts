@@ -1,19 +1,19 @@
-// import { Component, OnInit, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
-// import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
-// import { MatAutocomplete, MatChipInputEvent, MatAutocompleteSelectedEvent } from '@angular/material';
-// import { FormControl } from '@angular/forms';
-// import { Observable } from 'rxjs';
-// import { startWith, map } from 'rxjs/operators';
-// import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { Component, OnInit, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
+import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
+import { MatAutocomplete, MatChipInputEvent, MatAutocompleteSelectedEvent } from '@angular/material';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
 
-// @Component({
-//   selector: 'app-tag-autocomplete',
-//   templateUrl: './tag-autocomplete.component.html',
-//   styleUrls: ['./tag-autocomplete.component.scss']
-// })
-// export class TagAutoCompleteComponent {
-//   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
+@Component({
+  selector: 'app-tag-autocomplete',
+  templateUrl: './tag-autocomplete.component.html',
+  styleUrls: ['./tag-autocomplete.component.scss']
+})
+export class TagAutoCompleteComponent {
+  @Output() notify: EventEmitter<any> = new EventEmitter<any>();
   
 //   visible = true;
 //   selectable = true;
@@ -74,5 +74,5 @@
 
 //     return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
 //   }
-// }
+}
 

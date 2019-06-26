@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { MemberService } from '../services/members.service';
 import { first } from 'rxjs/operators';

@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../../core/authentication/authentication.service';
 import { MemberService } from '../../core/services/members.service';
 import { first } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AlertService } from '../../core/services/alert.service';
 

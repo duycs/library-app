@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder, NgForm, FormControl, FormArray } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { LibrarianService } from 'src/app/core/services/librarians.service';
 import { MemberService } from 'src/app/core/services/members.service';
 import { AlertService } from 'src/app/core/services/alert.service';

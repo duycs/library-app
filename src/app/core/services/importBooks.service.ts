@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError, tap, map } from 'rxjs/operators';
 import { Book } from '../../shared/models/book';
 import { ApiBookService } from './books.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlertService } from './alert.service';
 import { AppSettings } from 'src/app/configs/app-settings.config';
 

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LibrarianService } from 'src/app/core/services/librarians.service';
 import { Member } from 'src/app/shared/models/member';
 import { BlockMember } from 'src/app/shared/models/block-member';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({

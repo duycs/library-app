@@ -3,7 +3,6 @@ import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/c
 import { UploadService } from 'src/app/core/services/upload.service';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { File } from '../../models/file';
-import { EventListener } from '@angular/core/src/debug/debug_node';
 
 @Component({
   selector: 'app-ebook-upload',
