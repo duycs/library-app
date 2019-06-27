@@ -30,6 +30,9 @@ export class BookCreateComponent implements OnInit {
 
   isCanSave = true;
 
+  labelAuthor = 'Authors Selection';
+  labelTag = 'Tags Selection';
+
   onNotify(message: string): void {
     alert(message);
   }
@@ -44,7 +47,7 @@ export class BookCreateComponent implements OnInit {
     this.bookForm = this.formBuilder.group({
       'isbn': [null],
       'title': [null, Validators.required],
-      'authors': [null],
+      'authors': [],
       'coverImage': [null],
       'ebook': [null],
       'ebookType': [null],
@@ -53,8 +56,10 @@ export class BookCreateComponent implements OnInit {
       'publicationDate': [null],
       'language': [null],
       'pageNumber': [null],
-      'tags': [null]
+      'tags': []
     });
+    this.authors = [];
+    this.tags = [];
   }
 
   //get image form data from child app-preview-image

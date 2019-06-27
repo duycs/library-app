@@ -17,21 +17,38 @@ export class ApiSearchService {
 
   constructor(private http: HttpClient) { }
 
-  searchBooksByAll(key: string): Observable<Book[]> {
-    const url = `${apiUrl}/all?key=${key}`;
+  searchBooksByTitle(key: string): Observable<Book[]> {
+    const url = `${apiUrl}/books/byTitle?key=${key}`;
     return this.http.get<Book[]>(url).pipe(
       tap(_ => console.log('fetched books by key=${key}')),
-      catchError(this.handleError<Book[]>('searchBookByAll key=${key}'))
+      catchError(this.handleError<Book[]>('searchBooksByTitle key=${key}'))
     );
   }
 
-  searchBooksByTitle(key: string): Observable<Book[]> {
-    const url = `${apiUrl}/byTitle?key=${key}`;
+  searchBooksByAuthor(key: string): Observable<Book[]> {
+    const url = `${apiUrl}/books/byAuthor?key=${key}`;
     return this.http.get<Book[]>(url).pipe(
       tap(_ => console.log('fetched books by key=${key}')),
-      catchError(this.handleError<Book[]>('searchBookByTitles key=${key}'))
+      catchError(this.handleError<Book[]>('searchBooksByAuthor key=${key}'))
     );
   }
+
+  searchBooksBySubject(key: string): Observable<Book[]> {
+    const url = `${apiUrl}/books/bySubject?key=${key}`;
+    return this.http.get<Book[]>(url).pipe(
+      tap(_ => console.log('fetched books by key=${key}')),
+      catchError(this.handleError<Book[]>('searchBooksBySubject key=${key}'))
+    );
+  }
+
+  searchBooksByTagName(key: string): Observable<Book[]> {
+    const url = `${apiUrl}/books/byTagName?key=${key}`;
+    return this.http.get<Book[]>(url).pipe(
+      tap(_ => console.log('fetched books by key=${key}')),
+      catchError(this.handleError<Book[]>('searchBooksByTagName key=${key}'))
+    );
+  }
+
 
 
   private handleError<T> (operation = 'operation', result?: T) {

@@ -18,10 +18,10 @@
   <ng-masonry-grid-item *ngFor="let book of books; let i = index;" (click)="onCardClickEvent(book)"
     id="{{'masonry-item-'+i}}">
     <!-- Grid Content  -->
-    <div class="link" *ngIf="book.coverImage">
+    <div class="link" *ngIf="book.coverImage!=null && book.coverImage!=''">
       <img [src]="book.coverImage">
     </div>
-    <div class="link" *ngIf="book.coverImage==null && book.title!=null">
+    <div class="link" *ngIf="(book.coverImage==null || book.coverImage=='') && book.title!=null">
       <p class="cover-title">{{book.title}}</p>
     </div>
   </ng-masonry-grid-item>

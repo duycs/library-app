@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AnonymousComponent } from './anonymous.component';
-import { RecommendedComponent } from '../recommended/recommended.component';
+import { BooksRecommendedComponent } from '../recommended/books-recommended.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { SharedModule } from 'src/app/shared.module';
 import { NgMasonryGridModule } from 'ng-masonry-grid';
@@ -22,10 +22,10 @@ const routes: Routes = [
         redirectTo: '',
         pathMatch: 'full'
       },
-      {
-        path: 'recommended',
-        component: RecommendedComponent
-      },
+      // {
+      //   path: 'recommended',
+      //   component: RecommendedComponent
+      // },
       {
         path: 'books/:id',
         component: BookDetailComponent

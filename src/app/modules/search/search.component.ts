@@ -46,7 +46,7 @@ export class SearchComponent implements OnInit {
   }
 
   onFormSubmit(value: any) {
-    this.api.searchBooksByAll(value.key)
+    this.api.searchBooksByTitle(value.key)
       .subscribe(res => {
         this.alertService.showToastSuccess();
         this.books = res;

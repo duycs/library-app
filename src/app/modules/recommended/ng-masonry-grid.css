@@ -330,9 +330,18 @@ ng-masonry-grid-item {
 }
 
 @media (min-width: 768px) {
-  .grid[_ngcontent-ng-cli-universal-c4] ng-masonry-grid-item[_ngcontent-ng-cli-universal-c4],
+  /* .grid[_ngcontent-ng-cli-universal-c4] ng-masonry-grid-item[_ngcontent-ng-cli-universal-c4],
+  .grid[_ngcontent-ng-cli-universal-c5] ng-masonry-grid-item[_ngcontent-ng-cli-universal-c5]
+  .grid[_ngcontent-ng-cli-universal-c6] ng-masonry-grid-item[_ngcontent-ng-cli-universal-c6]
+  .grid[_ngcontent-ng-cli-universal-c7] ng-masonry-grid-item[_ngcontent-ng-cli-universal-c7]
   .grid[_ngcontent-ng-cli-universal-c8] ng-masonry-grid-item[_ngcontent-ng-cli-universal-c8] {
     width: 150px;
+  } */
+
+  .grid ng-masonry-grid-item {
+    display: block;
+    float: left;
+    width: 150px!important;
   }
 }
 

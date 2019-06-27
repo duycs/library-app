@@ -12,13 +12,13 @@ import { AlertService } from "src/app/core/services/alert.service";
 
 
 @Component({
-  selector: 'app-recommended',
-  templateUrl: './recommended.component.html',
+  selector: 'app-books-recommended',
+  templateUrl: './books-recommended.component.html',
   //styleUrls: ['./recommended.component.css']
   styleUrls: ['./ng-masonry-grid.css']
 })
 
-export class RecommendedComponent implements OnInit {
+export class BooksRecommendedComponent implements OnInit {
   currentUser: User;
   currentUserSubscription: Subscription;
   users: User[] = [];

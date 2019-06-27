@@ -37,10 +37,10 @@ export class HomeComponent implements OnInit {
     this.isShowRecommended = true;
   }
 
-  isLoadedResult(isLoadedResult: any): void {
-    console.log(isLoadedResult);
-    if (isLoadedResult)
-      this.isShowRecommended = false;
-    else this.isShowRecommended = true;
-  }
+  // isLoadedResult(isLoadedResult: any): void {
+  //   console.log(isLoadedResult);
+  //   if (isLoadedResult)
+  //     this.isShowRecommended = false;
+  //   else this.isShowRecommended = true;
+  // }
 }

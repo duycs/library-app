@@ -1,5 +1,6 @@
 <app-search (notify)="isLoadedResult($event)"></app-search>
 
 <div *ngIf="isShowRecommended">
-<app-recommended></app-recommended>
+    <app-tags-recommended></app-tags-recommended>
+    <app-books-recommended></app-books-recommended>
 </div>
