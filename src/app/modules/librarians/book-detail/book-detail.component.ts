@@ -25,9 +25,9 @@ export class BookDetailComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    console.log(this.route.snapshot.params['id']);
-    this.getBookDetail(this.route.snapshot.params['id']);
-    this.book.constructor();
+    let id = this.route.snapshot.params['id'];
+    console.log(id);
+    this.getBookDetail(id);
   }
 
   getBookDetail(id) {

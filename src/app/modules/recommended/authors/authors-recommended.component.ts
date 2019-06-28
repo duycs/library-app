@@ -7,27 +7,29 @@ import { AuthenticationService } from "src/app/core/authentication/authenticatio
 import { AlertService } from "src/app/core/services/alert.service";
 import { TagService } from "src/app/core/services/tags.service";
 import { Tag } from "src/app/shared/models/tag";
+import { AuthorService } from "src/app/core/services/authors.service";
+import { Chip } from "src/app/shared/models/chip";
 
 
 @Component({
-  selector: 'app-tags-recommended',
-  templateUrl: './tags-recommended.component.html',
-  styleUrls: ['./tags-recommended.component.css']
+  selector: 'app-authors-recommended',
+  templateUrl: './authors-recommended.component.html',
+  styleUrls: ['./authors-recommended.component.css']
   //styleUrls: ['./ng-masonry-grid.css']
 })
 
-export class TagsRecommendedComponent implements OnInit {
+export class AuthorsRecommendedComponent implements OnInit {
   currentUser: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  public tags: Tag[];
+  public items: Chip[];
   title: string = '';
   isLoadingResults = false;
 
   constructor(
     private router: Router,
-    private tagService: TagService, private formBuilder: FormBuilder,
+    private authorService: AuthorService, 
     private authenticationService: AuthenticationService,
     private alertService: AlertService) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
@@ -36,10 +38,10 @@ export class TagsRecommendedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tagService.getTags()
+    this.authorService.getAuthors()
       .subscribe(res => {
         this.alertService.showToastSuccess();
-        this.tags = res;
+        this.items = res;
         console.log(res);
       }, (err) => {
         this.alertService.showToastError();
@@ -48,9 +50,9 @@ export class TagsRecommendedComponent implements OnInit {
       });
   }
 
-  onTagClickEvent(item) {
+  onTagClickEvent(item: any) {
     console.log(item);
-    this.router.navigate(['/search/books/byTagName?key=', item.name]);
+    this.router.navigate(['/search'], { queryParams: { key: item.name } });
   }
 
 }

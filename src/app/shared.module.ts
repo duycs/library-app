@@ -7,13 +7,15 @@ import { EbookUploadComponent } from './shared/components/upload/ebook-upload.co
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { PdfViwerComponent } from './shared/components/viewer/pdf-viewer.component';
 import { FormsModule } from '@angular/forms';
-import { BooksRecommendedComponent } from './modules/recommended/books-recommended.component';
+import { BooksRecommendedComponent } from './modules/recommended/books/books-recommended.component';
 import { NgMasonryGridModule } from 'ng-masonry-grid';
 import { TagInputModule } from 'ngx-chips';
-import { TagComponent } from './shared/components/tag/tag.component';
-import { TagAutoCompleteComponent } from './shared/components/chips/tag-autocomplete.component';
+import { ChipsAutoCompleteComponent } from './shared/components/chips/chips-autocomplete.component';
 import { ChipsInputComponent } from './shared/components/chips/chips-input.component';
-import { TagsRecommendedComponent } from './modules/recommended/tags-recommended.component';
+import { TagsRecommendedComponent } from './modules/recommended/tags/tags-recommended.component';
+import { SubjectsRecommendedComponent } from './modules/recommended/subjects/subjects-recommended.component';
+import { AuthorsRecommendedComponent } from './modules/recommended/authors/authors-recommended.component';
+import { BookListComponent } from './modules/books/book-list/book-list.component';
 
 
 @NgModule({
@@ -32,8 +34,10 @@ import { TagsRecommendedComponent } from './modules/recommended/tags-recommended
         PdfViwerComponent,
         BooksRecommendedComponent,
         TagsRecommendedComponent,
-        TagComponent,
-        TagAutoCompleteComponent,
+        SubjectsRecommendedComponent,
+        AuthorsRecommendedComponent,
+        BookListComponent,
+        ChipsAutoCompleteComponent,
         ChipsInputComponent
     ],
     exports: [
@@ -43,8 +47,10 @@ import { TagsRecommendedComponent } from './modules/recommended/tags-recommended
         PdfViwerComponent,
         BooksRecommendedComponent,
         TagsRecommendedComponent,
-        TagComponent,
-        TagAutoCompleteComponent,
+        SubjectsRecommendedComponent,
+        AuthorsRecommendedComponent,
+        BookListComponent,
+        ChipsAutoCompleteComponent,
         ChipsInputComponent
     ]
 })

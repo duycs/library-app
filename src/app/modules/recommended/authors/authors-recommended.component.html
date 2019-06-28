@@ -1,0 +1,6 @@
+<div *ngIf="items">
+  <p class="title">Authors</p>
+  <mat-chip-list aria-label="Authors">
+    <mat-chip *ngFor="let item of items" (click)="onTagClickEvent(item)">{{item.name}} &nbsp; {{item.count}}</mat-chip>
+  </mat-chip-list>
+</div>

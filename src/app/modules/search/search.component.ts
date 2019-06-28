@@ -19,16 +19,20 @@ export class SearchComponent implements OnInit {
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  public books: Book[];
+  public booksByTitle: Book[];
+  public booksByAuthor: Book[];
+  public booksBySubject: Book[];
+  public booksByTag: Book[];
+
   searchForm: FormGroup;
-  key: string = '';
-  isLoadingResults = false;
-  isLoadedResult = false;
-  regularDistribution = 100 / 3;
+  value: string;
+  isSearching = false;
 
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     private serchService: SearchService,
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
@@ -38,35 +42,82 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  //init
   ngOnInit() {
     this.searchForm = this.formBuilder.group({
-      // 'key': [null, Validators.required]
       'key': ''
     });
+
+    this.route.queryParams.subscribe(params => {
+      console.log(params);
+      this.value = params['key'];
+    })
+
+    console.log(this.value);
+    if (this.value) {
+      this.searchForm.setValue({
+        key: this.value
+      });
+
+      this.searching(this.value);
+    }
   }
 
-  onFormSubmit(value: any) {
-    this.serchService.searchBooksByTitle(value.key)
+  //submit
+  onFormSubmit(form: any) {
+    let value = form.key;
+    this.searching(value);
+  }
+
+  //searching
+  private searching(value: string) {
+    this.isSearching = true;
+    this.notify.emit(this.isSearching);
+
+    this.serchService.searchBooksByTitle(value)
       .subscribe(res => {
-        this.alertService.showToastSuccess();
-        this.books = res;
+        this.booksByTitle = res;
         console.log(res);
-        this.isLoadingResults = true;
-        this.isLoadedResult = true;
-        this.notify.emit(this.isLoadedResult);
       }, (err) => {
         this.alertService.showToastError();
         console.log(err);
-        this.isLoadingResults = false;
+      });
+
+    this.serchService.searchBooksByAuthor(value)
+      .subscribe(res => {
+        this.booksByAuthor = res;
+        console.log(res);
+      }, (err) => {
+        this.alertService.showToastError();
+        console.log(err);
+      });
+
+    this.serchService.searchBooksBySubject(value)
+      .subscribe(res => {
+        this.booksBySubject = res;
+        console.log(res);
+      }, (err) => {
+        this.alertService.showToastError();
+        console.log(err);
+      });
+
+    this.serchService.searchBooksByTag(value)
+      .subscribe(res => {
+        this.booksByTag = res;
+        console.log(res);
+      }, (err) => {
+        this.alertService.showToastError();
+        console.log(err);
       });
   }
 
+  //click item in list
   onCardClickEvent(book) {
     if (this.currentUser == null) {
       //is anonymous
-      this.router.navigate(['/anonymous/books/', book.id]);
+      this.router.navigate(['/books/', book.id]);
     } else if (this.currentUser.isMember) {
-      this.router.navigate(['/anonymous/books/', book.id]);
+      this.router.navigate(['/books/', book.id]);
     } else if (this.currentUser.isLibrarian) {
       this.router.navigate(['/librarians/findBook/', book.id]);
     }

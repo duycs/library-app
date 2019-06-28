@@ -16,8 +16,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LibrariansModule } from './modules/librarians/librarians.module';
-import { AnonymousModule } from './modules/anonymous/anonymous.module';
-import { AnonymousComponent } from './modules/anonymous/anonymous.component';
 import { MembersModule } from './modules/members/members.module';
 import { LibrariansComponent } from './modules/librarians/librarians.component';
 import { SharedModule } from './shared.module';
@@ -27,6 +25,7 @@ import { AboutComponent } from './modules/about/about.component';
 import { MenuComponent } from './modules/menu/menu.component';
 import { NgMasonryGridModule } from 'ng-masonry-grid';
 import { TagInputModule } from 'ngx-chips';
+import { BookDetailComponent } from './modules/books/book-detail/book-detail.component';
 
 
 
@@ -35,10 +34,11 @@ const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'menu', component: MenuComponent },
   { path: 'search', component: SearchComponent },
+  { path: 'books/:id', component: BookDetailComponent },
   { path: 'login', component: LoginComponent },
+
   { path: 'modules/librarians', component: LibrariansComponent },
-  { path: 'modules/anonymous', component: AnonymousComponent },
-  { path: 'modules/members', component: MembersComponent }
+  { path: 'modules/members', component: MembersComponent },
 ];
 
 
@@ -48,12 +48,12 @@ const appRoutes: Routes = [
     NavMenuComponent,
     HomeComponent,
     AboutComponent,
+    BookDetailComponent,
     LoginComponent,
     SearchComponent,
     MenuComponent,
     CounterComponent,
     LibrariansComponent,
-    AnonymousComponent,
     MembersComponent,
   ],
   imports: [
@@ -68,8 +68,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     LibrariansModule,
     MembersModule,
-    AnonymousModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'}),
     RouterModule.forChild([
 
     ]),

@@ -21,7 +21,7 @@ export class BookDetailComponent implements OnInit {
   book: Book = {
     uid: 0, id: 0, isbn: 0, coverImage: '', ebook: '', ebookType: '',
     description: '', title: '', subjects: '', publisher: '', publicationDate: null,
-    language: '', pageNumber: 0,  authors: '', tags:''
+    language: '', pageNumber: 0, authors: '', tags: ''
   };
 
   isLoadingResults = true;
@@ -29,8 +29,8 @@ export class BookDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-     private bookService: BookService,
-    private memberService: MemberService, 
+    private bookService: BookService,
+    private memberService: MemberService,
     private authenticationService: AuthenticationService) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;

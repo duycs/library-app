@@ -8,11 +8,11 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
 
 @Component({
-  selector: 'app-tag-autocomplete',
-  templateUrl: './tag-autocomplete.component.html',
-  styleUrls: ['./tag-autocomplete.component.scss']
+  selector: 'app-chips-autocomplete',
+  templateUrl: './chips-autocomplete.component.html',
+  styleUrls: ['./chips-autocomplete.component.scss']
 })
-export class TagAutoCompleteComponent {
+export class ChipsAutoCompleteComponent {
   //@Output() notify: EventEmitter<any> = new EventEmitter<any>();
   
   visible = true;

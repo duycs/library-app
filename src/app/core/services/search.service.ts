@@ -20,7 +20,7 @@ export class SearchService {
   searchBooksByTitle(key: string): Observable<Book[]> {
     const url = `${apiUrl}/books/byTitle?key=${key}`;
     return this.http.get<Book[]>(url).pipe(
-      tap(_ => console.log('fetched books by key=${key}')),
+      tap(_ => console.log(`fetched books by title=${key}`)),
       catchError(this.handleError<Book[]>('searchBooksByTitle key=${key}'))
     );
   }
@@ -28,7 +28,7 @@ export class SearchService {
   searchBooksByAuthor(key: string): Observable<Book[]> {
     const url = `${apiUrl}/books/byAuthor?key=${key}`;
     return this.http.get<Book[]>(url).pipe(
-      tap(_ => console.log('fetched books by key=${key}')),
+      tap(_ => console.log(`fetched books by author=${key}`)),
       catchError(this.handleError<Book[]>('searchBooksByAuthor key=${key}'))
     );
   }
@@ -36,15 +36,15 @@ export class SearchService {
   searchBooksBySubject(key: string): Observable<Book[]> {
     const url = `${apiUrl}/books/bySubject?key=${key}`;
     return this.http.get<Book[]>(url).pipe(
-      tap(_ => console.log('fetched books by key=${key}')),
+      tap(_ => console.log(`fetched books by subject=${key}`)),
       catchError(this.handleError<Book[]>('searchBooksBySubject key=${key}'))
     );
   }
 
-  searchBooksByTagName(key: string): Observable<Book[]> {
-    const url = `${apiUrl}/books/byTagName?key=${key}`;
+  searchBooksByTag(key: string): Observable<Book[]> {
+    const url = `${apiUrl}/books/byTag?key=${key}`;
     return this.http.get<Book[]>(url).pipe(
-      tap(_ => console.log('fetched books by key=${key}')),
+      tap(_ => console.log(`fetched books by tag=${key}`)),
       catchError(this.handleError<Book[]>('searchBooksByTagName key=${key}'))
     );
   }

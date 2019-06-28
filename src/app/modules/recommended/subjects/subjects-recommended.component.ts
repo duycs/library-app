@@ -1,35 +1,35 @@
 import { OnInit, Component } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { Book } from "src/app/shared/models/book";
-import { SearchService } from "src/app/core/services/search.service";
 import { User } from "src/app/shared/models/user";
 import { Subscription } from "rxjs";
 import { AuthenticationService } from "src/app/core/authentication/authentication.service";
 import { AlertService } from "src/app/core/services/alert.service";
-import { BookService } from "src/app/core/services/books.service";
+import { TagService } from "src/app/core/services/tags.service";
+import { Tag } from "src/app/shared/models/tag";
+import { SubjectService } from "src/app/core/services/subjects.service";
+import { Chip } from "src/app/shared/models/chip";
 
 
 @Component({
-  selector: 'app-books-recommended',
-  templateUrl: './books-recommended.component.html',
-  //styleUrls: ['./recommended.component.css']
-  styleUrls: ['./ng-masonry-grid.css']
+  selector: 'app-subjects-recommended',
+  templateUrl: './subjects-recommended.component.html',
+  styleUrls: ['./subjects-recommended.component.css']
+  //styleUrls: ['./ng-masonry-grid.css']
 })
 
-export class BooksRecommendedComponent implements OnInit {
+export class SubjectsRecommendedComponent implements OnInit {
   currentUser: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  public books: Book[];
+  public items: Chip[];
   title: string = '';
   isLoadingResults = false;
 
   constructor(
-    private router: Router, 
-    private bookService: BookService,
+    private router: Router,
+    private subjectService: SubjectService, private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private alertService: AlertService) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
@@ -38,10 +38,10 @@ export class BooksRecommendedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.bookService.getBooksRecommended()
+    this.subjectService.getSubjects()
       .subscribe(res => {
         this.alertService.showToastSuccess();
-        this.books = res;
+        this.items = res;
         console.log(res);
       }, (err) => {
         this.alertService.showToastError();
@@ -50,16 +50,9 @@ export class BooksRecommendedComponent implements OnInit {
       });
   }
 
-  onCardClickEvent(book) {
-    if (this.currentUser == null) {
-      //is anonymous
-      this.router.navigate(['/anonymous/books/', book.id]);
-    } else if (this.currentUser.isMember) {
-      this.router.navigate(['/anonymous/books/', book.id]);
-    } else if (this.currentUser.isLibrarian) {
-      this.router.navigate(['/librarians/findBook/', book.id]);
-    }
-
+  onTagClickEvent(item: any) {
+    console.log(item);
+    this.router.navigate(['/search'], { queryParams: { key: item.name } });
   }
 
 }

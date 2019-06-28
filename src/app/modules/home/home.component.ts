@@ -20,10 +20,12 @@ export class HomeComponent implements OnInit {
   users: User[] = [];
 
   searchForm: FormGroup;
-  isShowRecommended = false;
+  isShowRecommended = true;
   title: string = '';
 
   constructor(
+    private router: Router,
+    private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
   ) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
@@ -32,12 +34,20 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isShowRecommended = true;
+    this.searchForm = this.formBuilder.group({
+      'key': ''
+    });
   }
 
-  // isLoadedResult(isLoadedResult: any): void {
-  //   console.log(isLoadedResult);
-  //   if (isLoadedResult)
+  onFormSubmit(form: any) {
+    let value = form.key;
+    this.router.navigate(['/search'], { queryParams: { key: value } });
+  };
+
+  //notify isSearching
+  // isSearching(isSearching: any): void {
+  //   console.log(isSearching);
+  //   if (isSearching)
   //     this.isShowRecommended = false;
   //   else this.isShowRecommended = true;
   // }

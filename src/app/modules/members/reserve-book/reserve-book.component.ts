@@ -51,7 +51,7 @@ export class ReserveBookComponent implements OnInit {
     this.api.reserveBook(form)
       .subscribe(res => {
         this.alertService.showToastSuccess();
-        this.router.navigate(['/anonymous/recommended']);
+        this.router.navigate(['/']);
       }, (err) => {
         this.alertService.showToastError();
         console.log(err);

@@ -75,7 +75,7 @@ export class CheckoutBookComponent implements OnInit {
     this.memberService.checkoutBook(form)
       .subscribe(res => {
         this.alertService.showToastSuccess();
-        this.router.navigate(['/anonymous/recommended']);
+        this.router.navigate(['/']);
       }, (err) => {
         this.alertService.showToastError();
         this.isLoadingResults = false;

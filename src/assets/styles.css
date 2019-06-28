@@ -36,3 +36,5 @@ body {
 mat-card{cursor: pointer}
 
 .title{font-size: 1.25rem; font-weight: 500; padding-top: 12px; }
+
+.count{color: grey}

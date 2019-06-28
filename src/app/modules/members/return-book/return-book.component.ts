@@ -51,7 +51,7 @@ export class ReturnBookComponent implements OnInit {
     this.api.returnBook(form)
       .subscribe(res => {
         this.alertService.showToastSuccess();
-        this.router.navigate(['/anonymous/recommended']);
+        this.router.navigate(['/']);
       }, (err) => {
         this.alertService.showToastError()
         console.log(err);

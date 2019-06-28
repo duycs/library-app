@@ -59,7 +59,7 @@ export class RenewBookComponent implements OnInit {
     this.api.renewBook(form)
       .subscribe(res => {
         this.alertService.showToastSuccess();
-        this.router.navigate(['/anonymous/recommended']);
+        this.router.navigate(['/recommended']);
       }, (err) => {
         this.alertService.showToastError();
         console.log(err);
