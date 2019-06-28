@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder, NgForm } from '@angular/forms';
-import { ApiSearchService } from 'src/app/core/services/search.service';
 import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { Book } from 'src/app/shared/models/book';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+import { SearchService } from 'src/app/core/services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -29,7 +29,7 @@ export class SearchComponent implements OnInit {
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private router: Router,
-    private api: ApiSearchService,
+    private serchService: SearchService,
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private alertService: AlertService) {
@@ -46,7 +46,7 @@ export class SearchComponent implements OnInit {
   }
 
   onFormSubmit(value: any) {
-    this.api.searchBooksByTitle(value.key)
+    this.serchService.searchBooksByTitle(value.key)
       .subscribe(res => {
         this.alertService.showToastSuccess();
         this.books = res;

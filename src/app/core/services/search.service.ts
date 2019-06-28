@@ -13,7 +13,7 @@ const apiUrl = `${AppSettings.defaultBackendUrl}/search`;
 @Injectable({
   providedIn: 'root'
 })
-export class ApiSearchService {
+export class SearchService {
 
   constructor(private http: HttpClient) { }
 

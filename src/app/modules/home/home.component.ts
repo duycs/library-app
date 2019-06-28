@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder, NgForm } from '@angular/forms';
-import { ApiSearchService } from 'src/app/core/services/search.service';
+import { SearchService } from 'src/app/core/services/search.service';
 import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';
 import { AlertService } from 'src/app/core/services/alert.service';
@@ -23,11 +23,9 @@ export class HomeComponent implements OnInit {
   isShowRecommended = false;
   title: string = '';
 
-  constructor(private router: Router,
-    private api: ApiSearchService,
-    private formBuilder: FormBuilder,
+  constructor(
     private authenticationService: AuthenticationService,
-    private alertService: AlertService) {
+  ) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
     });

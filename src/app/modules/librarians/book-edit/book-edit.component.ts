@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiBookService } from '../../../core/services/books.service';
 import { FormGroup, Validators, NgForm, FormBuilder } from '@angular/forms';
 import { AlertService } from 'src/app/core/services/alert.service';
+import { TagService } from 'src/app/core/services/tags.service';
+import { LibrarianService } from 'src/app/core/services/librarians.service';
+import { Chip } from 'src/app/shared/models/chip';
+import { Tag } from 'src/app/shared/models/tag';
+import { AuthorService } from 'src/app/core/services/authors.service';
+import { SubjectService } from 'src/app/core/services/subjects.service';
 
 @Component({
   selector: 'app-book-edit',
@@ -11,67 +16,67 @@ import { AlertService } from 'src/app/core/services/alert.service';
 })
 export class BookEditComponent implements OnInit {
   bookForm: FormGroup;
+
   id: number = null;
   isbn: string = '';
   title: string = '';
-  author: string = '';
   coverImage: string = '';
-  subject: string = '';
   ebook: string = '';
   ebookType: string = '';
   publisher: string = '';
   publicationDate: Date;
   language: string = '';
   pageNumber: string = '';
+
+  authors: string;
+  subjects: string;
+  tags: string;
+
+  authorChips: Chip[];
+  subjectChips: Chip[];
+  tagChips: Chip[];
+
   isLoadingResults = false;
+  labelAuthor = 'Authors Selection';
+  labelSubject = 'Subjects Selection';
+  labelTag = 'Tags Selection';
 
   constructor(private router: Router, private route: ActivatedRoute,
-    private api: ApiBookService,
+    private librarianService: LibrarianService,
+    private tagService: TagService,
+    private authorService: AuthorService,
+    private subjectService: SubjectService,
     private formBuilder: FormBuilder,
     private alertService: AlertService) { }
 
   ngOnInit() {
-    this.getBook(this.route.snapshot.params['id']);
+    let bookId = this.route.snapshot.params['id'];
+    this.getBook(bookId);
+    this.getTagsByBookId(bookId);
+    this.getAuthorsByBookId(bookId);
+    this.getSubjectsByBookId(bookId);
+
     this.bookForm = this.formBuilder.group({
       'id': [null],
-      'isbn': [null, Validators.required],
+      'isbn': [null],
       'title': [null, Validators.required],
-      'author': [null],
       'coverImage': [null],
-      'subject': [null],
       'ebook': [null],
       'ebookType': [null],
       'publisher': [null],
       'publicationDate': [null],
       'language': [null],
-      'pageNumber': [null]
+      'pageNumber': [null],
+      'authors': [null],
+      'tags': [null],
+      'subjects': [null]
     });
   }
 
-  getBook(id) {
-    this.api.getBook(id).subscribe(data => {
-      console.log(data);
-      this.id = data.id;
-      this.bookForm.setValue({
-        id: data.id,
-        isbn: data.isbn,
-        title: data.title,
-        author: data.author,
-        coverImage: data.coverImage,
-        subject: data.subject,
-        ebook: data.ebook,
-        ebookType: data.ebookType,
-        publisher: data.publisher,
-        publicationDate: data.publicationDate,
-        language: data.language,
-        pageNumber: data.pageNumber
-      });
-    });
-  }
-
+  //submit
   onFormSubmit(form: NgForm) {
     this.isLoadingResults = true;
-    this.api.updateBook(this.id, form)
+    this.librarianService.updateBook(form)
       .subscribe(res => {
         this.alertService.showToastSuccess();
         this.router.navigate(['/librarians/findBooks']);
@@ -82,12 +87,66 @@ export class BookEditComponent implements OnInit {
       });
   }
 
+  //click book detail
   bookDetails() {
     this.router.navigate(['/librarians/findBook', this.id]);
   }
 
-  //emit event
-  //get image form data from child app-preview-image
+  //get info
+  getBook(id) {
+    this.librarianService.findBook(id).subscribe(data => {
+      console.log(data);
+      this.id = data.id;
+      this.bookForm.setValue({
+        id: data.id,
+        isbn: data.isbn,
+        title: data.title,
+        coverImage: data.coverImage,
+        ebook: data.ebook,
+        ebookType: data.ebookType,
+        publisher: data.publisher,
+        publicationDate: data.publicationDate,
+        language: data.language,
+        pageNumber: data.pageNumber,
+
+        authors: data.authors,
+        subjects: data.subjects,
+        tags: data.tags
+      });
+    });
+  }
+
+  getTagsByBookId(id) {
+    this.tagService.getTagsByBookId(id).subscribe(data => {
+      if (data)
+        this.tagChips = data;
+      else
+        this.tagChips = [];
+      console.log(this.tagChips);
+    });
+  }
+
+  getAuthorsByBookId(id) {
+    this.authorService.getAuthorsByBookId(id).subscribe(data => {
+      if (data)
+        this.authorChips = data;
+      else
+        this.authorChips = [];
+      console.log(this.authorChips);
+    });
+  }
+
+  getSubjectsByBookId(id) {
+    this.subjectService.getSubjectsByBookId(id).subscribe(data => {
+      if (data)
+        this.subjectChips = data;
+      else
+        this.subjectChips = [];
+      console.log(this.subjectChips);
+    });
+  }
+
+  //emit change from childs
   setCoverImageData(file: any): void {
     console.log('Cover image Data: ', file);
     this.coverImage = file.url;
@@ -99,6 +158,24 @@ export class BookEditComponent implements OnInit {
     this.bookForm.get('ebook').setValue(file.url);
     console.log(file.fileExtension);
     this.bookForm.get('ebookType').setValue(file.fileExtension);
+  }
+
+  setTagsData(items: any): void {
+    let tags = items.map(item => item.name).toString();
+    this.bookForm.get('tags').setValue(tags);
+    console.log('tags data: ', tags);
+  }
+
+  setAuthorsData(items: any): void {
+    let authors = items.map(item => item.name).toString();
+    this.bookForm.get('authors').setValue(authors);
+    console.log('authors data: ', authors);
+  }
+
+  setSubjectsData(items: any): void {
+    let subjects = items.map(item => item.name).toString();
+    this.bookForm.get('subjects').setValue(subjects);
+    console.log('subjects data: ', subjects);
   }
 
 }

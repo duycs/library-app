@@ -2,52 +2,50 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
-import { Book } from '../../shared/models/book';
 import { AppSettings } from 'src/app/configs/app-settings.config';
-import { Tag } from 'src/app/shared/models/tag';
 import { Chip } from 'src/app/shared/models/chip';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = `${AppSettings.defaultBackendUrl}/tags`;
+const apiUrl = `${AppSettings.defaultBackendUrl}/Subjects`;
 
 @Injectable({
   providedIn: 'root'
 })
-export class TagService {
+export class SubjectService {
 
   constructor(private http: HttpClient) { }
 
-  getTags(): Observable<Chip[]> {
+  getSubjects(): Observable<Chip[]> {
     const url = `${apiUrl}`;
     return this.http.get<Chip[]>(url).pipe(
-      tap(_ => console.log('fetched tags')),
-      catchError(this.handleError<Chip[]>('getTags'))
+      tap(_ => console.log('fetched Subjects')),
+      catchError(this.handleError<Chip[]>('getSubjects'))
     );
   }
 
-  getTagById(id: number): Observable<Chip> {
+  getSubjectById(id: number): Observable<Chip> {
     const url = `${apiUrl}/${id}`;
     return this.http.get<Chip>(url).pipe(
-      tap(_ => console.log('fetched tag')),
-      catchError(this.handleError<Chip>('getTagById'))
+      tap(_ => console.log('fetched subject')),
+      catchError(this.handleError<Chip>('getSubjectById'))
     );
   }
 
-  getTagByName(name: string): Observable<Chip> {
+  getSubjectByName(name: string): Observable<Chip> {
     const url = `${apiUrl}/${name}`;
     return this.http.get<Chip>(url).pipe(
-      tap(_ => console.log('fetched tag')),
-      catchError(this.handleError<Chip>('getTagByName'))
+      tap(_ => console.log('fetched subject')),
+      catchError(this.handleError<Chip>('getSubjectByName'))
     );
   }
 
-  getTagsByBookId(bookId: number): Observable<Chip[]> {
+  getSubjectsByBookId(bookId: number): Observable<Chip[]> {
     const url = `${apiUrl}/byBookId/${bookId}`;
     return this.http.get<Chip[]>(url).pipe(
-      tap(_ => console.log('fetched tags')),
-      catchError(this.handleError<Chip[]>('getTagsByBookId'))
+      tap(_ => console.log('fetched Subjects')),
+      catchError(this.handleError<Chip[]>('getSubjectsByBookId'))
     );
   }
 

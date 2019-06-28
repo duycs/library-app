@@ -8,7 +8,7 @@
     </a>
   </div>
   <mat-card class="example-card">
-    <form [formGroup]="bookForm" (ngSubmit)="onFormSubmit(bookForm.value)">
+    <form [formGroup]="bookForm" (ngSubmit)="onFormSubmit(bookForm.value)" (keydown.enter)="$event.preventDefault()">
       <mat-form-field class="example-full-width">
         <input matInput placeholder="isbn" formControlName="isbn">
         <!-- <mat-error>
@@ -21,12 +21,22 @@
           <span *ngIf="!bookForm.get('title').valid && bookForm.get('title').touched">Please enter book Title</span>
         </mat-error>
       </mat-form-field>
-      <mat-form-field class="example-full-width">
+
+      <!-- <mat-form-field class="example-full-width">
         <input matInput placeholder="Subject" formControlName="subject">
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
+      </mat-form-field> -->
+
+      <!-- <mat-form-field class="example-full-width">
         <input matInput placeholder="Author" formControlName="author">
-      </mat-form-field>
+      </mat-form-field> -->
+      <div class="example-full-width">
+        <app-chips-input [label]="labelAuthor" [items]="authorChips" (notify)="setAuthorsData($event)"></app-chips-input>
+      </div>
+
+      <div class="example-full-width">
+        <app-chips-input [label]="labelSubject" [items]="subjectChips" (notify)="setSubjectsData($event)"></app-chips-input>
+      </div>
+
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Publisher" formControlName="publisher">
       </mat-form-field>
@@ -57,6 +67,11 @@
         <app-ebook-upload (notify)="setEbookData($event)">
         </app-ebook-upload>
       </div>
+
+      <div class="example-full-width">
+        <app-chips-input [label]="labelTag" [items]="tagChips"  (notify)="setTagsData($event)"></app-chips-input>
+      </div>
+
 
       <div class="button-row">
         <button mat-raised-button color="primary" type="submit" [disabled]="!bookForm.valid">

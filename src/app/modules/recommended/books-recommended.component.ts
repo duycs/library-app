@@ -3,12 +3,12 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Book } from "src/app/shared/models/book";
-import { ApiSearchService } from "src/app/core/services/search.service";
-import { ApiBookService } from "src/app/core/services/books.service";
+import { SearchService } from "src/app/core/services/search.service";
 import { User } from "src/app/shared/models/user";
 import { Subscription } from "rxjs";
 import { AuthenticationService } from "src/app/core/authentication/authentication.service";
 import { AlertService } from "src/app/core/services/alert.service";
+import { BookService } from "src/app/core/services/books.service";
 
 
 @Component({
@@ -28,8 +28,8 @@ export class BooksRecommendedComponent implements OnInit {
   isLoadingResults = false;
 
   constructor(
-    private router: Router, private apiBook: ApiBookService,
-    private apiSearch: ApiSearchService, private formBuilder: FormBuilder,
+    private router: Router, 
+    private bookService: BookService,
     private authenticationService: AuthenticationService,
     private alertService: AlertService) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
@@ -38,7 +38,7 @@ export class BooksRecommendedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.apiBook.getBooksRecommended()
+    this.bookService.getBooksRecommended()
       .subscribe(res => {
         this.alertService.showToastSuccess();
         this.books = res;

@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { LibrarianService } from 'src/app/core/services/librarians.service';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { UploadService } from 'src/app/core/services/upload.service';
+import { Chip } from 'src/app/shared/models/chip';
 
 @Component({
   selector: 'app-book-create',
@@ -14,28 +15,33 @@ import { UploadService } from 'src/app/core/services/upload.service';
 
 export class BookCreateComponent implements OnInit {
   bookForm: FormGroup;
+
+  //model
   isbn: string = '';
   title: string = '';
-  authors: any;
   coverImage: string = '';
   ebook: string = '';
   ebookType: string = '';
-  subject: string = '';
   publisher: string = '';
   publicationDate: Date;
   language: string = '';
   pageNumber: string = '';
-  tags: any;
-  isLoadingResults = false;
+  //statistic
+  authors: string;
+  subjects: string;
+  tags: string;
 
-  isCanSave = true;
-
+  //chips form child
   labelAuthor = 'Authors Selection';
+  labelSubject = 'Subjects Selection';
   labelTag = 'Tags Selection';
+  authorChips: Chip[];
+  subjectChips: Chip[];
+  tagChips: Chip[];
 
-  onNotify(message: string): void {
-    alert(message);
-  }
+  //condition
+  isLoadingResults = false;
+  isCanSave = true;
 
   constructor(private router: Router,
     private librarianService: LibrarianService,
@@ -43,51 +49,31 @@ export class BookCreateComponent implements OnInit {
     private formBuilder: FormBuilder,
     private alertService: AlertService) { }
 
+  //init
   ngOnInit() {
     this.bookForm = this.formBuilder.group({
       'isbn': [null],
       'title': [null, Validators.required],
-      'authors': [],
       'coverImage': [null],
       'ebook': [null],
       'ebookType': [null],
-      'subject': [null],
       'publisher': [null],
       'publicationDate': [null],
       'language': [null],
       'pageNumber': [null],
-      'tags': []
+
+      'authors': [null],
+      'subjects': [null],
+      'tags': [null]
     });
-    this.authors = [];
-    this.tags = [];
+
+    //default empty chips
+    this.authorChips = [];
+    this.subjectChips = [];
+    this.tagChips = [];
   }
 
-  //get image form data from child app-preview-image
-  setCoverImageData(file: any): void {
-    console.log('Cover image Data: ', file);
-    this.coverImage = file.url;
-    this.bookForm.get('coverImage').setValue(this.coverImage);
-  }
-
-  setEbookData(file: any): void {
-    console.log('ebook Data: ', file);
-    this.bookForm.get('ebook').setValue(file.url);
-    console.log(file.fileExtension);
-    this.bookForm.get('ebookType').setValue(file.fileExtension);
-  }
-
-  setTagsData(tags: any): void {
-    console.log('tags Data: ', tags);
-    this.tags = tags;
-    this.bookForm.get('tags').setValue(this.tags);
-  }
-
-  setAuthorsData(authors: any): void {
-    console.log('authors Data: ', authors);
-    this.authors = authors;
-    this.bookForm.get('authors').setValue(this.authors);
-  }
-
+  //submit
   onFormSubmit(form: NgForm) {
     this.isLoadingResults = true;
 
@@ -115,5 +101,38 @@ export class BookCreateComponent implements OnInit {
         this.isLoadingResults = false;
       });
   }
+
+  //emit change from childs
+  setCoverImageData(file: any): void {
+    console.log('Cover image Data: ', file);
+    this.coverImage = file.url;
+    this.bookForm.get('coverImage').setValue(this.coverImage);
+  }
+
+  setEbookData(file: any): void {
+    console.log('ebook data: ', file);
+    this.bookForm.get('ebook').setValue(file.url);
+    console.log(file.fileExtension);
+    this.bookForm.get('ebookType').setValue(file.fileExtension);
+  }
+
+  setTagsData(items: any): void {
+    let tags = items.map(item => item.name).toString();
+    this.bookForm.get('tags').setValue(tags);
+    console.log('tags data: ', tags);
+  }
+
+  setAuthorsData(items: any): void {
+    let authors = items.map(item => item.name).toString();
+    this.bookForm.get('authors').setValue(authors);
+    console.log('authors data: ', authors);
+  }
+
+  setSubjectsData(items: any): void {
+    let subjects = items.map(item => item.name).toString();
+    this.bookForm.get('subjects').setValue(subjects);
+    console.log('subjects data: ', subjects);
+  }
+
 
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiBookService } from '../../../core/services/books.service';
 import { Book } from '../../../shared/models/book';
 import { FormGroup, Validators, NgForm, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -30,8 +29,10 @@ export class BookItemEditComponent implements OnInit {
 
   isLoadingResults = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private api: LibrarianService, 
-    private formBuilder: FormBuilder, private alertService: AlertService) { }
+  constructor(private router: Router, private route: ActivatedRoute, 
+    private librarianService: LibrarianService, 
+    private formBuilder: FormBuilder, 
+    private alertService: AlertService) { }
 
   ngOnInit() {
     this.getBookItem(this.route.snapshot.params['id']);
@@ -52,7 +53,7 @@ export class BookItemEditComponent implements OnInit {
   }
 
   getBookItem(id) {
-    this.api.findBookItem(id).subscribe(data => {
+    this.librarianService.findBookItem(id).subscribe(data => {
       console.log(data);
       this.id = data.id;
       this.bookItemForm.setValue({
@@ -74,7 +75,7 @@ export class BookItemEditComponent implements OnInit {
 
   onFormSubmit(form: NgForm) {
     this.isLoadingResults = true;
-    this.api.updateBookItem(form)
+    this.librarianService.updateBookItem(form)
       .subscribe(res => {
         this.alertService.showToastSuccess();
         this.router.navigate(['/librarians/findBookItems']);

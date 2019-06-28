@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { ApiBookService } from '../../../core/services/books.service';
 import { Book } from '../../../shared/models/book';
 import { LibrarianService } from 'src/app/core/services/librarians.service';
 
@@ -14,13 +13,15 @@ export class BookDetailComponent implements OnInit {
 
   book: Book = {
     uid: 0, id: 0, isbn: 0, coverImage: '', ebook: '',
-    ebookType: '', description: '', title: '', subject: '', author: '',
-    publisher: '', publicationDate: new Date(), language: '', pageNumber: 0
+    ebookType: '', description: '', title: '', subjects: '',
+    publisher: '', publicationDate: new Date(), language: '', pageNumber: 0,
+    authors: '', tags: ''
   };
   isLoadingResults = true;
-  pdfSrc : string ;
+  pdfSrc: string;
 
-  constructor(private route: ActivatedRoute, private api: ApiBookService, private librarianService: LibrarianService,
+  constructor(private route: ActivatedRoute, 
+    private librarianService: LibrarianService,
     private router: Router) { }
 
   ngOnInit() {
@@ -30,7 +31,7 @@ export class BookDetailComponent implements OnInit {
   }
 
   getBookDetail(id) {
-    this.api.getBook(id)
+    this.librarianService.findBook(id)
       .subscribe(data => {
         this.book = data;
         console.log(this.book);
@@ -41,7 +42,7 @@ export class BookDetailComponent implements OnInit {
 
   deleteBook(id) {
     this.isLoadingResults = true;
-    this.api.deleteBook(id)
+    this.librarianService.removeBook(id)
       .subscribe(res => {
         this.isLoadingResults = false;
         this.router.navigate(['/librarians/findBooks']);

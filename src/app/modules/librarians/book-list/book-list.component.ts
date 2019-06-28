@@ -8,7 +8,7 @@ import { LibrarianService } from 'src/app/core/services/librarians.service';
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-    displayedColumns: string[] = ['ISBN', 'Title', 'Subject', 'Publisher', 'Language',  'PageNumber'];
+    displayedColumns: string[] = ['Title', 'Authors', 'Subject', 'EbookType', 'Publisher', 'Language',  'PageNumber'];
     data: Book[] = [];
     isLoadingResults = true;
   

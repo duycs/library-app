@@ -6,8 +6,8 @@ import { MemberService } from 'src/app/core/services/members.service';
 import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
-import { ApiBookService } from 'src/app/core/services/books.service';
 import { AlertService } from 'src/app/core/services/alert.service';
+import { BookService } from 'src/app/core/services/books.service';
 
 @Component({
   selector: 'app-checkout-book',
@@ -38,11 +38,11 @@ export class CheckoutBookComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private api: MemberService,
+    private memberService: MemberService,
+    private bookService : BookService,
     private formBuilder: FormBuilder,
     private alertService: AlertService,
-    private authenticationService: AuthenticationService,
-    private bookService: ApiBookService) {
+    private authenticationService: AuthenticationService) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
     });
@@ -72,7 +72,7 @@ export class CheckoutBookComponent implements OnInit {
   onFormSubmit(form: NgForm) {
     this.isLoadingResults = true;
     console.log(form);
-    this.api.checkoutBook(form)
+    this.memberService.checkoutBook(form)
       .subscribe(res => {
         this.alertService.showToastSuccess();
         this.router.navigate(['/anonymous/recommended']);

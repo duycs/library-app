@@ -7,10 +7,12 @@ export class Book {
     ebookType: string;
     description: string;
     title: string;
-    subject: string;
-    author:string;
     publisher: string;
     publicationDate: Date;
     language: string;
     pageNumber: number;
+
+    authors: string;
+    subjects: string;
+    tags: string;
 }

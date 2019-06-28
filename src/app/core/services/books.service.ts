@@ -15,7 +15,7 @@ const apiUrl = `${AppSettings.defaultBackendUrl}/books`;
 @Injectable({
   providedIn: 'root'
 })
-export class ApiBookService {
+export class BookService {
 
   constructor(private http: HttpClient) { }
 

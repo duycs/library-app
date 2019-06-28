@@ -1,4 +1,3 @@
-import { ApiBookService } from '../../../core/services/books.service';
 import { Book } from '../../../shared/models/book';
 import { MemberService } from 'src/app/core/services/members.service';
 import { OnInit, Component } from '@angular/core';
@@ -6,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+import { BookService } from 'src/app/core/services/books.service';
 
 @Component({
   selector: 'app-book-detail',
@@ -20,15 +20,17 @@ export class BookDetailComponent implements OnInit {
 
   book: Book = {
     uid: 0, id: 0, isbn: 0, coverImage: '', ebook: '', ebookType: '',
-    description: '', title: '', subject: '', author: '', publisher: '', publicationDate: null,
-    language: '', pageNumber: 0
+    description: '', title: '', subjects: '', publisher: '', publicationDate: null,
+    language: '', pageNumber: 0,  authors: '', tags:''
   };
 
   isLoadingResults = true;
   actionNameForBook: string = '';
 
-  constructor(private route: ActivatedRoute, private api: ApiBookService,
-    private memberService: MemberService, private router: Router,
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+     private bookService: BookService,
+    private memberService: MemberService, 
     private authenticationService: AuthenticationService) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
@@ -56,7 +58,7 @@ export class BookDetailComponent implements OnInit {
   }
 
   getBookDetail(id) {
-    this.api.getBook(id)
+    this.bookService.getBook(id)
       .subscribe(data => {
         this.book = data;
         console.log(this.book);

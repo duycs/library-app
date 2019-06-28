@@ -3,10 +3,10 @@ import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Book } from '../../shared/models/book';
-import { ApiBookService } from './books.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlertService } from './alert.service';
 import { AppSettings } from 'src/app/configs/app-settings.config';
+import { BookService } from './books.service';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,7 +20,9 @@ const apiExportFromPoststudyUrl = `${AppSettings.defaultBackendUrl}/exportBook`;
 })
 export class ApiImportBookService {
     data: Book[] = [];
-    constructor(private http: HttpClient, private apiBookService: ApiBookService, private alertService: AlertService) { }
+    constructor(private http: HttpClient,
+         private bookService: BookService,
+         private alertService: AlertService) { }
 
     getExportFromPoststudyBooks(): Observable<Book[]> {
         return this.http.get<Book[]>(apiExportFromPoststudyUrl)
@@ -38,7 +40,7 @@ export class ApiImportBookService {
             this.data.forEach(element => {
                 element.isbn = element.uid;
                 console.log(element);
-                this.apiBookService.addBook(element) .subscribe(res => {
+                this.bookService.addBook(element) .subscribe(res => {
                     this.alertService.showToastSuccess();
                   }, (err) => {
                     this.alertService.showToastError();

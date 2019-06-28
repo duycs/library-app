@@ -2,52 +2,50 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
-import { Book } from '../../shared/models/book';
 import { AppSettings } from 'src/app/configs/app-settings.config';
-import { Tag } from 'src/app/shared/models/tag';
 import { Chip } from 'src/app/shared/models/chip';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = `${AppSettings.defaultBackendUrl}/tags`;
+const apiUrl = `${AppSettings.defaultBackendUrl}/authors`;
 
 @Injectable({
   providedIn: 'root'
 })
-export class TagService {
+export class AuthorService {
 
   constructor(private http: HttpClient) { }
 
-  getTags(): Observable<Chip[]> {
+  getAuthors(): Observable<Chip[]> {
     const url = `${apiUrl}`;
     return this.http.get<Chip[]>(url).pipe(
-      tap(_ => console.log('fetched tags')),
-      catchError(this.handleError<Chip[]>('getTags'))
+      tap(_ => console.log('fetched authors')),
+      catchError(this.handleError<Chip[]>('getauthors'))
     );
   }
 
-  getTagById(id: number): Observable<Chip> {
+  getAuthorById(id: number): Observable<Chip> {
     const url = `${apiUrl}/${id}`;
     return this.http.get<Chip>(url).pipe(
-      tap(_ => console.log('fetched tag')),
-      catchError(this.handleError<Chip>('getTagById'))
+      tap(_ => console.log('fetched author')),
+      catchError(this.handleError<Chip>('getauthorById'))
     );
   }
 
-  getTagByName(name: string): Observable<Chip> {
+  getAuthorByName(name: string): Observable<Chip> {
     const url = `${apiUrl}/${name}`;
     return this.http.get<Chip>(url).pipe(
-      tap(_ => console.log('fetched tag')),
-      catchError(this.handleError<Chip>('getTagByName'))
+      tap(_ => console.log('fetched author')),
+      catchError(this.handleError<Chip>('getauthorByName'))
     );
   }
 
-  getTagsByBookId(bookId: number): Observable<Chip[]> {
+  getAuthorsByBookId(bookId: number): Observable<Chip[]> {
     const url = `${apiUrl}/byBookId/${bookId}`;
     return this.http.get<Chip[]>(url).pipe(
-      tap(_ => console.log('fetched tags')),
-      catchError(this.handleError<Chip[]>('getTagsByBookId'))
+      tap(_ => console.log('fetched authors')),
+      catchError(this.handleError<Chip[]>('getauthorsByBookId'))
     );
   }
 
