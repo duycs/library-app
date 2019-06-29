@@ -1,44 +1,28 @@
 <div>
-  <!-- <div class="example-loading-shade" *ngIf="isLoadingResults">
-  <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-</div> -->
-  <form [formGroup]="searchForm" (ngSubmit)="onFormSubmit(searchForm.value)">
-    <mat-form-field class="example-form-field">
-      <button mat-button *ngIf="value" matPrefix mat-icon-button type="submit" [disabled]="!searchForm.valid">
-        <mat-icon>search</mat-icon>
-      </button>
-      <input matInput type="text" placeholder="Search by title, author, subject" [(ngModel)]="value" formControlName="key"
-        [errorStateMatcher]="matcher">
-      <mat-error>
-        <span *ngIf="!searchForm.get('key').valid && searchForm.get('key').touched">Please enter key word</span>
-      </mat-error>
-      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-  </form>
+
+  <app-input-search [value]="searchValue" (notify)="emitSearchValueChange($event)"></app-input-search>
   
   <!-- result tabs -->
   <div *ngIf="isSearching">
       <mat-tab-group>
           <mat-tab *ngIf="booksByTitle?.length>0" label="Titles">
             <ng-template matTabContent>
-              <app-book-list [books]='booksByTitle'></app-book-list>
+              <app-card-book-list [books]='booksByTitle'></app-card-book-list>
             </ng-template>
           </mat-tab>
           <mat-tab *ngIf="booksByAuthor?.length>0" label="Authors">
             <ng-template matTabContent>
-                <app-book-list [books]='booksByAuthor'></app-book-list>
+                <app-card-book-list [books]='booksByAuthor'></app-card-book-list>
             </ng-template>
           </mat-tab>
           <mat-tab *ngIf="booksBySubject?.length>0" label="Subjects">
             <ng-template matTabContent>
-                <app-book-list [books]='booksBySubject'></app-book-list>
+                <app-card-book-list [books]='booksBySubject'></app-card-book-list>
             </ng-template>
           </mat-tab>
           <mat-tab *ngIf="booksByTag?.length>0" label="Tags">
               <ng-template matTabContent>
-                  <app-book-list [books]='booksByTag'></app-book-list>
+                  <app-card-book-list [books]='booksByTag'></app-card-book-list>
               </ng-template>
             </mat-tab>
         </mat-tab-group>

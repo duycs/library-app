@@ -16,6 +16,7 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 const apiUrl = `${AppSettings.defaultBackendUrl}/librarians`;
+const sizeDefault = 10;
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,8 @@ export class LibrarianService {
 
   // book management services
   
-  findBooks (): Observable<Book[]> {
-    const url = `${apiUrl}/findBooks`;
+  findBooks (page:number=1, size=sizeDefault): Observable<Book[]> {
+    const url = `${apiUrl}/findBooks?page=${page}&size=${size}`;
     return this.http.get<Book[]>(url)
       .pipe(
         tap(books => console.log('Fetch Books')),
@@ -77,8 +78,8 @@ export class LibrarianService {
   }
 
   //book item management services
-  findBookItems (): Observable<BookItem[]> {
-    const url = `${apiUrl}/findBookItems`;
+  findBookItems (page:number=1, size:number=sizeDefault): Observable<BookItem[]> {
+    const url = `${apiUrl}/findBookItems?page=${page}&size=${size}`;
     return this.http.get<BookItem[]>(url)
       .pipe(
         tap(books => console.log('Fetch Book items')),
@@ -119,8 +120,8 @@ export class LibrarianService {
   }
 
   // member management services
-  findMembers (): Observable<Member[]> {
-    const url = `${apiUrl}/findMembers`;
+  findMembers (page:number=1, size:number=sizeDefault): Observable<Member[]> {
+    const url = `${apiUrl}/findMembers?page=${page}&size=${size}`;
     return this.http.get<Member[]>(url)
       .pipe(
         tap(books => console.log('Fetch Members')),

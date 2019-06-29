@@ -9,6 +9,7 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 const apiUrl = `${AppSettings.defaultBackendUrl}/Subjects`;
+const sizeDefault = 10;
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class SubjectService {
 
   constructor(private http: HttpClient) { }
 
-  getSubjects(): Observable<Chip[]> {
-    const url = `${apiUrl}`;
+  getSubjects(page: number = 1, size: number = sizeDefault): Observable<Chip[]> {
+    const url = `${apiUrl}?page=${page}&size=${size}`;
     return this.http.get<Chip[]>(url).pipe(
       tap(_ => console.log('fetched Subjects')),
       catchError(this.handleError<Chip[]>('getSubjects'))
@@ -41,8 +42,8 @@ export class SubjectService {
     );
   }
 
-  getSubjectsByBookId(bookId: number): Observable<Chip[]> {
-    const url = `${apiUrl}/byBookId/${bookId}`;
+  getSubjectsByBookId(bookId: number, page: number = 1, size: number = sizeDefault): Observable<Chip[]> {
+    const url = `${apiUrl}/byBookId/${bookId}?page=${page}&size=${size}`;
     return this.http.get<Chip[]>(url).pipe(
       tap(_ => console.log('fetched Subjects')),
       catchError(this.handleError<Chip[]>('getSubjectsByBookId'))

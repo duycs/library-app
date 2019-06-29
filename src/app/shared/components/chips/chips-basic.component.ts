@@ -1,4 +1,4 @@
-import { OnInit, Component } from "@angular/core";
+import { OnInit, Component, Input, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { User } from "src/app/shared/models/user";
@@ -7,29 +7,28 @@ import { AuthenticationService } from "src/app/core/authentication/authenticatio
 import { AlertService } from "src/app/core/services/alert.service";
 import { TagService } from "src/app/core/services/tags.service";
 import { Tag } from "src/app/shared/models/tag";
-import { AuthorService } from "src/app/core/services/authors.service";
 import { Chip } from "src/app/shared/models/chip";
 
 
 @Component({
-  selector: 'app-authors-recommended',
-  templateUrl: './authors-recommended.component.html',
-  styleUrls: ['./authors-recommended.component.css']
-  //styleUrls: ['./ng-masonry-grid.css']
+  selector: 'app-chips-basic',
+  templateUrl: './chips-basic.component.html',
+  styleUrls: ['./chips-basic.component.css']
 })
 
-export class AuthorsRecommendedComponent implements OnInit {
+export class ChipsBasicComponent implements OnInit {
   currentUser: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  public items: Chip[];
-  title: string = '';
-  isLoadingResults = false;
+  @Input() type: string = '';
+  @Input() label: string ='';
+  @Input() items: Chip[];
+  @Output() notify: EventEmitter<any> = new EventEmitter<any>();
+  @Output() notifyMore: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private router: Router,
-    private authorService: AuthorService, 
     private authenticationService: AuthenticationService,
     private alertService: AlertService) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
@@ -38,21 +37,17 @@ export class AuthorsRecommendedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authorService.getAuthors()
-      .subscribe(res => {
-        this.alertService.showToastSuccess();
-        this.items = res;
-        console.log(res);
-      }, (err) => {
-        this.alertService.showToastError();
-        console.log(err);
-        this.isLoadingResults = false;
-      });
+    
   }
 
-  onTagClickEvent(item: any) {
+  //emit event
+  onItemClickEvent(item: any) {
     console.log(item);
-    this.router.navigate(['/search'], { queryParams: { key: item.name } });
+    this.notify.emit(item);
   }
+
+  // onMoreClickEvent(){
+  //   this.notifyMore.emit(this.type);
+  // }
 
 }

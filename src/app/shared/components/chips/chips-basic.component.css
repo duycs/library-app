@@ -1,0 +1,37 @@
+/* Structure */
+.example-container {
+  position: relative;
+  padding: 5px;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.input-search{
+  width:92%;
+  height: 50px;
+}
+
+.example-full-width:nth-last-child() {
+  margin-bottom: 10px;
+}
+mat-form-field {display: inline!important}
+/* .button-row {
+  margin: 10px 0;
+} */
+
+.mat-flat-button {
+  margin: 5px;
+}
+
+mat-card{margin-bottom: 12px;}
+
+.grid-item { width: 200px; }
+.grid-item--width2 { width: 400px; }

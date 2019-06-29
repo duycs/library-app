@@ -1,0 +1,31 @@
+<div *ngIf="books">
+  <p class="label">Books</p>
+  <div *ngFor="let book of books">
+    <mat-card class="example-card">
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <div class="cover-book" *ngIf="book.coverImage" (click)="onCoverBookClickEvent(book)">
+              <img mat-card-image [src]="book.coverImage">
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="container">
+              <div class="row">
+                <h2 class="title no-padding">{{book.title}}</h2>
+              </div>
+              <div class="row">
+                <p class="text-primary">{{book.authors}}</p>
+              </div>
+              <div class="row right">
+                <div class="col-lg-4 col-sm-12">Year: {{book.publishDate}}</div>
+                <div class="col-lg-4 col-sm-12">File: {{book.ebookType}}</div>
+                <div class="col-lg-4 col-sm-12">Language: {{book.language}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

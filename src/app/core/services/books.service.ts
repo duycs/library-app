@@ -7,10 +7,11 @@ import { BookItem } from 'src/app/shared/models/book-item';
 import { AppSettings } from 'src/app/configs/app-settings.config';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 const apiUrl = `${AppSettings.defaultBackendUrl}/books`;
+const sizeDefault = 10;
 
 @Injectable({
   providedIn: 'root'
@@ -19,17 +20,9 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-  getBooks (): Observable<Book[]> {
-    return this.http.get<Book[]>(apiUrl)
-      .pipe(
-        tap(books => console.log('Fetch Books')),
-        catchError(this.handleError('getBooks', []))
-      );
-  }
-
-  getBooksRecommended (): Observable<Book[]> {
-    const url = `${apiUrl}/recommended`;
-    return this.http.get<Book[]>(apiUrl)
+  getBooks(page: number = 1, size: number = sizeDefault): Observable<Book[]> {
+    const url = `${apiUrl}?page=${page}&size=${size}`;
+    return this.http.get<Book[]>(url)
       .pipe(
         tap(books => console.log('Fetch Books')),
         catchError(this.handleError('getBooks', []))
@@ -44,14 +37,14 @@ export class BookService {
     );
   }
 
-  addBook (book): Observable<Book> {
+  addBook(book): Observable<Book> {
     return this.http.post<Book>(apiUrl, book, httpOptions).pipe(
       tap((book: Book) => console.log('added book w/ id=${book.id}')),
       catchError(this.handleError<Book>('addBook'))
     );
   }
 
-  updateBook (id, book): Observable<any> {
+  updateBook(id, book): Observable<any> {
     const url = `${apiUrl}/${id}`;
     return this.http.put(url, book, httpOptions).pipe(
       tap(_ => console.log('updated book id=${id}')),
@@ -76,7 +69,7 @@ export class BookService {
     );
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure

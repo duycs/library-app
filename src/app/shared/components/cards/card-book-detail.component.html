@@ -1,0 +1,78 @@
+<div class="">
+  <div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-button color="primary" [routerLink]="['/']">
+      BACK TO LIST
+    </a>
+  </div>
+  <mat-card class="example-card">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+          <div *ngIf="book.coverImage" class="cover-book">
+            <img mat-card-image [src]="book.coverImage">
+          </div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-xs-12 col-sm-12">
+          <div class="container">
+            <div class="row">
+              <h2>{{book.title}}</h2>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <h5>{{book.author}}</h5>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">Year: {{book.publishDate}}</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">Language: {{book.language}}</div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-xs-3  col-sm-3">Pages: {{book.pageNumber}}</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3  col-sm-3">ISBN: {{book.isbn}}</div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">Publisher: {{book.publisher}}</div>
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">File: {{book.ebookType}}</div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 col-sm-6">Paper: ready</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+            </div>
+            <div class="row">
+              <p>{{book.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-card-actions>
+      <app-pdf-viewer></app-pdf-viewer>
+      <a mat-button *ngIf="book.ebook" color="primary" target="_blank" href="{{book.ebook}}">
+        DOWNLOAD BOOK ({{book.ebookType}})
+      </a>
+      <a mat-button color="primary" (click)="actionMethodForBook()">
+        {{actionNameForBook}}
+      </a>
+    </mat-card-actions>
+
+  </mat-card>
+</div>

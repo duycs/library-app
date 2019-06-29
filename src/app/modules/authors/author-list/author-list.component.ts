@@ -7,29 +7,30 @@ import { AuthenticationService } from "src/app/core/authentication/authenticatio
 import { AlertService } from "src/app/core/services/alert.service";
 import { TagService } from "src/app/core/services/tags.service";
 import { Tag } from "src/app/shared/models/tag";
-import { SubjectService } from "src/app/core/services/subjects.service";
+import { AuthorService } from "src/app/core/services/authors.service";
 import { Chip } from "src/app/shared/models/chip";
 
 
 @Component({
-  selector: 'app-subjects-recommended',
-  templateUrl: './subjects-recommended.component.html',
-  styleUrls: ['./subjects-recommended.component.css']
-  //styleUrls: ['./ng-masonry-grid.css']
+  selector: 'app-author-list',
+  templateUrl: './author-list.component.html',
+  styleUrls: ['./author-list.component.css']
 })
 
-export class SubjectsRecommendedComponent implements OnInit {
+export class AuthorListComponent implements OnInit {
   currentUser: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  public items: Chip[];
-  title: string = '';
-  isLoadingResults = false;
+  public labelAuthors: string = 'Authors';
+  public authorItems : any[];
+
+  page:number = 1;
+  size:number = 100;
 
   constructor(
     private router: Router,
-    private subjectService: SubjectService, private formBuilder: FormBuilder,
+    private authorService: AuthorService, 
     private authenticationService: AuthenticationService,
     private alertService: AlertService) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
@@ -38,19 +39,21 @@ export class SubjectsRecommendedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subjectService.getSubjects()
+   this.getAuthors();
+  }
+
+  getAuthors(): void {
+    this.authorService.getAuthors(this.page, this.size)
       .subscribe(res => {
-        this.alertService.showToastSuccess();
-        this.items = res;
+        this.authorItems = res;
         console.log(res);
       }, (err) => {
         this.alertService.showToastError();
         console.log(err);
-        this.isLoadingResults = false;
       });
   }
 
-  onTagClickEvent(item: any) {
+  setClickAuthorItem(item: any) {
     console.log(item);
     this.router.navigate(['/search'], { queryParams: { key: item.name } });
   }

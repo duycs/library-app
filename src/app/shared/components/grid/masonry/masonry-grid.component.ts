@@ -1,4 +1,4 @@
-import { OnInit, Component } from "@angular/core";
+import { OnInit, Component, Input, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -13,19 +13,21 @@ import { NavigateExtension } from "src/app/core/extensions/navigate";
 
 
 @Component({
-  selector: 'app-books-recommended',
-  templateUrl: './books-recommended.component.html',
+  selector: 'app-masonry-grid',
+  templateUrl: './masonry-grid.component.html',
   //styleUrls: ['./recommended.component.css']
   styleUrls: ['./ng-masonry-grid.css']
 })
 
-export class BooksRecommendedComponent implements OnInit {
+export class MasonryGridComponent implements OnInit {
   currentUser: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  public books: Book[];
-  title: string = '';
+  @Input() label: string = '';
+  @Input() items: any[];
+  @Output() notify: EventEmitter<any> = new EventEmitter<any>();
+
   isLoadingResults = false;
 
   constructor(
@@ -40,29 +42,11 @@ export class BooksRecommendedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.bookService.getBooksRecommended()
-      .subscribe(res => {
-        this.alertService.showToastSuccess();
-        this.books = res;
-        console.log(res);
-      }, (err) => {
-        this.alertService.showToastError();
-        console.log(err);
-        this.isLoadingResults = false;
-      });
+  
   }
 
-  onCardClickEvent(book: any) {
-    if (this.currentUser == null) {
-      //is anonymous
-      this.navigateExtension.redirectTo(`/books/${book.id}`);
-    } else if (this.currentUser.isMember) {
-      this.navigateExtension.redirectTo(`/books/${book.id}`);
-    } else if (this.currentUser.isLibrarian) {
-      this.navigateExtension.redirectTo(`/librarians/findBook/${book.id}`);
-    }
+  onCardClickEvent(item: any) {
+    console.log(item);
+    this.notify.emit(item);
   }
-
-
-
 }

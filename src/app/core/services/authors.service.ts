@@ -9,6 +9,7 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 const apiUrl = `${AppSettings.defaultBackendUrl}/authors`;
+const sizeDefault = 10;
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class AuthorService {
 
   constructor(private http: HttpClient) { }
 
-  getAuthors(): Observable<Chip[]> {
-    const url = `${apiUrl}`;
+  getAuthors(page: number = 1, size: number = sizeDefault): Observable<Chip[]> {
+    const url = `${apiUrl}?page=${page}&size=${size}`;
     return this.http.get<Chip[]>(url).pipe(
       tap(_ => console.log('fetched authors')),
       catchError(this.handleError<Chip[]>('getauthors'))
@@ -41,8 +42,8 @@ export class AuthorService {
     );
   }
 
-  getAuthorsByBookId(bookId: number): Observable<Chip[]> {
-    const url = `${apiUrl}/byBookId/${bookId}`;
+  getAuthorsByBookId(bookId: number, page: number = 1, size: number = sizeDefault): Observable<Chip[]> {
+    const url = `${apiUrl}/byBookId/${bookId}?page=${page}&size=${size}`;
     return this.http.get<Chip[]>(url).pipe(
       tap(_ => console.log('fetched authors')),
       catchError(this.handleError<Chip[]>('getauthorsByBookId'))

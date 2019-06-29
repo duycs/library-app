@@ -24,11 +24,12 @@ export class SearchComponent implements OnInit {
   public booksBySubject: Book[];
   public booksByTag: Book[];
 
-  searchForm: FormGroup;
-  value: string;
+  //searchForm: FormGroup;
+  searchValue: string;
+  searchType: string;
   isSearching = false;
 
-  @Output() notify: EventEmitter<any> = new EventEmitter<any>();
+  //@Output() notify: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private router: Router,
@@ -44,63 +45,61 @@ export class SearchComponent implements OnInit {
 
   //init
   ngOnInit() {
-    this.searchForm = this.formBuilder.group({
-      'key': ''
-    });
-
     this.route.queryParams.subscribe(params => {
       console.log(params);
-      this.value = params['key'];
+      this.searchValue = params['key'];
     })
 
-    console.log(this.value);
-    if (this.value) {
-      this.searchForm.setValue({
-        key: this.value
-      });
-
-      this.searching(this.value);
+    console.log(this.searchValue);
+    if(this.searchValue){
+      this.searching(this.searchValue);
     }
   }
 
-  //submit
-  onFormSubmit(form: any) {
-    let value = form.key;
+  //emit from input child
+  emitSearchValueChange(value: string = null): void {
+    console.log(value);
     this.searching(value);
   }
 
+
   //searching
-  private searching(value: string) {
+  private searching(value: string, type: string = null) {
     this.isSearching = true;
-    this.notify.emit(this.isSearching);
 
-    this.serchService.searchBooksByTitle(value)
-      .subscribe(res => {
-        this.booksByTitle = res;
-        console.log(res);
-      }, (err) => {
-        this.alertService.showToastError();
-        console.log(err);
-      });
+    if (!value) return;
 
-    this.serchService.searchBooksByAuthor(value)
-      .subscribe(res => {
-        this.booksByAuthor = res;
-        console.log(res);
-      }, (err) => {
-        this.alertService.showToastError();
-        console.log(err);
-      });
+    if (!type || type == 'title')
+      this.serchService.searchBooksByTitle(value)
+        .subscribe(res => {
+          this.booksByTitle = res;
+          console.log(res);
+        }, (err) => {
+          this.alertService.showToastError();
+          console.log(err);
+        });
 
-    this.serchService.searchBooksBySubject(value)
-      .subscribe(res => {
-        this.booksBySubject = res;
-        console.log(res);
-      }, (err) => {
-        this.alertService.showToastError();
-        console.log(err);
-      });
+    if (!type || type == 'author')
+      this.serchService.searchBooksByAuthor(value)
+        .subscribe(res => {
+          this.booksByAuthor = res;
+          console.log(res);
+        }, (err) => {
+          this.alertService.showToastError();
+          console.log(err);
+        });
 
+    if (!type || type == 'subject')
+      this.serchService.searchBooksBySubject(value)
+        .subscribe(res => {
+          this.booksBySubject = res;
+          console.log(res);
+        }, (err) => {
+          this.alertService.showToastError();
+          console.log(err);
+        });
+
+    //alway search by tags
     this.serchService.searchBooksByTag(value)
       .subscribe(res => {
         this.booksByTag = res;

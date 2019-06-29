@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './core/nav-menu/nav-menu.component';
 import { HomeComponent } from './modules/home/home.component';
 import { LoginComponent } from './modules/login/login.component';
-import { CounterComponent } from './shared/components/counter/counter.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -25,7 +24,14 @@ import { AboutComponent } from './modules/about/about.component';
 import { MenuComponent } from './modules/menu/menu.component';
 import { NgMasonryGridModule } from 'ng-masonry-grid';
 import { TagInputModule } from 'ngx-chips';
-import { BookDetailComponent } from './modules/books/book-detail/book-detail.component';
+import { BooksModule } from './modules/books/books.module';
+import { BooksComponent } from './modules/books/books.component';
+import { AuthorsModule } from './modules/authors/authors.module';
+import { SubjectsModule } from './modules/subjects/subjects.module';
+import { TagsModule } from './modules/tags/tags.module';
+import { AuthorsComponent } from './modules/authors/authors.component';
+import { SubjectsComponent } from './modules/subjects/subjects.component';
+import { TagsComponent } from './modules/tags/tags.component';
 
 
 
@@ -34,11 +40,14 @@ const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'menu', component: MenuComponent },
   { path: 'search', component: SearchComponent },
-  { path: 'books/:id', component: BookDetailComponent },
   { path: 'login', component: LoginComponent },
 
+  { path: 'modules/books', component: BooksComponent },
   { path: 'modules/librarians', component: LibrariansComponent },
   { path: 'modules/members', component: MembersComponent },
+  { path: 'modules/authors', component: AuthorsComponent },
+  { path: 'modules/subjects', component: SubjectsComponent },
+  { path: 'modules/tags', component: TagsComponent },
 ];
 
 
@@ -48,13 +57,15 @@ const appRoutes: Routes = [
     NavMenuComponent,
     HomeComponent,
     AboutComponent,
-    BookDetailComponent,
     LoginComponent,
     SearchComponent,
     MenuComponent,
-    CounterComponent,
+    BooksComponent,
     LibrariansComponent,
     MembersComponent,
+    AuthorsComponent,
+    SubjectsComponent,
+    TagsComponent,
   ],
   imports: [
     TagInputModule,
@@ -66,14 +77,19 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'}),
+    RouterModule.forChild([]),
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+
+    //app modules
+    BooksModule,
     LibrariansModule,
     MembersModule,
-    RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'}),
-    RouterModule.forChild([
-
-    ]),
-    BrowserAnimationsModule,
-    NoopAnimationsModule
+    AuthorsModule,
+    SubjectsModule,
+    TagsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

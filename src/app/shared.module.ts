@@ -6,52 +6,58 @@ import { ImageUploadComponent } from './shared/components/upload/image-upload.co
 import { EbookUploadComponent } from './shared/components/upload/ebook-upload.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { PdfViwerComponent } from './shared/components/viewer/pdf-viewer.component';
-import { FormsModule } from '@angular/forms';
-import { BooksRecommendedComponent } from './modules/recommended/books/books-recommended.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgMasonryGridModule } from 'ng-masonry-grid';
 import { TagInputModule } from 'ngx-chips';
 import { ChipsAutoCompleteComponent } from './shared/components/chips/chips-autocomplete.component';
 import { ChipsInputComponent } from './shared/components/chips/chips-input.component';
-import { TagsRecommendedComponent } from './modules/recommended/tags/tags-recommended.component';
-import { SubjectsRecommendedComponent } from './modules/recommended/subjects/subjects-recommended.component';
-import { AuthorsRecommendedComponent } from './modules/recommended/authors/authors-recommended.component';
-import { BookListComponent } from './modules/books/book-list/book-list.component';
+import { MasonryGridComponent } from './shared/components/grid/masonry/masonry-grid.component';
+import { ChipsBasicComponent } from './shared/components/chips/chips-basic.component';
+import { CardBookListComponent } from './shared/components/list/card-book-list.component';
+import { CardBookDetailComponent } from './shared/components/cards/card-book-detail.component';
+import { RouterModule } from '@angular/router';
+import { InputSearchComponent } from './shared/components/input/input-search.component';
 
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         MaterialModule,
         PdfViewerModule,
         NgMasonryGridModule,
-        TagInputModule
+        TagInputModule,
+        RouterModule,
+    RouterModule.forChild([
+
+    ]),
     ],
     declarations: [
         ImageUploadComponent,
         PreviewImageComponent,
         EbookUploadComponent,
         PdfViwerComponent,
-        BooksRecommendedComponent,
-        TagsRecommendedComponent,
-        SubjectsRecommendedComponent,
-        AuthorsRecommendedComponent,
-        BookListComponent,
+        InputSearchComponent,
         ChipsAutoCompleteComponent,
-        ChipsInputComponent
+        ChipsInputComponent,
+        ChipsBasicComponent,
+        MasonryGridComponent,
+        CardBookListComponent,
+        CardBookDetailComponent
     ],
     exports: [
         ImageUploadComponent,
         PreviewImageComponent,
         EbookUploadComponent,
         PdfViwerComponent,
-        BooksRecommendedComponent,
-        TagsRecommendedComponent,
-        SubjectsRecommendedComponent,
-        AuthorsRecommendedComponent,
-        BookListComponent,
+        InputSearchComponent,
         ChipsAutoCompleteComponent,
-        ChipsInputComponent
+        ChipsInputComponent,
+        ChipsBasicComponent,
+        MasonryGridComponent,
+        CardBookListComponent,
+        CardBookDetailComponent
     ]
 })
 export class SharedModule { }

@@ -6,6 +6,8 @@ import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { BookService } from 'src/app/core/services/books.service';
+import { AlertService } from 'src/app/core/services/alert.service';
+import { NavigateExtension } from 'src/app/core/extensions/navigate';
 
 @Component({
   selector: 'app-book-detail',
@@ -18,64 +20,62 @@ export class BookDetailComponent implements OnInit {
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  book: Book = {
-    uid: 0, id: 0, isbn: 0, coverImage: '', ebook: '', ebookType: '',
-    description: '', title: '', subjects: '', publisher: '', publicationDate: null,
-    language: '', pageNumber: 0, authors: '', tags: ''
-  };
+  //value for childs
+  //for book detail
+  public bookId: number;
 
-  isLoadingResults = true;
-  actionNameForBook: string = '';
+  //for masonry books
+  public labelBooks:string='You may be interested in';
+  public bookItems: any[];
+  public pageBooks: number = 1;
+  public sizeBooks: number = 19;
 
-  constructor(private route: ActivatedRoute,
-    private router: Router,
-    private bookService: BookService,
-    private memberService: MemberService,
-    private authenticationService: AuthenticationService) {
+  constructor(
+    private route: ActivatedRoute,
+    private authenticationService: AuthenticationService,
+    private alertService: AlertService,
+    private navigateExtension: NavigateExtension,
+    private bookService: BookService) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
     });
   }
 
   ngOnInit() {
-    if (this.currentUser) {
-      if (this.currentUser.isMember) {
-        console.log("LENDING BOOK");
-        this.actionNameForBook = "LENDING BOOK";
-      } else if (this.currentUser.isLibrarian) {
-        console.log("EDIT BOOK");
-        this.actionNameForBook = "EDIT BOOK";
-      } else {
-        console.log("LOGIN TO LENDING BOOK");
-        this.actionNameForBook = "LOGIN TO LENDING BOOK";
-      }
-    } else {
-      console.log("LOGIN TO LENDING BOOK");
-      this.actionNameForBook = "LOGIN TO LENDING BOOK";
-    }
-    console.log(this.route.snapshot.params['id']);
-    this.getBookDetail(this.route.snapshot.params['id']);
+    //bookId for book detail child
+    let bookId = this.route.snapshot.params['id'];
+    this.bookId = bookId;
+
+    //get and set for masonry books child
+    this.getBooks();
   }
 
-  getBookDetail(id) {
-    this.bookService.getBook(id)
-      .subscribe(data => {
-        this.book = data;
-        console.log(this.book);
-        this.isLoadingResults = false;
+  //show grid masonry books for anonymous and members
+  getBooks(): void {
+    this.bookService.getBooks(this.pageBooks, this.sizeBooks)
+      .subscribe(res => {
+        this.alertService.showToastSuccess();
+        this.bookItems = res;
+        console.log(res);
+      }, (err) => {
+        this.alertService.showToastError();
+        console.log(err);
       });
   }
 
-  actionMethodForBook() {
-    if (this.currentUser) {
-      if (this.currentUser.isMember) {
-        this.router.navigate(['/members/checkout'], { queryParams: { bookId: this.book.id } });
-      } else if (this.currentUser.isLibrarian) {
-        this.router.navigate(['/librarian/editBook'], { queryParams: { bookId: this.book.id } });
-      }
-    } else {
-      this.router.navigate(['/login']);
+   // emit event from child
+   setClickBookItem(item: any): void {
+    let bookId = item.id;
+
+    if (this.currentUser == null) {
+      //is anonymous
+      this.navigateExtension.redirectTo(`/books/${bookId}`);
+    } else if (this.currentUser.isMember) {
+      this.navigateExtension.redirectTo(`/books/${bookId}`);
+    } else if (this.currentUser.isLibrarian) {
+      this.navigateExtension.redirectTo(`/librarians/findBook/${bookId}`);
     }
   }
+
 
 }

@@ -11,6 +11,7 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 const apiUrl = `${AppSettings.defaultBackendUrl}/tags`;
+const sizeDefault = 10;
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,8 @@ export class TagService {
 
   constructor(private http: HttpClient) { }
 
-  getTags(): Observable<Chip[]> {
-    const url = `${apiUrl}`;
+  getTags(page: number = 1, size: number = sizeDefault): Observable<Chip[]> {
+    const url = `${apiUrl}?page=${page}&size=${size}`;
     return this.http.get<Chip[]>(url).pipe(
       tap(_ => console.log('fetched tags')),
       catchError(this.handleError<Chip[]>('getTags'))
@@ -43,8 +44,8 @@ export class TagService {
     );
   }
 
-  getTagsByBookId(bookId: number): Observable<Chip[]> {
-    const url = `${apiUrl}/byBookId/${bookId}`;
+  getTagsByBookId(bookId: number, page: number = 1, size: number = sizeDefault): Observable<Chip[]> {
+    const url = `${apiUrl}/byBookId/${bookId}?page=${page}&size=${size}`;
     return this.http.get<Chip[]>(url).pipe(
       tap(_ => console.log('fetched tags')),
       catchError(this.handleError<Chip[]>('getTagsByBookId'))

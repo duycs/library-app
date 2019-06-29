@@ -6,9 +6,10 @@ import { Book } from '../../shared/models/book';
 import { AppSettings } from 'src/app/configs/app-settings.config';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 const apiUrl = `${AppSettings.defaultBackendUrl}/search`;
+const sizeDefault = 12;
 
 @Injectable({
   providedIn: 'root'
@@ -17,32 +18,32 @@ export class SearchService {
 
   constructor(private http: HttpClient) { }
 
-  searchBooksByTitle(key: string): Observable<Book[]> {
-    const url = `${apiUrl}/books/byTitle?key=${key}`;
+  searchBooksByTitle(key: string, page: number = 1, size: number = sizeDefault): Observable<Book[]> {
+    const url = `${apiUrl}/books/byTitle?key=${key}&page=${page}&size=${size}`;
     return this.http.get<Book[]>(url).pipe(
       tap(_ => console.log(`fetched books by title=${key}`)),
       catchError(this.handleError<Book[]>('searchBooksByTitle key=${key}'))
     );
   }
 
-  searchBooksByAuthor(key: string): Observable<Book[]> {
-    const url = `${apiUrl}/books/byAuthor?key=${key}`;
+  searchBooksByAuthor(key: string, page: number = 1, size: number = sizeDefault): Observable<Book[]> {
+    const url = `${apiUrl}/books/byAuthor?key=${key}&page=${page}&size=${size}`;
     return this.http.get<Book[]>(url).pipe(
       tap(_ => console.log(`fetched books by author=${key}`)),
       catchError(this.handleError<Book[]>('searchBooksByAuthor key=${key}'))
     );
   }
 
-  searchBooksBySubject(key: string): Observable<Book[]> {
-    const url = `${apiUrl}/books/bySubject?key=${key}`;
+  searchBooksBySubject(key: string, page: number = 1, size: number = sizeDefault): Observable<Book[]> {
+    const url = `${apiUrl}/books/bySubject?key=${key}&page=${page}&size=${size}`;
     return this.http.get<Book[]>(url).pipe(
       tap(_ => console.log(`fetched books by subject=${key}`)),
       catchError(this.handleError<Book[]>('searchBooksBySubject key=${key}'))
     );
   }
 
-  searchBooksByTag(key: string): Observable<Book[]> {
-    const url = `${apiUrl}/books/byTag?key=${key}`;
+  searchBooksByTag(key: string, page: number = 1, size: number = sizeDefault): Observable<Book[]> {
+    const url = `${apiUrl}/books/byTag?key=${key}&page=${page}&size=${size}`;
     return this.http.get<Book[]>(url).pipe(
       tap(_ => console.log(`fetched books by tag=${key}`)),
       catchError(this.handleError<Book[]>('searchBooksByTagName key=${key}'))
@@ -51,7 +52,7 @@ export class SearchService {
 
 
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure

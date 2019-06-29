@@ -1,24 +1,30 @@
 <!-- <app-search (notify)="isSearching($event)"></app-search> -->
 
-<form [formGroup]="searchForm" (ngSubmit)="onFormSubmit(searchForm.value)">
-        <mat-form-field class="example-form-field">
-          <button mat-button *ngIf="value" matPrefix mat-icon-button type="submit" [disabled]="!searchForm.valid">
-            <mat-icon>search</mat-icon>
-          </button>
-          <input matInput type="text" placeholder="Search by title, author, subject" [(ngModel)]="value" formControlName="key"
-            [errorStateMatcher]="matcher">
-          <mat-error>
-            <span *ngIf="!searchForm.get('key').valid && searchForm.get('key').touched">Please enter key word</span>
-          </mat-error>
-          <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-      </form>
-
+<app-input-search [value]="searchValue" (notify)="emitSearchValueChange($event)"></app-input-search>
+  
 <div *ngIf="isShowRecommended">
-    <app-tags-recommended></app-tags-recommended>
-    <app-authors-recommended></app-authors-recommended>
-    <app-subjects-recommended></app-subjects-recommended>
-    <app-books-recommended></app-books-recommended>
+  <app-chips-basic [label]="labelAuthors" [items]="authorItems" (notify)="setClickAuthorItem($event)">
+  </app-chips-basic>
+  <a *ngIf="authorItems" mat-button color="primary" [routerLink]="['/authors']">
+    ...Click more
+  </a>
+
+  <app-chips-basic [label]="labelSubjects" [items]="subjectItems" (notify)="setClickSubjectItem($event)">
+  </app-chips-basic>
+  <a *ngIf="subjectItems" mat-button color="primary" [routerLink]="['/subjects']">
+    ...Click more
+  </a>
+
+  <app-chips-basic [label]="labelTags" [items]="tagItems" (notify)="setClickTagItem($event)">
+  </app-chips-basic>
+  <a *ngIf="tagItems" mat-button color="primary" [routerLink]="['/tags']">
+    ...Click more
+  </a>
+
+  <app-masonry-grid [label]="labelBooks" [items]="bookItems" (notify)="setClickBookItem($event)">
+  </app-masonry-grid>
+  <a *ngIf="bookItems" mat-button color="primary" [routerLink]="['/books']">
+    ...Click more
+  </a>
+
 </div>

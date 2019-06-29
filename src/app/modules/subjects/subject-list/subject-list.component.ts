@@ -7,27 +7,30 @@ import { AuthenticationService } from "src/app/core/authentication/authenticatio
 import { AlertService } from "src/app/core/services/alert.service";
 import { TagService } from "src/app/core/services/tags.service";
 import { Tag } from "src/app/shared/models/tag";
+import { SubjectService } from "src/app/core/services/subjects.service";
 import { Chip } from "src/app/shared/models/chip";
 
 
 @Component({
-  selector: 'app-tags-recommended',
-  templateUrl: './tags-recommended.component.html',
-  styleUrls: ['./tags-recommended.component.css']
+  selector: 'app-subject-list',
+  templateUrl: './subject-list.component.html',
+  styleUrls: ['./subject-list.component.css']
 })
 
-export class TagsRecommendedComponent implements OnInit {
+export class SubjectListComponent implements OnInit {
   currentUser: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  public items: Chip[];
-  title: string = '';
-  isLoadingResults = false;
+  public labelSubject: string = 'Subjects';
+  public subjectItems: any[];
+
+  page:number = 1;
+  size:number = 100;
 
   constructor(
     private router: Router,
-    private tagService: TagService, private formBuilder: FormBuilder,
+    private subjectService: SubjectService, private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private alertService: AlertService) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
@@ -36,19 +39,22 @@ export class TagsRecommendedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tagService.getTags()
+    this.getSubjects();
+  }
+
+  getSubjects(): void {
+    this.subjectService.getSubjects(this.page, this.size)
       .subscribe(res => {
-        this.alertService.showToastSuccess();
-        this.items = res;
+        this.subjectItems = res;
         console.log(res);
       }, (err) => {
         this.alertService.showToastError();
         console.log(err);
-        this.isLoadingResults = false;
       });
   }
 
-  onTagClickEvent(item: any) {
+
+  setClickSubjectItem(item: any) {
     console.log(item);
     this.router.navigate(['/search'], { queryParams: { key: item.name } });
   }

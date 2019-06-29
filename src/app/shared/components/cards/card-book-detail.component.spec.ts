@@ -1,19 +1,19 @@
-import { BookDetailComponent } from './book-detail.component';
+import { CardBookDetailComponent } from './card-book-detail.component';
 import { TestBed, ComponentFixture, async } from '@angular/core/testing';
 
 describe('BookDetailComponent', () => {
-  let component: BookDetailComponent;
-  let fixture: ComponentFixture<BookDetailComponent>;
+  let component: CardBookDetailComponent;
+  let fixture: ComponentFixture<CardBookDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BookDetailComponent ]
+      declarations: [ CardBookDetailComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BookDetailComponent);
+    fixture = TestBed.createComponent(CardBookDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
