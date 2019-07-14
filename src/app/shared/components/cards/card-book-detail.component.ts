@@ -6,6 +6,8 @@ import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { BookService } from 'src/app/core/services/books.service';
+import { ReactService } from 'src/app/core/services/reacts.service';
+import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({
   selector: 'app-card-book-detail',
@@ -18,21 +20,24 @@ export class CardBookDetailComponent implements OnInit {
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  @Input() bookId:number;
+  @Input() bookId: number;
 
   book: Book = {
     uid: 0, id: 0, isbn: 0, coverImage: '', ebook: '', ebookType: '',
     description: '', title: '', subjects: '', publisher: '', publicationDate: null,
-    language: '', pageNumber: 0, authors: '', tags: ''
+    language: '', pageNumber: 0, authors: '', tags: '', reactCount: 0
   };
 
   isLoadingResults = true;
+  isLoadingLove = false;
   actionNameForBook: string = '';
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private bookService: BookService,
     private memberService: MemberService,
+    private reactService: ReactService,
+    private alertService: AlertService,
     private authenticationService: AuthenticationService) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
@@ -77,6 +82,28 @@ export class CardBookDetailComponent implements OnInit {
     } else {
       this.router.navigate(['/login']);
     }
+  }
+
+  reactBook() {
+    this.isLoadingLove = true;
+
+    let react = {
+      bookId: this.bookId,
+      accountId: this.currentUser.accountId,
+      reactType: "love"
+    };
+
+    this.reactService.addOrRemoveReactToBook(react).subscribe(data => {
+      let result = data;
+      this.isLoadingLove = false;
+      if (result == 1) {
+        this.book.reactCount = this.book.reactCount + 1;
+        this.alertService.showToastMessage("You unlove this book");
+      } else if (result == 0) {
+        this.book.reactCount = this.book.reactCount - 1;
+        this.alertService.showToastMessage("You love this book");
+      }
+    });
   }
 
 }

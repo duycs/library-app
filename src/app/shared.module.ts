@@ -17,6 +17,8 @@ import { CardBookListComponent } from './shared/components/list/card-book-list.c
 import { CardBookDetailComponent } from './shared/components/cards/card-book-detail.component';
 import { RouterModule } from '@angular/router';
 import { InputSearchComponent } from './shared/components/input/input-search.component';
+import { CommentListComponent } from './shared/components/comment/comment-list.component';
+import { InputCommentComponent } from './shared/components/input/input-comment.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { InputSearchComponent } from './shared/components/input/input-search.com
         ChipsBasicComponent,
         MasonryGridComponent,
         CardBookListComponent,
-        CardBookDetailComponent
+        CardBookDetailComponent,
+        InputCommentComponent,
+        CommentListComponent,
     ],
     exports: [
         ImageUploadComponent,
@@ -57,7 +61,9 @@ import { InputSearchComponent } from './shared/components/input/input-search.com
         ChipsBasicComponent,
         MasonryGridComponent,
         CardBookListComponent,
-        CardBookDetailComponent
+        CardBookDetailComponent,
+        InputCommentComponent,
+        CommentListComponent,
     ]
 })
 export class SharedModule { }

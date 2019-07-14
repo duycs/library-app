@@ -1,14 +1,10 @@
 import { OnInit, Component } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { User } from "src/app/shared/models/user";
 import { Subscription } from "rxjs";
 import { AuthenticationService } from "src/app/core/authentication/authentication.service";
 import { AlertService } from "src/app/core/services/alert.service";
-import { TagService } from "src/app/core/services/tags.service";
-import { Tag } from "src/app/shared/models/tag";
 import { AuthorService } from "src/app/core/services/authors.service";
-import { Chip } from "src/app/shared/models/chip";
 
 
 @Component({
