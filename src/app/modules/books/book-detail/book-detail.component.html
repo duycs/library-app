@@ -12,7 +12,7 @@
   this
   article.
 </div>
-<app-input-comment [currentUser]="currentUser" [bookId]="bookId" (notify)="addedComment($event)" *ngIf="currentUser.isMember"></app-input-comment>
+<app-input-comment [currentUser]="currentUser" [bookId]="bookId" (notify)="addedComment($event)" *ngIf="currentUser && currentUser.isMember"></app-input-comment>
 
 <div *ngIf="isShowRecommend">
   <app-masonry-grid [label]="labelBooks" [items]="bookItems" (notify)="setClickBookItem($event)">

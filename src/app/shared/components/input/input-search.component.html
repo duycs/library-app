@@ -3,7 +3,7 @@
         <button mat-button *ngIf="value" matPrefix mat-icon-button type="submit" [disabled]="!searchForm.valid">
             <mat-icon>search</mat-icon>
         </button>
-        <input matInput type="text" placeholder="Search by title, author, subject" [(ngModel)]="value"
+        <input matInput type="text" placeholder="Search by title, author, subject, tag related" [(ngModel)]="value"
             formControlName="key" [errorStateMatcher]="matcher">
         <mat-error>
             <span *ngIf="!searchForm.get('key').valid && searchForm.get('key').touched">Please enter key word</span>
