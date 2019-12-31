@@ -30,6 +30,13 @@
   max-height: 100%;
 }
 
-.mat-card-image{
-  margin-top: 0px!important;
+.mat-card-image {
+  margin-top: 0px !important;
+}
+
+.cover-book-title {
+  background-color: #DADDE1;
+  padding: 20px;
+  text-align: center;
+  vertical-align: middle;
 }

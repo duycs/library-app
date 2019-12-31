@@ -1,6 +1,20 @@
+
 <app-card-book-detail [bookId]="bookId"></app-card-book-detail>
 
-<div *ngIf="currentUser==null || !currentUser.isLibrarian">
+<!-- comment list -->
+<div>
+  <app-comment-list [comments]="comments"></app-comment-list>
+</div>
+
+<!-- input comment -->
+<div *ngIf="!currentUser">
+  <a [routerLink]="['/login']">Sign in</a> or <a [routerLink]="['/members/register']">sign up</a> to add comments on
+  this
+  article.
+</div>
+<app-input-comment [currentUser]="currentUser" [bookId]="bookId" (notify)="addedComment($event)" *ngIf="currentUser && currentUser.isMember"></app-input-comment>
+
+<div *ngIf="isShowRecommend">
   <app-masonry-grid [label]="labelBooks" [items]="bookItems" (notify)="setClickBookItem($event)">
   </app-masonry-grid>
   <a *ngIf="bookItems" mat-button color="primary" [routerLink]="['/books']">

@@ -1,0 +1,19 @@
+<div>
+  <p class="label">Comments</p>
+  <div *ngFor="let comment of comments">
+    <div class="container comment">
+      <div class="row">
+        <div class="col-2">
+          <div class="user-name">
+            <p class="name">{{comment.creatorName}}</p>
+          </div>
+        </div>
+        <div class="">
+          <div class="content">
+            <p>{{comment.content}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

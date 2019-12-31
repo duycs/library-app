@@ -15,7 +15,7 @@ export class BookDetailComponent implements OnInit {
     uid: 0, id: 0, isbn: 0, coverImage: '', ebook: '',
     ebookType: '', description: '', title: '', subjects: '',
     publisher: '', publicationDate: new Date(), language: '', pageNumber: 0,
-    authors: '', tags: ''
+    authors: '', tags: '', reactCount: 0
   };
   isLoadingResults = true;
   pdfSrc: string;

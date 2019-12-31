@@ -1,0 +1,5 @@
+.comment {padding:5px 0; width: 100%}
+.comment .user-name{padding: 5px 0;}
+.comment .user-name p{font-weight: 500; margin: 0}
+.comment .content{background-color: #DADDE1; border-radius: 20px; padding: 5px 10px}
+.comment .content p{margin:0}

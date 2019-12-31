@@ -1,0 +1,28 @@
+<div class="container comment">
+    <div class="row">
+        <div class="col-2 no-padding">
+            <div class="user">
+                <p>{{currentUser.userName}}</p>
+            </div>
+        </div>
+        <div class="col-10 no-padding">
+            <form class="no-padding" [formGroup]="commentForm" (ngSubmit)="onFormSubmit(commentForm.value)">
+                <mat-form-field class="example-form-field">
+                    <button mat-button *ngIf="value" matPrefix mat-icon-button type="submit"
+                        [disabled]="!commentForm.valid">
+                        <mat-icon>send</mat-icon>
+                    </button>
+                    <input matInput type="text" placeholder="comment this book..." [(ngModel)]="value"
+                        formControlName="key" [errorStateMatcher]="matcher">
+                    <mat-error>
+                        <span *ngIf="!commentForm.get('key').valid && commentForm.get('key').touched">Please enter
+                            content</span>
+                    </mat-error>
+                    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </form>
+        </div>
+    </div>
+</div>

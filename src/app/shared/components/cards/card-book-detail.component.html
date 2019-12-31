@@ -1,6 +1,9 @@
 <div class="">
-  <div class="example-loading-shade" *ngIf="isLoadingResults">
+  <!-- <div class="example-loading-shade" *ngIf="isLoadingResults">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div> -->
+  <div class="example-loading-shade" *ngIf="isLoadingLove">
+    <img src="../../../../assets/images/icons8-heart-96.png" alt="image">
   </div>
   <div class="button-row">
     <a mat-button color="primary" [routerLink]="['/']">
@@ -13,6 +16,9 @@
         <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
           <div *ngIf="book.coverImage" class="cover-book">
             <img mat-card-image [src]="book.coverImage">
+          </div>
+          <div *ngIf="!book.coverImage" class="cover-book-title">
+            <h2>{{book.title}}</h2>
           </div>
         </div>
         <div class="col-lg-9 col-md-9 col-xs-12 col-sm-12">
@@ -71,6 +77,9 @@
       </a>
       <a mat-button color="primary" (click)="actionMethodForBook()">
         {{actionNameForBook}}
+      </a>
+      <a mat-button *ngIf="currentUser" color="primary" (click)="reactBook()">
+        LOVE ({{book.reactCount}})
       </a>
     </mat-card-actions>
 

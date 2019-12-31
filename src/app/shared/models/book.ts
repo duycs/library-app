@@ -15,4 +15,5 @@ export class Book {
     authors: string;
     subjects: string;
     tags: string;
+    reactCount: number;
 }
