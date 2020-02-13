@@ -1,32 +1,26 @@
-# BookLibrary_NetAngular
+# Home Library Client 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
+### If you known about the Technology, that is which I use:
+- Design a Library Management System
+- Backend: Domain driven design and CQRS methodology, RPC and REST API style , .Net core 2.2, MySql database, CI/CD and cloud hosting.
+- Frontend is this site: Angular 7, CircleCI deploy to AWS S3 serve file hosting.
 
-## Development server
+### These are todo list which I will develop in the future:
+- I develop functions base on ideas like as Goodreads social and ZLibrary share ebooks online
+- Fix bugs
+- Update user interface, improve user experience
+- Improve Backend with better authentication-authorization, server push notifications
+- Sync data betwween applications: Poststudy - main social, Ludwigz - translattion
+- The Library for my family and open for you with love books
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## You can fork/clone or contribute with me to develop together
+## Setup local development
+1. Clone this source code to your local
+2. Run commands:
+- Run `npm install` to install node modules libraries
+- Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-## Component use
+## References
 Chips:
 https://material.angular.io/components/chips/overview
 https://www.npmjs.com/package/ngx-chips
