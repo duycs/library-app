@@ -7,25 +7,25 @@
 <ul>
   <!-- search by authors, title, subject name, public date -->
   <li class="nav-item" [routerLinkActive]='["link-active"]'>
-      <a class="" [routerLink]='["/"]'>View recommended books</a>
+      <a class="" [routerLink]='["/"]'><p>View recommended books</p></a>
     </li>
   <li class="nav-item" [routerLinkActive]='["link-active"]'>
-    <a class="" [routerLink]='["/search"]'>Search books</a>
+    <a class="" [routerLink]='["/search"]'><p>Search books</p></a>
   </li>
   <li *ngIf="currentUser == null" class="nav-item" [routerLinkActive]='["link-active"]'>
-    <a class="" [routerLink]='["/login"]'>Login</a>
+    <a class="" [routerLink]='["/login"]'><p>Login</p></a>
   </li>
 
   <li class="nav-item" *ngIf="currentUser == null" [routerLinkActive]='["link-active"]'>
-    <a class="" [routerLink]='["/members/register"]'>Member Register</a>
+    <a class="" [routerLink]='["/members/register"]'><p>Member Register</p></a>
   </li>
 
   <li class="nav-item" *ngIf="currentUser == null" [routerLinkActive]='["link-active"]'>
-    <a class="" [routerLink]='["/librarians/register"]'>Librarian Register</a>
+    <a class="" [routerLink]='["/librarians/register"]'><p>Librarian Register</p></a>
   </li>
 </ul>
 
-<div *ngIf="currentUser==null">
+<div *ngIf="!currentUser">
   <p>Become a <code>member</code> or <code>librarian</code> to use their functions, you can <a target="_blank" class=""
       [routerLink]='["/login"]'>login</a>
     by using the example username/password:

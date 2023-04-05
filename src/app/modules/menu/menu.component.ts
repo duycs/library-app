@@ -13,7 +13,7 @@ import { AlertService } from '../../core/services/alert.service';
   templateUrl: './menu.component.html',
 })
 export class MenuComponent implements OnInit, OnDestroy {
-  currentUser!: User;
+  currentUser!: User | null;
   currentUserSubscription: Subscription;
   users: User[] = [];
   isExpanded = false;
@@ -29,6 +29,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   ) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
+      if (!user.accountId) { this.currentUser = null };
     });
   }
 
@@ -45,7 +46,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    let accountId = this.currentUser.accountId;
+    let accountId = this.currentUser?.accountId || 0;
     this.authenticationService.logout(accountId).pipe(first()).subscribe(() => {
       console.log(accountId);
       this.alertService.showToastSuccess();
