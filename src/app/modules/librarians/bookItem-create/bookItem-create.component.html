@@ -15,14 +15,14 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Book Id" formControlName="bookId" [errorStateMatcher]="matcher">
         <mat-error>
-          <span *ngIf="!bookItemForm.get('bookId').valid && bookItemForm.get('bookId').touched">Please enter
+          <span *ngIf="!bookItemForm.get('bookId')?.valid && bookItemForm.get('bookId')?.touched">Please enter
             BookId</span>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Barcode" formControlName="barcode" [errorStateMatcher]="matcher">
         <mat-error>
-          <span *ngIf="!bookItemForm.get('barcode').valid && bookItemForm.get('barcode').touched">Please enter
+          <span *ngIf="!bookItemForm.get('barcode')?.valid && bookItemForm.get('barcode')?.touched">Please enter
             Barcode</span>
         </mat-error>
       </mat-form-field>

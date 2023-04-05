@@ -1,4 +1,4 @@
-export class ReserveBookItem {
+export interface ReserveBookItem {
     memberId: number;
     bookItemId: number;
     bookItemBarcode: string;

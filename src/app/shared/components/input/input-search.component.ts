@@ -7,6 +7,7 @@ import { AlertService } from 'src/app/core/services/alert.service';
 import { Book } from 'src/app/shared/models/book';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { SearchService } from 'src/app/core/services/search.service';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
   selector: 'app-input-search',
@@ -16,16 +17,17 @@ import { SearchService } from 'src/app/core/services/search.service';
 
 export class InputSearchComponent implements OnInit {
 
-  searchForm:FormGroup;
+  searchForm!: FormGroup;
+  matcher = new ErrorStateMatcher();
   //public type:string;
 
-  @Input() value:string ='';
+  @Input() value: string = '';
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private formBuilder: FormBuilder,
     private alertService: AlertService) {
-    
+
   }
 
   //init

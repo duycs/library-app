@@ -9,13 +9,13 @@ import { Member } from 'src/app/shared/models/member';
 import { BlockMember } from 'src/app/shared/models/block-member';
 import { UnblockMember } from 'src/app/shared/models/unblock-member';
 import { LibrarianRegister } from 'src/app/shared/models/librarian-register';
-import { AppSettings } from 'src/app/configs/app-settings.config';
+import { environment } from 'src/environments/environment';
 
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = `${AppSettings.defaultBackendUrl}/librarians`;
+const apiUrl = `${environment.apiUrl}/librarians`;
 const sizeDefault = 10;
 
 @Injectable({
@@ -26,7 +26,7 @@ export class LibrarianService {
   constructor(private http: HttpClient) { }
 
   //register
-  register (librarianRegister): Observable<LibrarianRegister> {
+  register (librarianRegister: any): Observable<LibrarianRegister> {
     const url = `${apiUrl}/register`;
     return this.http.post<LibrarianRegister>(url, librarianRegister, httpOptions).pipe(
       tap((librarianRegister: LibrarianRegister) => console.log('Librarian registerted')),
@@ -53,7 +53,7 @@ export class LibrarianService {
     );
   }
 
-  addBook (book): Observable<Book> {
+  addBook (book: any): Observable<Book> {
     const url = `${apiUrl}/addBook`;
     return this.http.post<Book>(url, book, httpOptions).pipe(
       tap((book: Book) => console.log('added book')),
@@ -61,7 +61,7 @@ export class LibrarianService {
     );
   }
 
-  updateBook (book): Observable<any> {
+  updateBook (book: any): Observable<any> {
     const url = `${apiUrl}/updateBook`;
     return this.http.put(url, book, httpOptions).pipe(
       tap(_ => console.log('updated book')),
@@ -69,7 +69,7 @@ export class LibrarianService {
     );
   }
 
-  removeBook(removeObjectById): Observable<RemoveObjectById> {
+  removeBook(removeObjectById: any): Observable<RemoveObjectById> {
     const url = `${apiUrl}/removeBook`;
     return this.http.delete(url, removeObjectById).pipe(
       tap(_ => console.log('removed book')),
@@ -95,7 +95,7 @@ export class LibrarianService {
     );
   }
 
-  addBookItem (bookItem): Observable<BookItem> {
+  addBookItem (bookItem: any): Observable<BookItem> {
     const url = `${apiUrl}/addBookItem`;
     return this.http.post<BookItem>(url, bookItem, httpOptions).pipe(
       tap((bookItem: BookItem) => console.log('added book item')),
@@ -103,7 +103,7 @@ export class LibrarianService {
     );
   }
 
-  updateBookItem (bookItem): Observable<any> {
+  updateBookItem (bookItem: any): Observable<any> {
     const url = `${apiUrl}/updateBookItem`;
     return this.http.put(url, bookItem, httpOptions).pipe(
       tap(_ => console.log('updated book item')),
@@ -111,7 +111,7 @@ export class LibrarianService {
     );
   }
 
-  removeBookItem(removeObjectById): Observable<any> {
+  removeBookItem(removeObjectById: any): Observable<any> {
     const url = `${apiUrl}/removeBookItem`;
     return this.http.delete(url, removeObjectById).pipe(
       tap(_ => console.log('removed book item')),
@@ -137,19 +137,19 @@ export class LibrarianService {
     );
   }
 
-  blockMember (blockMember): Observable<BlockMember> {
+  blockMember (blockMember: any): Observable<BlockMember> {
     const url = `${apiUrl}/blockMember`;
     console.log(blockMember);
     return this.http.put(url, blockMember, httpOptions).pipe(
-      tap(_ => console.log('blocked member')),
+      tap((i: any) => console.log('blocked member')),
       catchError(this.handleError<any>('blockMember'))
     );
   }
 
-  unblockMember (unblockMember): Observable<UnblockMember> {
+  unblockMember (unblockMember: any): Observable<UnblockMember> {
     const url = `${apiUrl}/unblockMember`;
     return this.http.put(url, unblockMember, httpOptions).pipe(
-      tap(_ => console.log('unblocked member')),
+      tap((i: any) => console.log('unblocked member')),
       catchError(this.handleError<any>('unblockMember'))
     );
   }

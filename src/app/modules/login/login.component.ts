@@ -8,10 +8,10 @@ import { AlertService } from '../../core/services/alert.service';
 
 @Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
-    loginForm: FormGroup;
+    loginForm!: FormGroup;
     loading = false;
     submitted = false;
-    returnUrl: string;
+    returnUrl!: string;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.accountName.value, this.f.password.value)
+        this.authenticationService.login(this.f['accountName'].value, this.f['password'].value)
             .pipe(first())
             .subscribe(
                 data => {

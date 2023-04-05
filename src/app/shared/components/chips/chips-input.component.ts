@@ -12,8 +12,8 @@ import { Chip } from '../../models/chip';
   styleUrls: ['./chips-input.component.scss'],
 })
 export class ChipsInputComponent implements OnInit {
-  @Input() label: string;
-  @Input() items: Chip[];
+  @Input() label!: string;
+  @Input() items!: Chip[];
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
 
   visible = true;

@@ -1,4 +1,4 @@
-export class BookItem {
+export interface BookItem {
     id:number;
     bookId: number;
     barcode: string;

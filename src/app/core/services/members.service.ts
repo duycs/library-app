@@ -8,12 +8,12 @@ import { CheckoutBookItem } from 'src/app/shared/models/checkout-book-item';
 import { RenewBookItem } from 'src/app/shared/models/renew-book-item';
 import { ReserveBookItem } from 'src/app/shared/models/reserve-book-item';
 import { ReturnBookItem } from 'src/app/shared/models/return-book-item';
-import { AppSettings } from 'src/app/configs/app-settings.config';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = `${AppSettings.defaultBackendUrl}/members`;
+const apiUrl = `${environment.apiUrl}/members`;
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,7 @@ export class MemberService {
     );
   }
 
-  register(memberRegister): Observable<MemberRegister> {
+  register(memberRegister: any): Observable<MemberRegister> {
     const url = `${apiUrl}/register`;
     return this.http.post<MemberRegister>(url, memberRegister, httpOptions).pipe(
       tap((memberRegister: MemberRegister) => console.log('registered Member w/ id=${book.id}')),
@@ -41,7 +41,7 @@ export class MemberService {
   }
 
   // book item services
-  checkoutBook(checkoutBook): Observable<CheckoutBookItem> {
+  checkoutBook(checkoutBook: any): Observable<CheckoutBookItem> {
     const url = `${apiUrl}/checkoutBook`;
     return this.http.post<CheckoutBookItem>(url, checkoutBook, httpOptions).pipe(
       tap((checkoutBook: CheckoutBookItem) => console.log('checked out Book w/ id=${book.id}')),
@@ -49,7 +49,7 @@ export class MemberService {
     );
   }
 
-  renewBook(renewBook): Observable<RenewBookItem> {
+  renewBook(renewBook: any): Observable<RenewBookItem> {
     const url = `${apiUrl}/renewBook`;
     return this.http.post<RenewBookItem>(url, renewBook, httpOptions).pipe(
       tap((renewBook: RenewBookItem) => console.log('renew Book w/ id=${book.id}')),
@@ -58,7 +58,7 @@ export class MemberService {
   }
 
 
-  reserveBook(reserveBook): Observable<ReserveBookItem> {
+  reserveBook(reserveBook: any): Observable<ReserveBookItem> {
     const url = `${apiUrl}/reserveBook`;
     return this.http.post<ReserveBookItem>(url, reserveBook, httpOptions).pipe(
       tap((reserveBook: ReserveBookItem) => console.log('reserved Book w/ id=${book.id}')),
@@ -66,7 +66,7 @@ export class MemberService {
     );
   }
 
-  returnBook(returnBook): Observable<ReturnBookItem> {
+  returnBook(returnBook: any): Observable<ReturnBookItem> {
     const url = `${apiUrl}/returnBook`;
     return this.http.post<ReturnBookItem>(url, returnBook, httpOptions).pipe(
       tap((returnBook: ReturnBookItem) => console.log('returned Book w/ id=${book.id}')),

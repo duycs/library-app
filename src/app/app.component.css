@@ -1,4 +1,17 @@
+
+.footer {
+  flex-shrink: 0;
+  flex-grow: 0;
+  background: #eee;
+  padding: 3px 15px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
 @media (max-width: 767px) {
+
   /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
   .body-content {
     padding-top: 50px;

@@ -1,20 +1,21 @@
 <div *ngIf="items">
   <p class="label">{{label}}</p>
-  <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
+  <div *ngFor="let item of items">
+  <!-- <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
     [useImagesLoaded]="true"
     [scrollAnimationOptions]="{ animationEffect: 'effect-1', minDuration : 0.4, maxDuration : 0.7 }">
-    <!-- Masonry Grid Item -->
     <ng-masonry-grid-item *ngFor="let item of items; let i = index;" (click)="onCardClickEvent(item)"
-      id="{{'masonry-item-'+i}}">
-      <!-- Grid Content  -->
+      id="{{'masonry-item-'+i}}"> -->
+
       <div class="link" *ngIf="item.coverImage!=null && item.coverImage!=''">
         <img [src]="item.coverImage">
       </div>
       <div class="link" *ngIf="(item.coverImage==null || item.coverImage=='') && item.title!=null">
         <p class="cover-title">{{item.title}}</p>
       </div>
-    </ng-masonry-grid-item>
-  </ng-masonry-grid>
-</div>
+      
+    <!-- </ng-masonry-grid-item>
+  </ng-masonry-grid> -->
 
-<!-- refer: https://www.npmjs.com/package/ng-masonry-grid -->
+  </div>
+</div>

@@ -1,46 +1,26 @@
-<mat-progress-bar style="z-index: 10000" mode="indeterminate" *ngIf="isShowProgressBar"></mat-progress-bar>
-<header>
-  <nav class='navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3'>
-    <div class="container">
-      <a class="navbar-brand" [routerLink]='["/"]'>Home Library</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
-        aria-label="Toggle navigation" [attr.aria-expanded]="isExpanded" (click)="toggle()">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" [ngClass]='{"show": isExpanded}'>
-        <ul class="navbar-nav flex-grow">
+<mat-nav-list>
+  <a mat-list-item (click)="onSidenavClose()">
+    <mat-icon>close</mat-icon>
+  </a>
+  <a *ngIf="isAuthenticated" (click)="logout()" mat-list-item href="javascript:void(0)">
+    <mat-icon></mat-icon> <span class="nav-caption">Logout {{currentUser?.accountName}}</span>
+  </a>
 
-          <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" [routerLink]='["/menu"]'>Functions</a>
-          </li>
+  <a mat-list-item routerLink="/about" (click)="onSidenavClose()">
+    <mat-icon></mat-icon> <span class="nav-caption">About</span>
+  </a>
 
-          <!-- search by authors, title, subject name, public date -->
-          <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" [routerLink]='["/search"]'>Search</a>
-          </li>
+  <a mat-list-item routerLink="/search" (click)="onSidenavClose()">
+    <mat-icon></mat-icon> <span class="nav-caption">Search</span>
+  </a>
 
-          <li *ngIf="currentUser == null" class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" [routerLink]='["/login"]'>Login</a>
-          </li>
+  <mat-divider></mat-divider>
 
-          <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" [routerLink]='["/about"]'>About</a>
-          </li>
+  <a *ngIf="!isAuthenticated" mat-list-item routerLink="/authentication/register" (click)="onSidenavClose()">
+    <span class="nav-caption">Register</span>
+  </a>
+  <a *ngIf="!isAuthenticated" mat-list-item (click)="login()" (click)="onSidenavClose()">
+    <span class="nav-caption hover-pointer">Login</span>
+  </a>
 
-          <li *ngIf="currentUser" class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" *ngIf="currentUser.isMember"
-              [routerLink]="['/member/', currentUser.accountName]">{{currentUser.userName}}</a>
-            <a class="nav-link text-dark" *ngIf="currentUser.isLibrarian"
-              [routerLink]="['/librarian/', currentUser.accountName]">{{currentUser.userName}}</a>
-          </li>
-
-          <li *ngIf="currentUser" class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark link" (click)="logout()">Logout</a>
-          </li>
-
-
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
+</mat-nav-list>

@@ -8,6 +8,7 @@ import { Book } from 'src/app/shared/models/book';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { SearchService } from 'src/app/core/services/search.service';
 import { CommentService } from 'src/app/core/services/comments.service';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
   selector: 'app-input-comment',
@@ -16,13 +17,13 @@ import { CommentService } from 'src/app/core/services/comments.service';
 })
 
 export class InputCommentComponent implements OnInit {
-
-  commentForm: FormGroup;
+  commentForm!: FormGroup;
+  matcher = new ErrorStateMatcher();
   //public type:string;
 
-  value: string;
-  @Input() parentId: number;
-  @Input() bookId: number;
+  value!: string;
+  @Input() parentId!: number;
+  @Input() bookId!: number;
   @Input() currentUser: any;
 
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();

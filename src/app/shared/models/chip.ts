@@ -1,4 +1,4 @@
-export class Chip {
+export interface Chip {
     id: number;
     name: string;
     count: number;

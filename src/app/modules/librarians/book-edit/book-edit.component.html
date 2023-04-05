@@ -18,7 +18,7 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Title" formControlName="title" [errorStateMatcher]="matcher">
         <mat-error>
-          <span *ngIf="!bookForm.get('title').valid && bookForm.get('title').touched">Please enter book Title</span>
+          <span *ngIf="!bookForm.get('title')?.valid && bookForm.get('title')?.touched">Please enter book Title</span>
         </mat-error>
       </mat-form-field>
 

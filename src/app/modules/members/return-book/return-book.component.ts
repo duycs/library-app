@@ -15,15 +15,15 @@ import { AlertService } from 'src/app/core/services/alert.service';
 })
 
 export class ReturnBookComponent implements OnInit {
-  returnBookForm: FormGroup;
+  returnBookForm!: FormGroup;
 
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  accountId: number;
-  bookItemId: number;
-  bookItemBarcode: string;
+  accountId!: number;
+  bookItemId!: number;
+  bookItemBarcode!: string;
 
   isLoadingResults = false;
 

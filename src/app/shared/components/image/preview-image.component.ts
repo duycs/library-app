@@ -9,9 +9,9 @@ import { AlertService } from 'src/app/core/services/alert.service';
   styleUrls: ['./preview-image.component.scss']
 })
 export class PreviewImageComponent{
-  public imagePath;
+  public imagePath!: string;
   imgURL: any;
-  public message: string;
+  public message!: string;
 
   @Input() imageData: any;
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
@@ -25,7 +25,7 @@ export class PreviewImageComponent{
     private uploadService: UploadService) {
   }
 
-  preview(files) {
+  preview(files: any) {
     if (files.length === 0)
       return;
 

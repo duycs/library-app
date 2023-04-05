@@ -7,6 +7,7 @@ import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { AlertService } from 'src/app/core/services/alert.service';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
   selector: 'app-renew-book',
@@ -15,21 +16,22 @@ import { AlertService } from 'src/app/core/services/alert.service';
 })
 
 export class RenewBookComponent implements OnInit {
-  renewBookForm: FormGroup;
+  renewBookForm!: FormGroup;
 
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  borrowedDate: Date;
-  dueDate: Date;
-  returnDate: Date;
-  rackId: number;
-  accountId: number;
-  bookItemId: number;
-  bookItemBarcode: string;
+  borrowedDate!: Date;
+  dueDate!: Date;
+  returnDate!: Date;
+  rackId!: number;
+  accountId!: number;
+  bookItemId!: number;
+  bookItemBarcode!: string;
 
   isLoadingResults = false;
+  matcher = new ErrorStateMatcher();
 
   constructor(
     private router: Router, private api: MemberService,

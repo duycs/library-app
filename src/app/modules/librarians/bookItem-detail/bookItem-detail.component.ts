@@ -9,21 +9,7 @@ import { BookItem } from 'src/app/shared/models/book-item';
   styleUrls: ['./bookItem-detail.component.css']
 })
 export class BookItemDetailComponent implements OnInit {
-
-  bookItem: BookItem = {
-    id: null,
-    bookId: null,
-    barcode: null,
-    isReferenceOnly: false,
-    borrowedDate: null,
-    dueDate: null,
-    price: null,
-    formatId: 1,
-    bookStatusId: 1,
-    purchaseDate: null,
-    rackId: 1,
-    libraryId: 1
-  };
+  bookItem!: BookItem;
   isLoadingResults = true;
 
   constructor(private route: ActivatedRoute, private api: LibrarianService, private router: Router) { }
@@ -33,7 +19,7 @@ export class BookItemDetailComponent implements OnInit {
     this.getBookItemDetail(this.route.snapshot.params['id']);
   }
 
-  getBookItemDetail(id) {
+  getBookItemDetail(id: any) {
     this.api.findBookItem(id)
       .subscribe(data => {
         this.bookItem = data;
@@ -42,7 +28,7 @@ export class BookItemDetailComponent implements OnInit {
       });
   }
 
-  deleteBookItem(id) {
+  deleteBookItem(id: any) {
     this.isLoadingResults = true;
     this.api.removeBookItem(id)
       .subscribe(res => {

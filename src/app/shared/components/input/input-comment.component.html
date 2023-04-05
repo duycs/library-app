@@ -15,7 +15,7 @@
                     <input matInput type="text" placeholder="comment this book..." [(ngModel)]="value"
                         formControlName="key" [errorStateMatcher]="matcher">
                     <mat-error>
-                        <span *ngIf="!commentForm.get('key').valid && commentForm.get('key').touched">Please enter
+                        <span *ngIf="!commentForm.get('key')?.valid && commentForm.get('key')?.touched">Please enter
                             content</span>
                     </mat-error>
                     <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">

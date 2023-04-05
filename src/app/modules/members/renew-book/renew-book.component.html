@@ -12,7 +12,7 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="borrowedDate" formControlName="borrowedDate" [errorStateMatcher]="matcher">
         <mat-error>
-          <span *ngIf="!renewBookForm.get('borrowedDate').valid && renewBookForm.get('borrowedDate').touched">Please
+          <span *ngIf="!renewBookForm.get('borrowedDate')?.valid && renewBookForm.get('borrowedDate')?.touched">Please
             enter borrowedDate</span>
         </mat-error>
       </mat-form-field>
@@ -32,7 +32,7 @@
         <input matInput placeholder="bookItemBarcode" formControlName="bookItemBarcode">
       </mat-form-field>
       <div class="button-row">
-        <button mat-raised-button color="primary" type="submit" [disabled]="!returnBookForm.valid">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!renewBookForm.valid">
           RENEW BOOK
         </button>
       </div>

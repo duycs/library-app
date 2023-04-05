@@ -18,7 +18,7 @@ import { Comment } from 'src/app/shared/models/comment.model';
 })
 
 export class BookDetailComponent implements OnInit {
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
@@ -26,20 +26,20 @@ export class BookDetailComponent implements OnInit {
 
   //value for childs
   //for book detail
-  public bookId: number;
+  public bookId!: number;
 
   //condition view book recommend and comment
   isShowRecommended = false;
 
   //for masonry books
   public labelBooks: string = 'You may be interested in';
-  public bookItems: any[];
+  public bookItems!: any[];
   public pageBooks: number = 1;
   public sizeBooks: number = 19;
 
   //for book comment
   //comment list
-  public comments: Comment[];
+  public comments!: Comment[];
 
   constructor(
     private route: ActivatedRoute,

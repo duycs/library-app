@@ -1,4 +1,4 @@
-export class CheckoutBookItem{
+export interface CheckoutBookItem{
     borrowedDate: Date;
     dueDate: Date;
     returnDate: Date;

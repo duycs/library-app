@@ -1,6 +1,6 @@
 import { Person } from "./person";
 
-export class Member {
+export interface Member {
     accountId: number;
     person: Person;
     id: number;

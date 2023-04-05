@@ -1,4 +1,4 @@
-export class User {
+export interface User {
     accountId: number;
     accountTypes: string[];
     accountName: string;

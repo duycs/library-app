@@ -10,7 +10,7 @@ import { File } from '../../models/file';
   styleUrls: ['./image-upload.component.scss']
 })
 export class ImageUploadComponent {
-  public file: File;
+  public file!: any;
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private http: HttpClient,
@@ -18,7 +18,7 @@ export class ImageUploadComponent {
     private uploadService: UploadService) {
   }
 
-  upload(files) {
+  upload(files: any) {
     if (files.length === 0)
       return;
 

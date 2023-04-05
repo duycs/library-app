@@ -5,15 +5,15 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { Book } from '../../shared/models/book';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlertService } from './alert.service';
-import { AppSettings } from 'src/app/configs/app-settings.config';
 import { BookService } from './books.service';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 
-const apiExportFromPoststudyUrl = `${AppSettings.defaultBackendUrl}/exportBook`;
+const apiExportFromPoststudyUrl = `${environment.apiUrl}/exportBook`;
 
 @Injectable({
     providedIn: 'root'

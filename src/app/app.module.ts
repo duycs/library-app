@@ -22,7 +22,7 @@ import { MembersComponent } from './modules/members/members.component';
 import { SearchComponent } from './modules/search/search.component';
 import { AboutComponent } from './modules/about/about.component';
 import { MenuComponent } from './modules/menu/menu.component';
-import { NgMasonryGridModule } from 'ng-masonry-grid';
+// import { NgMasonryGridModule } from 'ng-masonry-grid';
 import { TagInputModule } from 'ngx-chips';
 import { BooksModule } from './modules/books/books.module';
 import { BooksComponent } from './modules/books/books.component';
@@ -32,6 +32,7 @@ import { TagsModule } from './modules/tags/tags.module';
 import { AuthorsComponent } from './modules/authors/authors.component';
 import { SubjectsComponent } from './modules/subjects/subjects.component';
 import { TagsComponent } from './modules/tags/tags.component';
+import { HeaderComponent } from './core/header/header.component';
 
 
 
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NavMenuComponent,
+    HeaderComponent,
     HomeComponent,
     AboutComponent,
     LoginComponent,
@@ -70,7 +72,7 @@ const appRoutes: Routes = [
   imports: [
     TagInputModule,
     SharedModule,
-    NgMasonryGridModule,
+    //NgMasonryGridModule,
     BrowserAnimationsModule,
     MaterialModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -1,4 +1,4 @@
-export class RenewBookItem {
+export interface RenewBookItem {
     borrowedDate: Date;
     dueDate: Date;
     returnDate: Date;

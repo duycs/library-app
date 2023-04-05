@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
-import { AppSettings } from 'src/app/configs/app-settings.config';
 import { Chip } from 'src/app/shared/models/chip';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = `${AppSettings.defaultBackendUrl}/authors`;
+const apiUrl = `${environment.apiUrl}/authors`;
 const sizeDefault = 10;
 
 @Injectable({

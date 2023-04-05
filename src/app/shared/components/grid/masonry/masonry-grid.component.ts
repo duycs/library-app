@@ -20,12 +20,12 @@ import { NavigateExtension } from "src/app/core/extensions/navigate";
 })
 
 export class MasonryGridComponent implements OnInit {
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
   @Input() label: string = '';
-  @Input() items: any[];
+  @Input() items!: any[];
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
 
   isLoadingResults = false;

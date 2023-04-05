@@ -15,12 +15,12 @@ import { TagService } from "src/app/core/services/tags.service";
 })
 
 export class TagListComponent implements OnInit {
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
   public labelTags: string= 'Tags';
-  public tagItems: any[];
+  public tagItems!: any[];
 
   page:number = 1;
   size:number = 100;

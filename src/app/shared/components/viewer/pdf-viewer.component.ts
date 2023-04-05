@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class PdfViwerComponent {
    // pdfSrc : string ='abc.pdf';
-  @Input('pdfSrc') pdfSrc: string;
+  @Input('pdfSrc') pdfSrc?: string;
   constructor(){}
 }

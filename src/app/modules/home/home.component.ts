@@ -20,7 +20,7 @@ import { NavigateExtension } from 'src/app/core/extensions/navigate';
 })
 
 export class HomeComponent implements OnInit {
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
@@ -33,16 +33,17 @@ export class HomeComponent implements OnInit {
   public labelTags: string = 'Tags';
   public labelBooks: string = 'Books';
 
-  public bookItems: any[];
-  public authorItems: any[];
-  public subjectItems: any[];
-  public tagItems: any[];
+  public bookItems!: any[];
+  public authorItems!: any[];
+  public subjectItems!: any[];
+  public tagItems!: any[];
 
   pageChips: number =1;
   sizeChips: number = 9;
 
   pageBooks: number = 1;
   sizeBooks: number = 19;
+  searchValue = '';
 
   constructor(
     private router: Router,
@@ -115,7 +116,7 @@ export class HomeComponent implements OnInit {
   }
 
   //emit value search submit change
-  emitSearchValueChange(value){
+  emitSearchValueChange(value: any){
     this.router.navigate(['/search'], { queryParams: { key: value } });
   }
 

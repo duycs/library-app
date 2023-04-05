@@ -16,11 +16,11 @@ import { BookService } from 'src/app/core/services/books.service';
 })
 
 export class BookListComponent implements OnInit {
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  public books: any[];
+  public books!: any[];
   page:number = 1;
   size:number = 100;
 

@@ -9,20 +9,20 @@
   </div>
   <mat-card class="example-card">
     <div class="container">
-      <div *ngIf="member.person" class="row">
+      <div *ngIf="member" class="row">
         <div class="container">
           <div class="row">
             <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
-              <h2>{{member.person.libraryCardId || "0000000-00000-0000-000-00-0"}}</h2>
+              <h2>{{member.libraryCardId || "0000000-00000-0000-000-00-0"}}</h2>
             </div>
 
             <div class="col-lg-9 col-md-9 col-xs-12 col-sm-12">
               <div class="container">
                 <div class="row">
-                  <h5>{{member.person.name}}</h5>
+                  <h5>{{member.person?.name}}</h5>
                 </div>
                 <div class="row">
-                  <h5>{{member.emal}}</h5>
+                  <h5>{{member.person?.email}}</h5>
                 </div>
                 <div class="row">
                   <div class="col-lg col-md col-xs col-sm col-sm">Account Id:</div>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="row">
                   <div class="col-lg col-md col-xs col-sm col-sm">Account Status:</div>
-                  <div class="col-lg col-md col-xs col-sm col-sm">{{member.accountStatusId}}</div>
+                  <div class="col-lg col-md col-xs col-sm col-sm">{{member.accountStatus}}</div>
                 </div>
                 <div class="row">
                   <div class="col-lg col-md col-xs col-sm col-sm">Date Of Membership:</div>

@@ -7,7 +7,7 @@ import { EbookUploadComponent } from './shared/components/upload/ebook-upload.co
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { PdfViwerComponent } from './shared/components/viewer/pdf-viewer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgMasonryGridModule } from 'ng-masonry-grid';
+// import { NgMasonryGridModule } from 'ng-masonry-grid';
 import { TagInputModule } from 'ngx-chips';
 import { ChipsAutoCompleteComponent } from './shared/components/chips/chips-autocomplete.component';
 import { ChipsInputComponent } from './shared/components/chips/chips-input.component';
@@ -28,7 +28,7 @@ import { InputCommentComponent } from './shared/components/input/input-comment.c
         ReactiveFormsModule,
         MaterialModule,
         PdfViewerModule,
-        NgMasonryGridModule,
+        // NgMasonryGridModule,
         TagInputModule,
         RouterModule,
     RouterModule.forChild([

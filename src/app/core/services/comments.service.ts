@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
-import { AppSettings } from 'src/app/configs/app-settings.config';
 import { Comment } from '../../shared/models/comment.model';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const apiUrl = `${AppSettings.defaultBackendUrl}/comments`;
+const apiUrl = `${environment.apiUrl}/comments`;
 const sizeDefault = 10;
 
 @Injectable({
@@ -28,7 +28,7 @@ export class CommentService {
       );
   }
 
-  addComment(comment): Observable<Comment> {
+  addComment(comment: any): Observable<Comment> {
     const url = `${apiUrl}/addComment`;
     return this.http.post<Comment>(url, comment, httpOptions).pipe(
       tap((comment: Comment) => console.log('added comment w/ id=${comment.id}')),

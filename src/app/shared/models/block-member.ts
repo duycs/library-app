@@ -1,3 +1,3 @@
-export class BlockMember {
+export interface BlockMember {
     email: string;
 }

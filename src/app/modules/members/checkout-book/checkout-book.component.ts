@@ -16,22 +16,22 @@ import { BookService } from 'src/app/core/services/books.service';
 })
 
 export class CheckoutBookComponent implements OnInit {
-  checkoutBookForm: FormGroup;
+  checkoutBookForm!: FormGroup;
 
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  borrowedDate: Date;
-  dueDate: Date;
-  returnDate: Date;
-  rackId: number;
-  totalBooksCheckedout: number;
-  accountId: number;
-  bookItemId: number;
-  bookItemBarcode: string;
+  borrowedDate!: Date;
+  dueDate!: Date;
+  returnDate!: Date;
+  rackId!: number;
+  totalBooksCheckedout!: number;
+  accountId!: number;
+  bookItemId!: number;
+  bookItemBarcode!: string;
 
-  bookId: number;
+  bookId!: number;
 
   isLoadingResults = false;
 
@@ -82,7 +82,7 @@ export class CheckoutBookComponent implements OnInit {
       });
   }
 
-  getBookItemByBookId(bookId) {
+  getBookItemByBookId(bookId: any) {
     this.bookService.getBookItemByBookId(bookId).subscribe(data => {
       if (data != null) {
         this.checkoutBookForm.controls['borrowedDate'].setValue(new Date());

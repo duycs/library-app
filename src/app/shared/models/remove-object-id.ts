@@ -1,3 +1,3 @@
-export class RemoveObjectById {
+export interface RemoveObjectById {
     id: number;
 }

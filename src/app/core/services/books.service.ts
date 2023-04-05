@@ -4,13 +4,13 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError, tap, map } from 'rxjs/operators';
 import { Book } from '../../shared/models/book';
 import { BookItem } from 'src/app/shared/models/book-item';
-import { AppSettings } from 'src/app/configs/app-settings.config';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const apiUrl = `${AppSettings.defaultBackendUrl}/books`;
+const apiUrl = `${environment.apiUrl}/books`;
 const sizeDefault = 10;
 
 @Injectable({
@@ -37,14 +37,14 @@ export class BookService {
     );
   }
 
-  addBook(book): Observable<Book> {
+  addBook(book: any): Observable<Book> {
     return this.http.post<Book>(apiUrl, book, httpOptions).pipe(
       tap((book: Book) => console.log('added book w/ id=${book.id}')),
       catchError(this.handleError<Book>('addBook'))
     );
   }
 
-  updateBook(id, book): Observable<any> {
+  updateBook(id: any, book: any): Observable<any> {
     const url = `${apiUrl}/${id}`;
     return this.http.put(url, book, httpOptions).pipe(
       tap(_ => console.log('updated book id=${id}')),
@@ -52,7 +52,7 @@ export class BookService {
     );
   }
 
-  deleteBook(id): Observable<Book> {
+  deleteBook(id: any): Observable<Book> {
     const url = `${apiUrl}/${id}`;
 
     return this.http.delete<Book>(url, httpOptions).pipe(

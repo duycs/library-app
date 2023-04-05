@@ -58,7 +58,7 @@ export class BookListComponent implements OnInit {
   }
 
   //emit search from child
-  emitSearchValueChange(value) {
+  emitSearchValueChange(value: any) {
     console.log(value);
     this.searchService.searchBooksByTag(value, this.page, this.size).subscribe(res => {
       console.log(this.data);

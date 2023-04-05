@@ -1,6 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
 body {
   margin: 0;
 }
@@ -40,3 +38,401 @@ mat-card{cursor: pointer}
 .count{color: grey}
 
 .no-padding{padding: 0px!important}
+
+/* for sidenav to take a whole page */
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: Open Sans, sans-serif;
+  background-color: white;
+}
+
+mat-sidenav-container,
+mat-sidenav-content,
+mat-sidenav {
+  height: 100%;
+  background-color: white;
+}
+
+mat-sidenav {
+  width: 250px;
+}
+
+main {
+  padding: 10px;
+}
+
+mat-toolbar li a {
+  float: left;
+  margin-left: 20px;
+}
+
+mat-toolbar li {
+  float: right;
+}
+
+mat-toolbar .menu {
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-dialog-container {
+  max-width: 50vw;
+}
+
+mat-dialog-actions {
+  margin: 14px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.cdk-overlay-pane {
+  width: 30vw;
+}
+
+.mat-elevation-z8 {
+  padding: 12px;
+}
+
+.group-btn {
+  margin: 15px;
+}
+
+tbody tr .id {
+  cursor: pointer;
+}
+
+.notify-message {
+  font-size: 12px;
+  margin: 0 12px;
+}
+
+.margin-left {
+  margin-left: 12px;
+}
+
+.margin-top {
+  margin-top: 12px;
+}
+
+.margin-top-double {
+  margin-top: 24px;
+}
+
+.margin-bottom {
+  margin-bottom: 12px;
+}
+
+mat-toolbar .menu {
+  font-size: 16px;
+}
+
+.search-field {
+  padding: 0px;
+  margin: 0px;
+  /* padding: 10px; */
+  float: right;
+  width: 500px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.search-field .mat-mdc-form-field-infix {
+  margin: 0px;
+  padding: 10px !important;
+  min-height: 40px;
+}
+
+.search-field .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+.header-button-row button {
+  margin: 10px;
+}
+
+.mat-drawer-content {
+  overflow: hidden;
+}
+
+.mat-mdc-paginator-outer-container {
+  width: 100%;
+}
+
+.hover-pointer {
+  cursor: pointer;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.transition:hover {
+  transition: all 0.3s cubic-bezier(0.35, 0, 0.25, 1);
+}
+
+.border {
+  padding: 6px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  text-align: center;
+}
+
+.label-In-Shift {
+  background: #4CAF50;
+}
+
+.label-Out-Shift {
+  background: #9E9E9E;
+}
+
+.label-Free {
+  background: #607D8B;
+}
+
+.label-Todo {
+  background: #009688;
+}
+
+.label-Doing {
+  background: #2196F3;
+}
+
+.label-Pending {
+  background: rgb(255, 87, 34);
+}
+
+.label-Done {
+  background: #E040FB;
+}
+
+.label-Approved {
+  background: #4CAF50;
+}
+
+.label-Rejected {
+  background: #D32F2F;
+}
+
+.label-none,
+.label-Wating {
+  background: #9E9E9E;
+}
+
+.field {
+  width: 40%;
+  float: left;
+  margin: 12px;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.full-width {
+  float: left;
+  width: 100%;
+}
+
+.right-menu {
+  float: right;
+}
+
+.right-menu .search-form {
+  margin-left: 20px;
+  width: 500px;
+  border-radius: 60px;
+}
+
+.right-menu .search-form .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+.right-menu .search-form .mat-mdc-text-field-wrapper {
+  border-radius: 60px;
+  margin-top: 4px;
+}
+
+.head-title {
+  color: #222;
+  margin: 0;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 600;
+  display: inline-block;
+  padding: 12px 0px;
+}
+
+.owl-carousel .mat-mdc-card-content {
+  padding: 12px 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.search-form .mat-mdc-text-field-wrapper {
+  background-color: white !important;
+  border: 1px solid green;
+}
+
+.tags-list {
+  width: 100%;
+  margin-bottom: 10px;
+  margin-left: 6px;
+}
+
+.tags-list .mat-mdc-text-field-wrapper {
+  border: none !important;
+}
+
+.tags-list .mat-mdc-chip-ripple {
+  border: 1px solid green;
+  background-color: white !important;
+  background: white !important;
+}
+
+.cdk-overlay-pane {
+  width: 300px !important;
+}
+
+.owl-stage {
+  padding: 6px !important;
+}
+
+mat-sidenav-content {
+  overflow-x: hidden !important;
+}
+
+
+/* list photos cards */
+.author p {
+  float: left;
+  padding: 0 6px;
+  margin-top: 6px;
+}
+
+.author .avatar-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+  height: 25px;
+  width: 25px;
+  float: left;
+}
+
+.mat-mdc-card-avatar {
+  padding-bottom: 0;
+  margin-bottom: 0 !important;
+}
+
+.account .center {
+  width: 50%;
+  margin: 0 auto;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.convert-to-professional {
+  margin: 12px 0;
+}
+
+.error {
+  color: red;
+}
+
+.border-green {
+  border: 1px solid green
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .search-field {
+    width: auto;
+  }
+
+  .notify-message {
+    display: none;
+  }
+
+  .account .container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .account .center-content {
+    width: 30%;
+  }
+
+  .account .left-content {
+    width: 15%;
+    margin-right: 20px;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .search-field {
+    width: 200px;
+  }
+
+  .notify-message {
+    display: none;
+  }
+
+  .account .container {
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .account .center-content {
+    width: 100%;
+  }
+
+  .left-content {
+    width: 19%;
+    margin-right: 20px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .search-field {
+    width: 500px;
+  }
+
+  .notify-message {
+    display: block;
+  }
+
+  .account .container {
+    display: flex;
+    justify-content: center;
+    display: flex;
+  }
+
+  .account .center-content {
+    width: 30%;
+  }
+
+  .account .left-content {
+    width: 19%;
+    margin-right: 20px;
+  }
+}

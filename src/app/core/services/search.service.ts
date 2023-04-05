@@ -3,12 +3,12 @@ import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Book } from '../../shared/models/book';
-import { AppSettings } from 'src/app/configs/app-settings.config';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = `${AppSettings.defaultBackendUrl}/search`;
+const apiUrl = `${environment.apiUrl}/search`;
 const sizeDefault = 12;
 
 @Injectable({

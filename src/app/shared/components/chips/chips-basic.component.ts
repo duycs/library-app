@@ -17,13 +17,13 @@ import { Chip } from "src/app/shared/models/chip";
 })
 
 export class ChipsBasicComponent implements OnInit {
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
   @Input() type: string = '';
   @Input() label: string ='';
-  @Input() items: Chip[];
+  @Input() items!: Chip[];
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
   @Output() notifyMore: EventEmitter<any> = new EventEmitter<any>();
 

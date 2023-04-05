@@ -14,12 +14,12 @@ import { AuthorService } from "src/app/core/services/authors.service";
 })
 
 export class AuthorListComponent implements OnInit {
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
   public labelAuthors: string = 'Authors';
-  public authorItems : any[];
+  public authorItems!: any[];
 
   page:number = 1;
   size:number = 100;

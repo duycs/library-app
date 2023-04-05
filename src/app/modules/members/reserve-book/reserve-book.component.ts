@@ -15,15 +15,15 @@ import { AlertService } from 'src/app/core/services/alert.service';
 })
 
 export class ReserveBookComponent implements OnInit {
-  returnForm: FormGroup;
+  reserveForm!: FormGroup;
 
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  accountId: number;
-  bookItemId: number;
-  bookItemBarcode: string;
+  accountId!: number;
+  bookItemId!: number;
+  bookItemBarcode!: string;
 
   isLoadingResults = false;
 
@@ -37,7 +37,7 @@ export class ReserveBookComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.returnForm = this.formBuilder.group({
+    this.reserveForm = this.formBuilder.group({
       'accountId': this.currentUser.accountId,
       'bookItemId': null,
       'bookItemBarcode': null,

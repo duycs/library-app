@@ -18,7 +18,7 @@ export class BookDetailComponent implements OnInit {
     authors: '', tags: '', reactCount: 0
   };
   isLoadingResults = true;
-  pdfSrc: string;
+  pdfSrc!: string;
 
   constructor(private route: ActivatedRoute, 
     private librarianService: LibrarianService,
@@ -30,7 +30,7 @@ export class BookDetailComponent implements OnInit {
     this.getBookDetail(id);
   }
 
-  getBookDetail(id) {
+  getBookDetail(id: any) {
     this.librarianService.findBook(id)
       .subscribe(data => {
         this.book = data;
@@ -40,7 +40,7 @@ export class BookDetailComponent implements OnInit {
       });
   }
 
-  deleteBook(id) {
+  deleteBook(id: any) {
     this.isLoadingResults = true;
     this.librarianService.removeBook(id)
       .subscribe(res => {

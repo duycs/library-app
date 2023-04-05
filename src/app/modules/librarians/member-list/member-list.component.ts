@@ -10,11 +10,11 @@ import { Member } from 'src/app/shared/models/member';
   styleUrls: ['./member-list.component.css']
 })
 export class MemberListComponent implements OnInit {
-  accountId: number;
-  dateOfMembership: Date;
-  totalBooksCheckedout: number;
-  person: Person;
-  id: number;
+  accountId!: number;
+  dateOfMembership!: Date;
+  totalBooksCheckedout!: number;
+  person!: Person;
+  id!: number;
   displayedColumns: string[] = ['id', 'name', 'email', 'dateOfMembership', 'totalBooksCheckedout'];
   data: Member[] = [];
   isLoadingResults = true;

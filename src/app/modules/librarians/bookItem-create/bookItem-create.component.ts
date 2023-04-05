@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { LibrarianService } from 'src/app/core/services/librarians.service';
 import { MemberService } from 'src/app/core/services/members.service';
 import { AlertService } from 'src/app/core/services/alert.service';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
   selector: 'app-bookItem-create',
@@ -13,19 +14,19 @@ import { AlertService } from 'src/app/core/services/alert.service';
 })
 
 export class BookItemCreateComponent implements OnInit {
-  bookItemForm: FormGroup;
-
-  bookId: number;
-  barcode: string;
-  isReferenceOnly: boolean;
-  borrowedDate: Date;
-  dueDate: Date;
-  price: number;
-  formatId: number;
-  bookStatusId: number;
-  purchaseDate: Date;
-  rackId: number;
-  libraryId: number;
+  bookItemForm!: FormGroup;
+  matcher = new ErrorStateMatcher();
+  bookId!: number;
+  barcode!: string;
+  isReferenceOnly!: boolean;
+  borrowedDate!: Date;
+  dueDate!: Date;
+  price!: number;
+  formatId!: number;
+  bookStatusId!: number;
+  purchaseDate!: Date;
+  rackId!: number;
+  libraryId!: number;
 
   // formatChoosed: string;
   // referenceChoosed: string;

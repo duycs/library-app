@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
-import { AppSettings } from "../../configs/app-settings.config";
+import { environment } from 'src/environments/environment';
 
 // const httpOptions = {
 //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 // };
 
-const apiUrl = `${AppSettings.defaultBackendUrl}/Upload`;
+const apiUrl = `${environment.apiUrl}/Upload`;
 
 @Injectable({
   providedIn: 'root'

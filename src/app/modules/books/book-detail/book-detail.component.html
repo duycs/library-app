@@ -14,7 +14,7 @@
 </div>
 <app-input-comment [currentUser]="currentUser" [bookId]="bookId" (notify)="addedComment($event)" *ngIf="currentUser && currentUser.isMember"></app-input-comment>
 
-<div *ngIf="isShowRecommend">
+<div *ngIf="isShowRecommended">
   <app-masonry-grid [label]="labelBooks" [items]="bookItems" (notify)="setClickBookItem($event)">
   </app-masonry-grid>
   <a *ngIf="bookItems" mat-button color="primary" [routerLink]="['/books']">

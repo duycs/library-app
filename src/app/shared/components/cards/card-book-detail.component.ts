@@ -16,17 +16,13 @@ import { AlertService } from 'src/app/core/services/alert.service';
 })
 
 export class CardBookDetailComponent implements OnInit {
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  @Input() bookId: number;
+  @Input() bookId!: number;
 
-  book: Book = {
-    uid: 0, id: 0, isbn: 0, coverImage: '', ebook: '', ebookType: '',
-    description: '', title: '', subjects: '', publisher: '', publicationDate: null,
-    language: '', pageNumber: 0, authors: '', tags: '', reactCount: 0
-  };
+  book!: Book;
 
   isLoadingResults = true;
   isLoadingLove = false;

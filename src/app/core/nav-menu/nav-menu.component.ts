@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -14,13 +14,17 @@ import { AlertService } from '../services/alert.service';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent implements OnInit, OnDestroy {
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
   isExpanded = false;
   isAnonymous = false;
   isMember = false;
   isLibrarian = false;
+  isShowProgressBar = false;
+  isAuthenticated = false;
+
+  @Output() sidenavClose = new EventEmitter();
 
   constructor(
     private alertService: AlertService,
@@ -45,7 +49,6 @@ export class NavMenuComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // unsubscribe to ensure no memory leaks
     this.currentUserSubscription.unsubscribe();
   }
 
@@ -64,6 +67,14 @@ export class NavMenuComponent implements OnInit, OnDestroy {
       this.alertService.showToastSuccess();
       this.router.navigate(['/']);
     });
+  }
+
+  login() {
+    //this.authenticationService.login();
+  }
+
+  public onSidenavClose = () => {
+    this.sidenavClose.emit();
   }
 
 }

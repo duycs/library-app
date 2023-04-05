@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { MemberService } from '../../../core/services/members.service';
@@ -10,7 +10,7 @@ import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({ templateUrl: 'register.component.html' })
 export class MemberRegisterComponent implements OnInit {
-    registerForm: FormGroup;
+    registerForm!: FormGroup;
     loading = false;
     submitted = false;
 

@@ -15,18 +15,18 @@ import { SearchService } from 'src/app/core/services/search.service';
 })
 
 export class SearchComponent implements OnInit {
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
-  public booksByTitle: Book[];
-  public booksByAuthor: Book[];
-  public booksBySubject: Book[];
-  public booksByTag: Book[];
+  public booksByTitle: Book[] = [];
+  public booksByAuthor: Book[] = [];
+  public booksBySubject: Book[] = [];
+  public booksByTag: Book[] = [];
 
   //searchForm: FormGroup;
-  searchValue: string;
-  searchType: string;
+  searchValue!: string;
+  searchType!: string;
   isSearching = false;
 
   //@Output() notify: EventEmitter<any> = new EventEmitter<any>();
@@ -57,14 +57,14 @@ export class SearchComponent implements OnInit {
   }
 
   //emit from input child
-  emitSearchValueChange(value: string = null): void {
+  emitSearchValueChange(value: string = ''): void {
     console.log(value);
     this.searching(value);
   }
 
 
   //searching
-  private searching(value: string, type: string = null) {
+  private searching(value: string, type: string = '') {
     this.isSearching = true;
 
     if (!value) return;
@@ -111,7 +111,7 @@ export class SearchComponent implements OnInit {
   }
 
   //click item in list
-  onCardClickEvent(book) {
+  onCardClickEvent(book: any) {
     if (this.currentUser == null) {
       //is anonymous
       this.router.navigate(['/books/', book.id]);

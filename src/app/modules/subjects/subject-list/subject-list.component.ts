@@ -18,12 +18,12 @@ import { Chip } from "src/app/shared/models/chip";
 })
 
 export class SubjectListComponent implements OnInit {
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
   public labelSubject: string = 'Subjects';
-  public subjectItems: any[];
+  public subjectItems!: any[];
 
   page:number = 1;
   size:number = 100;

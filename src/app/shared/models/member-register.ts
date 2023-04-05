@@ -1,4 +1,4 @@
-export class MemberRegister {
+export interface MemberRegister {
     name: string;
     email: string;
     phone: string;

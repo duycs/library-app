@@ -5,6 +5,7 @@ import { FormGroup, Validators, NgForm, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LibrarianService } from 'src/app/core/services/librarians.service';
 import { AlertService } from 'src/app/core/services/alert.service';
+import {ErrorStateMatcher} from '@angular/material/core';
 
 @Component({
   selector: 'app-bookItem-edit',
@@ -12,22 +13,23 @@ import { AlertService } from 'src/app/core/services/alert.service';
   styleUrls: ['./bookItem-edit.component.css']
 })
 export class BookItemEditComponent implements OnInit {
-  bookItemForm: FormGroup;
+  bookItemForm!: FormGroup;
 
-  id: number;
-  bookId: number;
-  barcode: string;
-  isReferenceOnly: boolean;
-  borrowedDate: Date;
-  dueDate: Date;
-  price: number;
-  formatId: number;
-  bookStatusId: number;
-  purchaseDate: Date;
-  rackId: number;
-  libraryId: number;
+  id!: number;
+  bookId!: number;
+  barcode!: string;
+  isReferenceOnly!: boolean;
+  borrowedDate!: Date;
+  dueDate!: Date;
+  price!: number;
+  formatId!: number;
+  bookStatusId!: number;
+  purchaseDate!: Date;
+  rackId!: number;
+  libraryId!: number;
 
   isLoadingResults = false;
+  matcher = new ErrorStateMatcher();
 
   constructor(private router: Router, private route: ActivatedRoute, 
     private librarianService: LibrarianService, 
@@ -52,7 +54,7 @@ export class BookItemEditComponent implements OnInit {
     });
   }
 
-  getBookItem(id) {
+  getBookItem(id: any) {
     this.librarianService.findBookItem(id).subscribe(data => {
       console.log(data);
       this.id = data.id;

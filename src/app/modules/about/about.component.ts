@@ -13,7 +13,7 @@ import { AlertService } from '../../core/services/alert.service';
   templateUrl: './about.component.html',
 })
 export class AboutComponent implements OnInit, OnDestroy {
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
   isExpanded = false;

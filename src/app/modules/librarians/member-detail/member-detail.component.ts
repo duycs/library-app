@@ -12,10 +12,10 @@ import { AlertService } from 'src/app/core/services/alert.service';
   styleUrls: ['./member-detail.component.css']
 })
 export class MemberDetailComponent implements OnInit {
-  email: string;
-  member: Member = { id: null, accountId: null, dateOfMembership: null, totalBooksCheckedout: null, person: null, accountStatus: null, libraryCardId: null };
+  email!: string;
+  member!: Member;
   isLoadingResults = true;
-  actionToMember: string;
+  actionToMember!: string;
 
 
   constructor(private route: ActivatedRoute, private api: LibrarianService, 
@@ -27,7 +27,7 @@ export class MemberDetailComponent implements OnInit {
     this.getMemberDetail(this.email);
   }
 
-  getMemberDetail(email) {
+  getMemberDetail(email: any) {
     this.api.findMember(email)
       .subscribe(data => {
         this.member = data;

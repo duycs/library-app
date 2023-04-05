@@ -10,7 +10,7 @@ import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({ templateUrl: 'register.component.html' })
 export class LibrarianRegisterComponent implements OnInit {
-    registerForm: FormGroup;
+    registerForm!: FormGroup;
     loading = false;
     submitted = false;
 

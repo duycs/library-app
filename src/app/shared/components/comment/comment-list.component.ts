@@ -17,7 +17,7 @@ export class CommentListComponent implements OnInit {
         private alertService: AlertService) {
     }
 
-    @Input() comments: Comment[];
+    @Input() comments!: Comment[];
     @Output() deleteComment = new EventEmitter<boolean>();
 
     ngOnInit(): void {

@@ -1,0 +1,49 @@
+<mat-toolbar class="box-shadow" color="primary">
+    <div fxHide.gt-xs>
+        <button mat-icon-button (click)="onToggleSidenav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+
+    <div *ngIf="!isAuthenticated">
+        <a routerLink="/">
+            <img src="assets/images/logo.png" width="40" class="mb-4" />
+        </a>
+    </div>
+
+    <div>
+        <!-- <span class="notify-message">{{cronJobSignalRService.message}}</span> -->
+    </div>
+    <div class="menu" fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+            <li *ngIf="!isAuthenticated">
+                <a>
+                    <p class="hover-pointer" (click)="login()">Login</p>
+                </a>
+            </li>
+
+            <li>
+                <a routerLink="/register">
+                    <p>Register</p>
+                </a>
+            </li>
+
+            <li *ngIf="isAuthenticated">
+                <a (click)="signout()" href="javascript:void(0)">Signout {{name}}</a>
+            </li>
+
+            <li>
+                <a routerLink="/menu">
+                    <p>Functions</p>
+                </a>
+            </li>
+
+            <li>
+                <a routerLink="/about">
+                    <p>About</p>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</mat-toolbar>

@@ -14,12 +14,12 @@ import { Book } from '../../models/book';
 })
 
 export class CardBookListComponent implements OnInit {
-  currentUser: User;
+  currentUser!: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
 
   //@Input() page: number = 1;
-  @Input() books: Book[];
+  @Input() books!: Book[];
 
   constructor(private router: Router,
     private authenticationService: AuthenticationService,

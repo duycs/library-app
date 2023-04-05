@@ -1,6 +1,14 @@
-<body>
-  <app-nav-menu></app-nav-menu>
-  <div class="container">
+<mat-sidenav-container>
+  <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+  <mat-sidenav #sidenav role="navigation">
+    <app-nav-menu (sidenavClose)="sidenav.close()"></app-nav-menu>
+  </mat-sidenav>
+  <main>
     <router-outlet></router-outlet>
+  </main>
+
+  <div class="footer">
+    <p>The <code>Library</code> for <code>my family</code> and open for <code>you</code> with <code>love books</code>
+    </p>
   </div>
-</body>
+</mat-sidenav-container>

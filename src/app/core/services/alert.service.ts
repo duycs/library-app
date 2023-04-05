@@ -17,7 +17,7 @@ export class AlertService {
                     this.keepAfterNavigationChange = false;
                 } else {
                     // clear alert
-                    this.subject.next();
+                    this.subject.next({});
                 }
             }
         });
@@ -38,12 +38,12 @@ export class AlertService {
     }
 
     showToastSuccess() {
-        Promise.resolve().then(() => { this.matSnackBar.open('Success', null, { duration: 2000 }); });
+        Promise.resolve().then(() => { this.matSnackBar.open('Success', "", { duration: 2000 }); });
     }
     showToastError() {
-        Promise.resolve().then(() => { this.matSnackBar.open('Error', null, { duration: 2000 }); });
+        Promise.resolve().then(() => { this.matSnackBar.open('Error', "", { duration: 2000 }); });
     }
-    showToastMessage(message) {
-        Promise.resolve().then(() => { this.matSnackBar.open(message, null, { duration: 2000 }); });
+    showToastMessage(message: any) {
+        Promise.resolve().then(() => { this.matSnackBar.open(message, "", { duration: 2000 }); });
     }
 }

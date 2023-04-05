@@ -8,6 +8,7 @@ import { Chip } from 'src/app/shared/models/chip';
 import { Tag } from 'src/app/shared/models/tag';
 import { AuthorService } from 'src/app/core/services/authors.service';
 import { SubjectService } from 'src/app/core/services/subjects.service';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
   selector: 'app-book-edit',
@@ -15,31 +16,32 @@ import { SubjectService } from 'src/app/core/services/subjects.service';
   styleUrls: ['./book-edit.component.css']
 })
 export class BookEditComponent implements OnInit {
-  bookForm: FormGroup;
+  bookForm!: FormGroup;
 
-  id: number = null;
+  id!: number;
   isbn: string = '';
   title: string = '';
   coverImage: string = '';
   ebook: string = '';
   ebookType: string = '';
   publisher: string = '';
-  publicationDate: Date;
+  publicationDate!: Date;
   language: string = '';
   pageNumber: string = '';
 
-  authors: string;
-  subjects: string;
-  tags: string;
+  authors!: string;
+  subjects!: string;
+  tags!: string;
 
-  authorChips: Chip[];
-  subjectChips: Chip[];
-  tagChips: Chip[];
+  authorChips!: Chip[];
+  subjectChips!: Chip[];
+  tagChips!: Chip[];
 
   isLoadingResults = false;
   labelAuthor = 'Authors Selection';
   labelSubject = 'Subjects Selection';
   labelTag = 'Tags Selection';
+  matcher = new ErrorStateMatcher();
 
   constructor(private router: Router, private route: ActivatedRoute,
     private librarianService: LibrarianService,
@@ -93,7 +95,7 @@ export class BookEditComponent implements OnInit {
   }
 
   //get info
-  getBook(id) {
+  getBook(id: any) {
     this.librarianService.findBook(id).subscribe(data => {
       console.log(data);
       this.id = data.id;
@@ -116,7 +118,7 @@ export class BookEditComponent implements OnInit {
     });
   }
 
-  getTagsByBookId(id) {
+  getTagsByBookId(id: any) {
     this.tagService.getTagsByBookId(id).subscribe(data => {
       if (data)
         this.tagChips = data;
@@ -126,7 +128,7 @@ export class BookEditComponent implements OnInit {
     });
   }
 
-  getAuthorsByBookId(id) {
+  getAuthorsByBookId(id: any) {
     this.authorService.getAuthorsByBookId(id).subscribe(data => {
       if (data)
         this.authorChips = data;
@@ -136,7 +138,7 @@ export class BookEditComponent implements OnInit {
     });
   }
 
-  getSubjectsByBookId(id) {
+  getSubjectsByBookId(id: any) {
     this.subjectService.getSubjectsByBookId(id).subscribe(data => {
       if (data)
         this.subjectChips = data;
@@ -150,31 +152,31 @@ export class BookEditComponent implements OnInit {
   setCoverImageData(file: any): void {
     console.log('Cover image Data: ', file);
     this.coverImage = file.url;
-    this.bookForm.get('coverImage').setValue(this.coverImage);
+    this.bookForm.get('coverImage')?.setValue(this.coverImage);
   }
 
   setEbookData(file: any): void {
     console.log('ebook Data: ', file);
-    this.bookForm.get('ebook').setValue(file.url);
+    this.bookForm.get('ebook')?.setValue(file.url);
     console.log(file.fileExtension);
-    this.bookForm.get('ebookType').setValue(file.fileExtension);
+    this.bookForm.get('ebookType')?.setValue(file.fileExtension);
   }
 
   setTagsData(items: any): void {
-    let tags = items.map(item => item.name).toString();
-    this.bookForm.get('tags').setValue(tags);
+    let tags = items.map((item: any) => item.name).toString();
+    this.bookForm.get('tags')?.setValue(tags);
     console.log('tags data: ', tags);
   }
 
   setAuthorsData(items: any): void {
-    let authors = items.map(item => item.name).toString();
-    this.bookForm.get('authors').setValue(authors);
+    let authors = items.map((item: any) => item.name).toString();
+    this.bookForm.get('authors')?.setValue(authors);
     console.log('authors data: ', authors);
   }
 
   setSubjectsData(items: any): void {
-    let subjects = items.map(item => item.name).toString();
-    this.bookForm.get('subjects').setValue(subjects);
+    let subjects = items.map((item: any) => item.name).toString();
+    this.bookForm.get('subjects')?.setValue(subjects);
     console.log('subjects data: ', subjects);
   }
 
